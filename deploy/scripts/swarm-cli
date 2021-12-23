@@ -1,0 +1,10 @@
+#!/bin/bash
+set -aeuo pipefail
+
+# i.e: swarm-cli project-staging-laravel-php ls -la
+CONTAINER="$1"
+COMMAND="${@:2}"
+
+CONTAINER_NAME=$(docker ps --format '{{.Names}}' | grep "$CONTAINER")
+docker exec $CONTAINER_NAME $COMMAND
+

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+DB_CONTAINER="$(docker ps -q -f NAME=wordpress_db)"
+docker exec -ti ${DB_CONTAINER} bash -c 'mysqldump -u root -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" > /docker-entrypoint-initdb.d/dump.sql && gzip -f /docker-entrypoint-initdb.d/dump.sql'

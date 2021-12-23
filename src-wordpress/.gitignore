@@ -1,0 +1,14 @@
+*.log
+/src/wp-config.php
+/src/wp-content/advanced-cache.php
+/src/wp-content/backup-db/
+/src/wp-content/backups/
+/src/wp-content/blogs.dir/
+/src/wp-content/mu-plugins/
+/src/wp-content/wp-cache-config.php
+/src/wp-content/plugins/hello.php
+
+/src/license.txt
+/src/readme.html
+/src/sitemap.xml
+/src/sitemap.xml.gz

@@ -1,0 +1,14 @@
+#!/bin/bash
+set -aeuo pipefail
+
+# All environment variables such as SWARM_CACERT, SWARM_CERT, SWARM_KEY, SWARM_HOST are set on Gitlab CI variables
+
+echo "$SWARM_CACERT" | tr -d '\r' > ca.pem
+echo "$SWARM_CERT" | tr -d '\r' > cert.pem
+echo "$SWARM_KEY" | tr -d '\r' > key.pem
+
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="$SWARM_HOST"
+export DOCKER_CERT_PATH="$PWD"
+docker ps
+

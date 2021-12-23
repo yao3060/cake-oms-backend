@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -aeuo pipefail
+
+# Prevent error when no files found - on linux (when set -e)
+if [ "$(find ./src-*/.docker/* -maxdepth 2 -name 'test')" = "" ]; then
+  exit
+fi
+
+# run each test command that is specified inside ./src-*/.docker/...
+find ./src-*/.docker/* -maxdepth 2 -name "test" | xargs grep -h . | {
+
+    HAS_FILE=0
+    WAIT_CONTAINER=()
+
+    while read line; do
+        echo $line
+        HAS_FILE=1
+        # pull image
+        ./docker-compose pull $(echo ${line} | awk '{print $1;}')
+
+        # run detached command and then remove the container
+        RUNCONTAINER=$(./docker-compose run -d ${line})
+        WAIT_CONTAINER+=("${RUNCONTAINER}")
+    done
+
+    if [ $HAS_FILE -eq 0 ]; then
+        exit 0
+    fi
+
+    RUN_SUCCESS=1
+    for i in ${WAIT_CONTAINER[@]}; do
+        echo "Waiting for ${i} finish..."
+
+        # Display stdout in parallel
+        docker logs -f ${i} &
+
+        RUNRESULT=$(docker wait ${i})
+        docker rm ${i}
+
+        if [ $RUNRESULT -ne 0 ]; then
+            RUN_SUCCESS=0
+        fi
+    done
+
+    if [ $RUN_SUCCESS -ne 1 ]; then
+        echo "test failed"
+        exit 1
+    fi
+}

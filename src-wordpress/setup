@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+WP_CLI="$(docker ps -q -f NAME=wordpress_cli)"
+docker exec -ti $WP_CLI sh -c 'wp core install --url="$WORDPRESS_SITE_URL" --title="$PROJECT" --admin_user="$WORDPRESS_SITE_ADMIN_USERNAME" --admin_password="$WORDPRESS_SITE_ADMIN_PASSWORD" --admin_email="$WORDPRESS_SITE_ADMIN_EMAIL" --skip-email'

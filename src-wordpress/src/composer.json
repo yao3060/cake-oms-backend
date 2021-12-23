@@ -1,0 +1,22 @@
+{
+  "name": "cake/oms",
+  "description": "desc",
+  "authors": [
+    {
+      "name": "YAO",
+      "email": "yao3060@163.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "tareq1988/wp-eloquent": "dev-master"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^6.0"
+  }
+}

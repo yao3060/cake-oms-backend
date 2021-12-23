@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -aeuo pipefail
+
+source .env
+
+# set COMPOSE_PROJECT_NAME environment variable that will be used by the networks
+COMPOSE_PROJECT_NAME="${PROJECT}_${ENVIRONMENT}"
+VERSION=$(cat VERSION)
+
+echo "stop modules and remove images"
+./docker-compose down --rmi local --volumes
+docker rmi -f $(docker images --filter reference="${CONTAINER_REGISTRY}/*" -q) 2> /dev/null

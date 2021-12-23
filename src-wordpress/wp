@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+WP_CLI="$(docker ps -q -f NAME=wordpress_cli)"
+docker exec -ti $WP_CLI sh -c "wp $*"

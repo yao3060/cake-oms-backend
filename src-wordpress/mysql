@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+DB_CONTAINER="$(docker ps -q -f NAME=wordpress_db)"
+docker exec -ti ${DB_CONTAINER} bash -c 'mysql -u root -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"'

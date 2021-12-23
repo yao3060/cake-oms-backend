@@ -1,0 +1,13 @@
+# When using multiple docker-compose.yml files from different directories, local paths are not followed correctly.
+# https://github.com/docker/compose/issues/3874
+# this empty file fixes this and could be used to spin up some general containers like prerender, imaginary or a nginx proxy
+version: '2.3'
+
+# networks:
+#   default:
+#     driver: bridge
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: ${DOCKER_NETWORK_IPAM_SUBNET}
+#           gateway: ${DOCKER_NETWORK_IPAM_GATEWAY}

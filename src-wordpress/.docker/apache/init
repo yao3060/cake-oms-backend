@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# set project ownership to www-data
+chown -R www-data:www-data /var/www/html

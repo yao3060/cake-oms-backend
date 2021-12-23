@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -aeuo pipefail
+
+if [ ! $(which git-lfs) ]; then
+    echo "You need Git LFS to run this project"
+    echo ""
+    echo "    https://git-lfs.github.com"
+    echo ""
+    exit 1
+fi
+
+# create the dotenv file if it doesn't exist
+if [ ! -f .env ]; then
+  cp .env.default .env
+fi
+
+source .env
+./deploy/scripts/update-resource-mirror.sh
+source .env
+
+SKIP_INSTALL=0
+NO_DEV=
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --skip-install)
+            SKIP_INSTALL=1
+            shift
+            ;;
+        --no-dev)
+            NO_DEV='--no-dev'
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# Skip install modules
+if [ "$SKIP_INSTALL" != 1 ]; then
+    echo "install modules"
+    ./install
+fi
+
+echo "start modules"
+./docker-compose $NO_DEV up $@

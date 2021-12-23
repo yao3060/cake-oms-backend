@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# create /var/www/html/wp-config.php from /wp-config-sample.php if it doesn't exist yet
+if [ ! -f /var/www/html/wp-config.php ]; then
+  cp /wp-config-sample.php /var/www/html/wp-config.php
+fi
+
+# Put init process as background
+/init 2>&1 &
+
+# start apache2-foreground
+apache2-foreground

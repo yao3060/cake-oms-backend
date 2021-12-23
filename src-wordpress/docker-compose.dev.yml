@@ -1,0 +1,39 @@
+version: '2.3'
+
+services:
+  wordpress_apache:
+    build:
+      context: .
+      dockerfile: ./src-wordpress/.docker/apache/Dockerfile
+    restart: "no"
+    volumes:
+      - ./src-wordpress/src:/var/www/html:delegated
+    environment:
+      - WORDPRESS_DEBUG=1
+
+  wordpress_db:
+    restart: "no"
+    volumes:
+      - ./src-wordpress/transfer:/docker-entrypoint-initdb.d
+
+  wordpress_cache:
+    image: redis:alpine
+    restart: always
+    # command: --loglevel verbose
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_SERVER=wordpress_db
+    ports:
+      - "9999:8080"
+
+  # wordpress_cli:
+  #   image: wordpress:cli
+  #   container_name: ${COMPOSE_PROJECT_NAME}_wordpress_cli
+  #   volumes:
+  #     - ./src-wordpress/src:/var/www/html:delegated
+  #   env_file: .env
+  #   working_dir: /var/www/html
+  #   command: ["tail", "-f", "/dev/null"]
