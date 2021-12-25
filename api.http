@@ -1,0 +1,38 @@
+@BASE_URL=http://localhost:8000/wp-json
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0MDM0Njk0NSwibmJmIjoxNjQwMzQ2OTQ1LCJleHAiOjE2NDA5NTE3NDUsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.nx7Vu2qjWgs76z-lviVkd22IKPshRDXBOQrz1nVGJ7A
+
+### Login
+POST {{BASE_URL}}/jwt-auth/v1/token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Yao123"
+}
+
+
+### get home icon menus
+GET {{BASE_URL}}/oms/v1/menus
+Accept: application/json
+Content-Type: application/json
+
+### get orders
+GET {{BASE_URL}}/oms/v1/orders
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "keyword": "NO009"
+}
+
+### update order
+PUT {{BASE_URL}}/oms/v1/orders/22
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "status": "pendding"
+}

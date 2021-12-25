@@ -1,0 +1,57 @@
+<style type="text/css">
+  .wp-die-message {
+    display: none;
+  }
+</style>
+<link rel="stylesheet" href="http://localhost:8000/wp-includes/css/dashicons.css" media="all" />
+<link rel="stylesheet" href="http://localhost:8000/wp-content/plugins/query-monitor/assets/query-monitor.css"
+  media="all" />
+<div data-qm="qm">
+  <div id="qm-fatal"
+    data-qm-message="Uncaught Exception: Unknown column &#039;status&#039; in &#039;field list&#039; (SQL: update `wp_orders` set `creator` = &#039;1&#039;, `status` = &#039;processing&#039;, `updated_at` = &#039;2021-12-24 12:10:04&#039; where `id` = &#039;22&#039;)"
+    data-qm-file="vendor/tareq1988/wp-eloquent/src/Eloquent/Database.php" data-qm-line="293">
+    <div class="qm-fatal-wrap">
+      <p><span class="dashicons dashicons-warning" aria-hidden="true"></span> <b>Fatal error</b>: Uncaught Exception:
+        Unknown column &#039;status&#039; in &#039;field list&#039; (SQL: update `wp_orders` set `creator` =
+        &#039;1&#039;, `status` = &#039;processing&#039;, `updated_at` = &#039;2021-12-24 12:10:04&#039; where `id` =
+        &#039;22&#039;)<br>in <b>/var/www/html/vendor/tareq1988/wp-eloquent/src/Eloquent/Database.php</b> on line
+        <b>293</b></p>
+      <p>Call stack:</p>
+      <ol>
+        <li><code>WeDevs\O\E\Database::affectingStatement()</code><br><span
+            class="qm-info qm-supplemental">vendor/tareq1988/wp-eloquent/src/Eloquent/Database.php:247</span></li>
+        <li><code>WeDevs\O\E\Database::update()</code><br><span
+            class="qm-info qm-supplemental">vendor/illuminate/database/Query/Builder.php:2721</span></li>
+        <li><code>Illuminate\D\Q\Builder::update()</code><br><span
+            class="qm-info qm-supplemental">app/Controllers/OrderController.php:243</span></li>
+        <li><code>App\C\OrderController::update_item()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/rest-api/class-wp-rest-server.php:1140</span></li>
+        <li><code>WP_REST_Server::respond_to_request()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/rest-api/class-wp-rest-server.php:987</span></li>
+        <li><code>WP_REST_Server::dispatch()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/rest-api/class-wp-rest-server.php:414</span></li>
+        <li><code>WP_REST_Server::serve_request()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/rest-api.php:370</span></li>
+        <li><code>rest_api_loaded()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/class-wp-hook.php:303</span></li>
+        <li><code>WP_Hook::apply_filters()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/class-wp-hook.php:327</span></li>
+        <li><code>WP_Hook::do_action()</code><br><span class="qm-info qm-supplemental">wp-includes/plugin.php:518</span>
+        </li>
+        <li><code>do_action_ref_array()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/class-wp.php:388</span></li>
+        <li><code>WP::parse_request()</code><br><span
+            class="qm-info qm-supplemental">wp-includes/class-wp.php:750</span></li>
+        <li><code>WP::main()</code><br><span class="qm-info qm-supplemental">wp-includes/functions.php:1291</span></li>
+        <li><code>wp()</code><br><span class="qm-info qm-supplemental">wp-blog-header.php:16</span></li>
+        <li><code>require()</code><br><span class="qm-info qm-supplemental">index.php:17</span></li>
+      </ol>
+    </div>
+    <h2>Query Monitor</h2>
+  </div>
+</div>{"code":"internal_server_error","message":"<p>\u6b64\u7ad9\u70b9\u9047\u5230\u4e86\u81f4\u547d\u9519\u8bef\u3002<\
+    /p>
+    <p><a
+        href=\"https:\/\/wordpress.org\/support\/article\/faq-troubleshooting\/\">\u4e86\u89e3\u6709\u5173\u5bf9WordPress\u8fdb\u884c\u6545\u969c\u6392\u9664\u7684\u66f4\u591a\u4fe1\u606f\u3002
+        <\ /a>
+          <\ /p>","data":{"status":500},"additional_errors":[]}
