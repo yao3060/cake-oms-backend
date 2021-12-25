@@ -57,7 +57,15 @@ class OrderController extends \WP_REST_Controller
         'callback'            => [$this, 'get_order_item'],
         'permission_callback' => [$this, 'get_item_permissions_check'],
         'args'                => ['context' => ['default' => 'view']],
-      ],
+      ]
+    ]);
+    register_rest_route($namespace, '/' . $base . '/(?P<id>[\d]+)/items/(?P<item_id>[\d]+)/gallery/(?P<image_id>[\d]+)', [
+      [
+        'methods'             => WP_REST_Server::DELETABLE,
+        'callback'            => [$this, 'delete_order_item_gallery'],
+        'permission_callback' => [$this, 'get_item_permissions_check'],
+        'args'                => ['context' => ['default' => 'view']],
+      ]
     ]);
     register_rest_route($namespace, '/' . $base . '/schema', [
       'methods'  => WP_REST_Server::READABLE,
@@ -207,6 +215,12 @@ class OrderController extends \WP_REST_Controller
         ['status' => 404]
       );
     }
+  }
+
+  public function delete_order_item_gallery($request)
+  {
+    $imageId = $request->get_param('image_id');
+    return $this->db->table('order_item_gallery')->delete($imageId);
   }
 
   /**
