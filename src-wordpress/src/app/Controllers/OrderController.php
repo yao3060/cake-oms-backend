@@ -192,6 +192,13 @@ class OrderController extends \WP_REST_Controller
         ->select(['id', 'media_id', 'media_url'])
         ->where('item_id', $item->id)->get();
 
+      if ($item->gallery->count()) {
+        foreach ($item->gallery as $key => $image) {
+          $image->id = (int)$image->id;
+          $image->media_id = (int) $image->media_id;
+        }
+      }
+
       return new WP_REST_Response($item, 200);
     } else {
       return new WP_Error(

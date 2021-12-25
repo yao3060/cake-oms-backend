@@ -1,0 +1,42 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Actions and Filters\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-19 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.5; wp-5.8.2\n"
+"X-Domain: cake"
+
+#. Description of the plugin
+msgid ""
+"Boilerplate MU-plugin for custom actions and filters to run for a site "
+"instead of setting in WP-config.php"
+msgstr ""
+
+#. Name of the plugin
+msgid "Cake MU-Plugins"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.yaoin.net"
+msgstr ""
+
+#. Author of the plugin
+msgid "YAO"
+msgstr ""
+
+msgid "Orders"
+msgstr ""
+
+msgid "Order"
+msgstr ""
