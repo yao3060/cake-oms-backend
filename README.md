@@ -1,7 +1,4 @@
-# Boilerplate Base
-
-Generate your boilerplate on the boilerplate generator: https://boilerplate.it-consultis.net
-
+# Cake OMS Backend
 
 ## Configure project name, environment and HTTP Hosts
 
