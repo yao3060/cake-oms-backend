@@ -428,7 +428,7 @@ class OrderController extends \WP_REST_Controller
   {
     $item->id = (int) $item->id;
     $item->order_id = (int) $item->order_id;
-    $item->media_id = $item->media_id ?? 0;
+    $item->media_id = $item->media_id ? (int)$item->media_id : 0;
     $item->media_url = $item->media_url ?? "";
     $item->price = number_format($item->price, 2);
     $item->quantity = (int)$item->quantity;

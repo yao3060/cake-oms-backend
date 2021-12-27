@@ -11,6 +11,12 @@ Content-Type: application/json
   "password": "Yao123"
 }
 
+### Profile
+POST {{BASE_URL}}/wp/v2/users/me
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
 
 ### get home icon menus
 GET {{BASE_URL}}/oms/v1/menus
