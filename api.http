@@ -1,5 +1,5 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0MDM0Njk0NSwibmJmIjoxNjQwMzQ2OTQ1LCJleHAiOjE2NDA5NTE3NDUsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.nx7Vu2qjWgs76z-lviVkd22IKPshRDXBOQrz1nVGJ7A
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0MTExMDkxMiwibmJmIjoxNjQxMTEwOTEyLCJleHAiOjE2NDE3MTU3MTIsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.wxRaxP2i1g1gknZCByvvqqrIMJbTiVGmo-wx67tWxpk
 
 ### Login
 POST {{BASE_URL}}/jwt-auth/v1/token
@@ -30,7 +30,9 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "keyword": "NO009"
+  "status": "processing",
+  "keyword": "",
+  "per_page": 2
 }
 
 ### update order

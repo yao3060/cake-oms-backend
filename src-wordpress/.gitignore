@@ -1,4 +1,5 @@
 *.log
+/src/vendor
 /src/wp-config.php
 /src/wp-content/advanced-cache.php
 /src/wp-content/backup-db/

@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use WP_REST_Server;
 use WP_REST_Response;
-use WP_Query;
 use WP_Error;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 // HomeIconMenuController
 class HomeIconMenuController extends \WP_REST_Controller
@@ -39,6 +40,7 @@ class HomeIconMenuController extends \WP_REST_Controller
    */
   public function get_items($request)
   {
+
     $data = [
       [
         "icon" => 'JD',

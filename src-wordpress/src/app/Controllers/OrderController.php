@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Requests_Exception_HTTP;
 use WP_REST_Server;
 use WP_REST_Response;
 use WP_Query;
@@ -82,12 +83,34 @@ class OrderController extends \WP_REST_Controller
    */
   public function get_items($request)
   {
+    $user = wp_get_current_user();
+
+
     //get parameters from request
     $perPage = $request->get_param('per_page') ? (int)$request->get_param('per_page') : 10;
     $orderBy = $request->get_param('orderby') ?? 'id';
     $order = $request->get_param('order') ?? 'desc';
 
     $query =  $this->db->table('orders');
+
+    // if it's not admin user,  filter by store id
+    if (!current_user_can('administrator')) {
+      $groups = wp_get_terms_for_user($user, 'user-group');
+      if (!$groups) {
+        return new WP_Error(
+          'user_not_bind_store',
+          '用户没有绑定店铺',
+          ['status' => 403]
+        );
+      }
+      $storeIds = collect($groups)->pluck('term_id');
+      $query->whereIn('store_id', $storeIds);
+    }
+
+    // by status
+    if ($status = $request->get_param('status')) {
+      $query->where('order_status', $status);
+    }
     // search by keyword 
     if ($keyword = $request->get_param('keyword')) {
       $query->where('order_number', 'like', '%' . $keyword . '%')
@@ -106,6 +129,7 @@ class OrderController extends \WP_REST_Controller
       }
     }
 
+    /**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
     $orders = $query->orderBy($orderBy, $order)
       ->paginate(
         $perPage,
@@ -291,8 +315,7 @@ class OrderController extends \WP_REST_Controller
    */
   public function get_items_permissions_check($request)
   {
-    return true; //<--use to make readable by all
-    // return current_user_can('read');
+    return current_user_can('read');
   }
 
   /**

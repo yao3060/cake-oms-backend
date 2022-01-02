@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+mkdir -p $HOME/.composer
+
+TTY=
+if [ "$ENVIRONMENT" == "dev" ]; then
+  TTY="-ti"
+fi
+
+docker run --rm $TTY \
+  -u $UID \
+  -v $PWD/src:/app \
+  -v /etc/passwd:/etc/passwd \
+  -v $HOME/.composer:/tmp \
+  composer:2 $@
