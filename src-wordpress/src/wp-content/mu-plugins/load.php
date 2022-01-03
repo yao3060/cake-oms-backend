@@ -96,3 +96,13 @@ add_action('rest_api_init', function () {
   (new OrderController)->register_routes();
   (new HomeIconMenuController)->register_routes();
 });
+
+add_filter('register_taxonomy_args', function ($args, $name, $objectType) {
+
+  if ($name === 'user-group') {
+    $args['show_in_rest'] = true;
+    $args['rest_base'] = 'stores';
+  }
+
+  return $args;
+}, 10, 3);
