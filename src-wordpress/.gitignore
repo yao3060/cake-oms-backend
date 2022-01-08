@@ -1,6 +1,7 @@
 *.log
 /src/vendor
 /src/wp-config.php
+/src/wp-test-config.php
 /src/wp-content/advanced-cache.php
 /src/wp-content/backup-db/
 /src/wp-content/backups/

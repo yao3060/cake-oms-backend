@@ -11,6 +11,7 @@
 
 use App\Controllers\HomeIconMenuController;
 use App\Controllers\OrderController;
+use App\Controllers\OrderItemController;
 use App\Services\OrderProductMediaService;
 
 add_filter('jwt_auth_token_before_dispatch', function ($data, $user) {
@@ -94,6 +95,7 @@ if (is_admin()) {
 
 add_action('rest_api_init', function () {
   (new OrderController)->register_routes();
+  (new OrderItemController)->register_routes();
   (new HomeIconMenuController)->register_routes();
 });
 

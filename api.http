@@ -1,6 +1,3 @@
-@BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0MTExMDkxMiwibmJmIjoxNjQxMTEwOTEyLCJleHAiOjE2NDE3MTU3MTIsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.wxRaxP2i1g1gknZCByvvqqrIMJbTiVGmo-wx67tWxpk
-
 ### Login
 POST {{BASE_URL}}/jwt-auth/v1/token
 Accept: application/json
@@ -54,3 +51,9 @@ Authorization: Bearer {{TOKEN}}
 {
   "status": "pendding"
 }
+
+### Delete order item featured image
+DELETE {{BASE_URL}}/oms/v1/order-items/4/image
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
