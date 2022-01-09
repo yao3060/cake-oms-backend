@@ -57,3 +57,9 @@ DELETE {{BASE_URL}}/oms/v1/order-items/4/image
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
+
+### PrintOrder
+GET {{BASE_URL}}/oms/v1/print/orders/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
