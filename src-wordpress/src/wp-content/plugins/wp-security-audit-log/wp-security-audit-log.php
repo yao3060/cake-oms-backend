@@ -502,7 +502,7 @@ if ( ! function_exists( 'wsal_freemius' ) ) {
 
                 add_action( 'wsal_freemius_loaded', array( $this, 'adjust_freemius_strings' ) );
 
-                $this->init_freemius();
+//                $this->init_freemius();
 
                 // Extensions which are only admin based.
                 if ( is_admin() ) {

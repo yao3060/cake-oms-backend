@@ -32,7 +32,6 @@
 	 * @author Vova Feldman (@svovaf)
 	 * @since 1.2.2
 	 */
-
 	if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 	}
