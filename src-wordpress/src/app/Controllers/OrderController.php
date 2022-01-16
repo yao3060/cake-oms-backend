@@ -9,6 +9,7 @@ use WP_REST_Response;
 use WP_Error;
 
 class OrderController extends \WP_REST_Controller {
+
 	private $db = null;
 	private $dbPrefix = '';
 
@@ -367,6 +368,7 @@ class OrderController extends \WP_REST_Controller {
 	 * @return WP_Error|array $prepared
 	 */
 	protected function prepare_item_for_database( $request ) {
+
 		$prepared = [];
 
 		// ID.
@@ -383,6 +385,17 @@ class OrderController extends \WP_REST_Controller {
 		if ( is_string( $request['status'] ) ) {
 			$prepared['order_status'] = $request['status'];
 		}
+
+		$shippingKeys = ['shipping_name', 'shipping_phone', 'shipping_address'];
+		foreach ( $shippingKeys as $key) {
+			if(empty($request[$key])) {
+				continue;
+			}
+			$prepared[$key] = $request[$key];
+		}
+
+		// order note
+		$prepared['note'] = $request['note'];
 
 		// Post date.
 		$prepared['updated_at'] = date( 'Y-m-d H:i:s' );

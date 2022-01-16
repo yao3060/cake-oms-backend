@@ -10,3 +10,5 @@ Thumbs.db
 .env
 .env.bak
 *.private.env.json
+staging
+production

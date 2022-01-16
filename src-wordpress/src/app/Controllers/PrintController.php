@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Services\CakePrintService;
 use App\Services\OrderService;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -43,7 +42,7 @@ class PrintController extends WP_REST_Controller {
 	 */
 	public function printItem( WP_REST_Request $request ): WP_Error|WP_REST_Response
 	{
-		$id    = (int) $request->get_param( 'id' );
+		$id = (int) $request->get_param( 'id' );
 
 		$orderService = new OrderService;
 		$order = $orderService->getOrderById($id);
@@ -121,80 +120,4 @@ class PrintController extends WP_REST_Controller {
 	public function delete_item_permissions_check( $request ) {
 		return $this->create_item_permissions_check( $request );
 	}
-
-	/**
-	 * Prepare the item for create or update operation
-	 *
-	 * @param WP_REST_Request $request Request object
-	 *
-	 * @return WP_Error|array $prepared
-	 */
-	protected function prepare_item_for_database( $request ) {
-		$prepared = [];
-
-		// ID.
-		if ( isset( $request['id'] ) ) {
-			$existing = $this->db->table( 'orders' )->where( 'id', $request['id'] )->first();
-			if ( is_wp_error( $existing ) ) {
-				return $existing;
-			}
-
-			$prepared['creator'] = $existing->creator;
-		}
-
-		// order status
-		if ( is_string( $request['status'] ) ) {
-			$prepared['order_status'] = $request['status'];
-		}
-
-		// Post date.
-		$prepared['updated_at'] = date( 'Y-m-d H:i:s' );
-
-		// creator.
-		if ( $prepared['creator'] < 1 ) {
-			$prepared['creator'] = wp_get_current_user()->ID;
-		}
-
-		return $prepared;
-	}
-
-	/**
-	 * Prepare the item for the REST response
-	 *
-	 * @param mixed $item WordPress representation of the item.
-	 * @param WP_REST_Request $request Request object.
-	 *
-	 * @return mixed
-	 */
-	public function prepare_item_for_response( $item, $request ) {
-		return array();
-	}
-
-	/**
-	 * Get the query params for collections
-	 *
-	 * @return array
-	 */
-	public function get_collection_params() {
-		return array(
-			'page'     => array(
-				'description'       => 'Current page of the collection.',
-				'type'              => 'integer',
-				'default'           => 1,
-				'sanitize_callback' => 'absint',
-			),
-			'per_page' => array(
-				'description'       => 'Maximum number of items to be returned in result set.',
-				'type'              => 'integer',
-				'default'           => 10,
-				'sanitize_callback' => 'absint',
-			),
-			'search'   => array(
-				'description'       => 'Limit results to those matching a string.',
-				'type'              => 'string',
-				'sanitize_callback' => 'sanitize_text_field',
-			),
-		);
-	}
-
 }

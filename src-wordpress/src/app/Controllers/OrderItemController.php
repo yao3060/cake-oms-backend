@@ -132,32 +132,7 @@ class OrderItemController extends \WP_REST_Controller
    */
   protected function prepare_item_for_database($request)
   {
-    $prepared  = [];
-
-    // ID.
-    if (isset($request['id'])) {
-      $existing = $this->db->table('orders')->where('id', $request['id'])->first();
-      if (is_wp_error($existing)) {
-        return $existing;
-      }
-
-      $prepared['creator'] = $existing->creator;
-    }
-
-    // order status
-    if (is_string($request['status'])) {
-      $prepared['order_status'] = $request['status'];
-    }
-
-    // Post date.
-    $prepared['updated_at'] = date('Y-m-d H:i:s');
-
-    // creator.
-    if ($prepared['creator'] < 1) {
-      $prepared['creator'] = wp_get_current_user()->ID;
-    }
-
-    return $prepared;
+    return array();
   }
 
   /**
