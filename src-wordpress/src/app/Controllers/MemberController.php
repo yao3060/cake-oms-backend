@@ -61,19 +61,17 @@ class MemberController extends \WP_REST_Controller
             );
         }
 
-        if (!$request['store']) {
-            return new WP_Error(
-                'need_params',
-                'Need param `store`',
-                array('status' => 422)
-            );
-        }
+		$currentUser = wp_get_current_user();
 
-        $users = wp_get_users_of_group([
-            'taxonomy' => 'user-group',
-            'term'     => $request['store'],
-            'term_by'  => 'slug'
-        ]);
+		$userStores = wp_get_terms_for_user($currentUser, 'user-group');
+
+		$storeIds = collect($userStores)->pluck('term_id');
+
+	    $users = wp_get_users_of_group([
+		    'taxonomy' => 'user-group',
+		    'term'     => $storeIds[0],
+		    'term_by'  => 'id'
+	    ]);
 
 		$data = array_map(function ($user)  {
 			return [
@@ -86,7 +84,7 @@ class MemberController extends \WP_REST_Controller
 			];
 		}, $users);
 
-        return new WP_REST_Response($data, 200);
+        return new WP_REST_Response( $data, 200);
     }
 
     public function get_items_permissions_check($request)
