@@ -69,14 +69,24 @@ class MemberController extends \WP_REST_Controller
             );
         }
 
-        //$user = wp_get_current_user();
         $users = wp_get_users_of_group([
             'taxonomy' => 'user-group',
             'term'     => $request['store'],
             'term_by'  => 'slug'
         ]);
 
-        return new WP_REST_Response($users, 200);
+		$data = array_map(function ($user)  {
+			return [
+				'id' => $user->ID,
+				'display_name' => $user->display_name,
+				'user_email' => $user->user_email,
+				'mobile_phone' => get_user_meta($user->ID, 'mobile_phone', true),
+				'wechat' => get_user_meta($user->ID, 'wechat', true),
+				'roles' => $user->roles
+			];
+		}, $users);
+
+        return new WP_REST_Response($data, 200);
     }
 
     public function get_items_permissions_check($request)

@@ -23,3 +23,10 @@ add_filter('rest_prepare_user', function ($response, $user, $request) {
 
 	return $response;
 }, 10, 3);
+
+add_filter('user_contactmethods', function( $methods, $user){
+	return [
+		'mobile_phone'    => __( 'Mobile Phone', 'cake' ),
+		'wechat'    => __( 'WeChat', 'cake' ),
+	];
+}, 10, 2);
