@@ -4,7 +4,6 @@ namespace App\Services;
 
 use Xpyun\model\PrintRequest;
 use Xpyun\service\PrintService;
-use Xpyun\util\NoteFormatter;
 
 class CakePrintService {
 
@@ -18,13 +17,17 @@ class CakePrintService {
 	private string $user;
 	private string $userKey;
 	private string $printerSn;
+	private string $companyName;
+	private object $order;
 
-	public function __construct() {
+	public function __construct($printer = '14BMAXXC7963149', $order) {
 
 		$this->user = self::USER;
 		$this->userKey = self::USER_KEY;
-		$this->printerSn = '14BMAXXC7963149';
+		$this->printerSn = $printer;
 		$this->service = new PrintService();
+		$this->companyName = get_option('blogname');
+		$this->order = $order;
 	}
 
 	/**
@@ -56,7 +59,7 @@ class CakePrintService {
 	 *             不需要指定宽度。<QR> 标签不指定宽度默认为110，最小值为90，最大值为180
 	 *  <BARCODE></BARCODE>：条形码（标签内容是条形码值）
 	 */
-	public function printComplexReceiptWithoutBroadcast($order)
+	public function printComplexReceiptWithoutBroadcast()
 	{
 		$request = new PrintRequest();
 		$request->user = $this->user;
@@ -67,7 +70,7 @@ class CakePrintService {
 		$request->sn = $this->printerSn;
 
 		//*必填*：打印内容,不能超过12K
-		$request->content = "<C>" . "<B>芯烨云小票</B>" . "<BR></C>";
+		$request->content = $this->getPrintContent();
 
 		//声音播放模式，0 为取消订单模式，1 为静音模式，2 为来单播放模式，3为有用户申请退单了。默认为 2 来单播放模式
 		$request->voice = 1;
@@ -98,5 +101,49 @@ class CakePrintService {
 	{
 		list($s1, $s2) = explode(' ', microtime());
 		return sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getPrintContent(): string
+	{
+
+		$products = '<L><N>商品名称            单价  数量  小计' . PHP_EOL;
+		$products .= sprintf('<L><N>%-24s%-6s%-6s%s' . PHP_EOL, "商品名称", 13, 10, 13);
+		$products .= sprintf('<L><N>%-24s%-6s%-6s%s' . PHP_EOL, "商品名称", 13, 10, 13);
+		$products .= sprintf('%46s' . PHP_EOL, '-');
+		$products .= sprintf('<L><N>%-24s%-6s%-6s%s' . PHP_EOL, "商品名称", 13, 10, 13);
+
+		$printContent = sprintf("<C>" . "<B>%s</B>" . "<BR></C>", $this->companyName);
+		$printContent .= "<BR>";
+		$printContent .= sprintf('<L><N>来源：%s <BR>', $this->order->order_type);
+		$printContent .= sprintf('下单时间：%s <BR>', $this->order->created_at);
+		$printContent .= sprintf('订单编号：%s <BR>', $this->order->order_number);
+
+
+		$printContent .= str_repeat('-', 46) . "<BR>";
+		$printContent .= sprintf('<L><N>%s%s%s%s<BR>',
+			append_spaces_to_chinese("商品名称"),
+			append_spaces_to_chinese('单价', 6),
+			append_spaces_to_chinese('数量', 6),
+			'小计');
+		$printContent .= sprintf('<L><N>%s%-6s%-6d%s<BR>',
+			append_spaces_to_chinese("商品名称"), 1.3, 10, 13);
+		$printContent .= sprintf('<L><N>%s%-6s%-6d%s<BR>',
+			append_spaces_to_chinese("商品名称商品名称"), 1.3, 10, 13);
+		$printContent .= str_repeat('-', 46) . "<BR>";
+		$printContent .= sprintf('<L><N>%s%-6s%-6d%s<BR>',
+			append_spaces_to_chinese("合计"), ' ', 20, 26);
+
+		$printContent .= "<BR>";
+		$printContent .= "<L>"
+		                . "客户地址：" . "珠海市香洲区xx路xx号" . "<BR>"
+		                . "客户电话：" . "1363*****88" . "<BR>"
+		                . "下单时间：" . "2020-9-9 15:07:57" . "<BR>"
+		                . "备注：" . "少放辣 不吃香菜" . "<BR>";
+
+		return $printContent;
+
 	}
 }

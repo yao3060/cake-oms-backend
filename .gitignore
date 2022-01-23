@@ -12,3 +12,4 @@ Thumbs.db
 *.private.env.json
 staging
 production
+index.php

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Services\CakePrintService;
 use App\Services\OrderService;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -50,7 +51,7 @@ class PrintController extends WP_REST_Controller {
 		if ( $order ) {
 
 			$order->items = $orderService->getOrderItems($id);
-//			$response = (new CakePrintService())->printComplexReceiptWithoutBroadcast($order);
+			$response = (new CakePrintService())->printComplexReceiptWithoutBroadcast($order);
 
 			// call print api
 			return new WP_REST_Response( $order, 200 );

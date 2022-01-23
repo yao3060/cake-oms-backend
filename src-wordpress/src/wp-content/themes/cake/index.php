@@ -1,58 +1,32 @@
 <?php
-
 /**
- * The main template file
+ * The header for our theme
  *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package cake
  */
 
-get_header();
 ?>
+<!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+	<?php wp_head(); ?>
+</head>
 
-<main id="primary" class="site-main">
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<div id="page" class="site">
+    <main id="primary" class="site-main" style="text-align: center; padding-top:30%;">
+        <h1>不要看了，什么都不会有的。</h1>
+    </main><!-- #main -->
+</div>
+<?php wp_footer(); ?>
 
-	<?php
-	if (have_posts()) :
-
-		if (is_home() && !is_front_page()) :
-	?>
-			<header>
-				<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-			</header>
-	<?php
-		endif;
-
-		/* Start the Loop */
-		while (have_posts()) :
-			the_post();
-
-			/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-			get_template_part('template-parts/content', get_post_type());
-
-		endwhile;
-
-		the_posts_navigation();
-
-	else :
-
-		get_template_part('template-parts/content', 'none');
-
-	endif;
-	?>
-
-</main><!-- #main -->
-
-<?php
-// remove
-get_footer();
+</body>
+</html>
