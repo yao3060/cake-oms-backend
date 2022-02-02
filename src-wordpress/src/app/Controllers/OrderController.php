@@ -195,9 +195,11 @@ class OrderController extends \WP_REST_Controller
 			if ($items->count()) {
 				foreach ($items as $key => $item) {
 					$item = OrderService::formatOrderItem($item);
+					$item->images = (new OrderService)->getItemImages($item->id);
 				}
 			}
 			$order->items = $items->toArray();
+
 			return new WP_REST_Response($order, 200);
 		} else {
 			return new WP_Error(
@@ -335,6 +337,8 @@ class OrderController extends \WP_REST_Controller
 	 */
 	public function get_item_permissions_check($request)
 	{
+		if (getenv('ENVIRONMENT') === 'local') return true;
+
 		return $this->get_items_permissions_check($request);
 	}
 

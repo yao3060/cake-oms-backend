@@ -2,12 +2,16 @@
 
 namespace App\Services;
 
-class OrderService {
+use App\Models\OrderItemImage;
+
+class OrderService
+{
 
 	private \WeDevs\ORM\Eloquent\Database|null|false $db = null;
 	private string $dbPrefix = '';
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->db       = \WeDevs\ORM\Eloquent\Database::instance();
 		$this->dbPrefix = $this->db->db->prefix;
 	}
@@ -15,30 +19,58 @@ class OrderService {
 
 	public function getOrderById(int $id): object|null
 	{
-		$order = $this->db->table( 'orders' )
-		                  ->where( 'id', $id )
-		                  ->first();
-		if($order) {
+		$order = $this->db->table('orders')
+			->where('id', $id)
+			->first();
+		if ($order) {
 			$order = self::formatOrder($order);
 		}
 		return $order;
 	}
 
-	public function getOrderItems(int $orderId):array
+	public function getOrderItems(int $orderId): array
 	{
-		$items = $this->db->table( 'order_items' )
-		                  ->where( 'order_id', $orderId )
-		                  ->get();
-		if ( $items->count() ) {
-			foreach ( $items as $key => $item ) {
-				$item = self::formatOrderItem( $item );
+		$items = $this->db->table('order_items')
+			->where('order_id', $orderId)
+			->get();
+		if ($items->count()) {
+			foreach ($items as $key => $item) {
+				$item = self::formatOrderItem($item);
 			}
 			return $items->toArray();
 		}
 		return [];
 	}
 
-	public static function formatOrder( $order ) {
+
+	/**
+	 * get item images
+	 *
+	 * @param integer $itemId
+	 * @return array
+	 */
+	public function getItemImages(int $itemId): array
+	{
+		$items = $this->db->table('order_item_gallery')
+			->where('item_id', $itemId)->get();
+		if ($items->count() < 1) {
+			return [];
+		}
+
+		$collection = [];
+		foreach ($items as $item) {
+			$collection[] = [
+				'id' => (int)$item->id,
+				'media_id' => (int)$item->media_id,
+				'media_url' => $item->media_url,
+				'created_at' => $item->created_at,
+			];
+		}
+		return $collection;
+	}
+
+	public static function formatOrder(object $order)
+	{
 		$order->id          = (int) $order->id;
 		$order->creator     = (int) $order->creator;
 		$order->sales       = (int) $order->sales;
@@ -47,15 +79,17 @@ class OrderService {
 		return $order;
 	}
 
-	public static function formatOrderItem( $item ) {
+	public static function formatOrderItem(object $item)
+	{
 		$item->id        = (int) $item->id;
 		$item->order_id  = (int) $item->order_id;
 		$item->media_id  = $item->media_id ? (int) $item->media_id : 0;
 		$item->media_url = $item->media_url ?? "";
-		$item->price     = number_format( $item->price, 2 );
+		$item->images		 = [];
+		$item->price     = number_format($item->price, 2);
 		$item->quantity  = (int) $item->quantity;
-		$item->total     = number_format( $item->total, 2 );
-		$item->note     = is_null( $item->note ) ? '' : $item->note;
+		$item->total     = number_format($item->total, 2);
+		$item->note     = is_null($item->note) ? '' : $item->note;
 		return $item;
 	}
 }
