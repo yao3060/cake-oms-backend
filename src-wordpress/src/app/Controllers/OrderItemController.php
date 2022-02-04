@@ -24,49 +24,49 @@ class OrderItemController extends \WP_REST_Controller
     $namespace = 'oms/v' . $version;
     $base = 'order-items';
     register_rest_route($namespace, '/' . $base . '/(?P<id>[\d]+)/image', [
-	    [
-		    'methods'             => WP_REST_Server::DELETABLE,
-		    'callback'            => [$this, 'deleteFeaturedImage'],
-		    'permission_callback' => [$this, 'create_item_permissions_check'],
-		    'args'                => $this->get_endpoint_args_for_item_schema(true),
-	    ],
+      [
+        'methods'             => WP_REST_Server::DELETABLE,
+        'callback'            => [$this, 'deleteFeaturedImage'],
+        'permission_callback' => [$this, 'create_item_permissions_check'],
+        'args'                => $this->get_endpoint_args_for_item_schema(true),
+      ],
     ]);
 
-	register_rest_route($namespace, '/' . $base . '/schema', [
+    register_rest_route($namespace, '/' . $base . '/schema', [
       'methods'  => WP_REST_Server::READABLE,
       'callback' => [$this, 'get_public_item_schema'],
       'permission_callback' => '__return_true'
     ]);
   }
 
-	/**
-	 * @param WP_REST_Request $request Full data about the request.
-	 *
-	 * @return WP_Error|WP_REST_Response
-	 */
-  public function deleteFeaturedImage( WP_REST_Request $request): WP_Error|WP_REST_Response
+  /**
+   * @deprecated 不需要了
+   * @param WP_REST_Request $request Full data about the request.
+   *
+   * @return WP_Error|WP_REST_Response
+   */
+  public function deleteFeaturedImage(WP_REST_Request $request): WP_Error|WP_REST_Response
   {
     $id = $request->get_param('id');
-	try{
-		$this->db->table('order_items')
-		         ->where('id', $id)
-		         ->update([
-			         'media_id' => 0,
-			         'media_url' => ''
-		         ]);
+    try {
+      $this->db->table('order_items')
+        ->where('id', $id)
+        ->update([
+          'media_id' => 0,
+          'media_url' => ''
+        ]);
 
-		return new WP_REST_Response([
-			'code' => 'order_featured_image_deleted',
-			'message' => 'Deleted'
-		], 200);
-
-	}catch (Exception $e) {
-		return new WP_Error(
-			'cant_delete_order_featured_image',
-			$e->getMessage(),
-			['status' => 500]
-		);
-	}
+      return new WP_REST_Response([
+        'code' => 'order_featured_image_deleted',
+        'message' => 'Deleted'
+      ], 200);
+    } catch (Exception $e) {
+      return new WP_Error(
+        'cant_delete_order_featured_image',
+        $e->getMessage(),
+        ['status' => 500]
+      );
+    }
   }
 
   /**

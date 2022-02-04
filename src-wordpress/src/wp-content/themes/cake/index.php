@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The header for our theme
  *
@@ -12,21 +13,25 @@
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
+
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
-	<?php wp_head(); ?>
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-<div id="page" class="site">
-    <main id="primary" class="site-main" style="text-align: center; padding-top:30%;">
-        <h1>不要看了，什么都不会有的。</h1>
-    </main><!-- #main -->
-</div>
-<?php wp_footer(); ?>
-
+    <?php wp_body_open(); ?>
+    <div id="page" class="site">
+        <h1 style="text-align: center;">不要看了，什么都不会有的。</h1>
+        <pre>
+        <?php
+        // print_r((new \App\Services\OrderLogService)->getOrderLogs(2)->toArray());
+        ?>
+        </pre>
+    </div>
+    <?php wp_footer(); ?>
 </body>
+
 </html>

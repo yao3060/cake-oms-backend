@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Services\OrderLogService;
 use App\Services\OrderService;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -88,7 +89,6 @@ class OrderController extends \WP_REST_Controller
 	{
 		$user = wp_get_current_user();
 
-
 		//get parameters from request
 		$perPage = $request->get_param('per_page') ? (int) $request->get_param('per_page') : 10;
 		$orderBy = $request->get_param('orderby') ?? 'id';
@@ -111,8 +111,8 @@ class OrderController extends \WP_REST_Controller
 		}
 
 		// by status and status is not all
-		if ($status = $request->get_param('status') && $request->get_param('status') !== 'all') {
-			$query->where('order_status', $status);
+		if ($request->get_param('status') && $request->get_param('status') !== 'all') {
+			$query->where('order_status', $request->get_param('status'));
 		}
 		// search by keyword
 		if ($keyword = $request->get_param('keyword')) {
@@ -245,9 +245,20 @@ class OrderController extends \WP_REST_Controller
 		}
 	}
 
+	/**
+	 *
+	 * @param WP_REST_Request $request Full data about the request.
+	 */
 	public function delete_order_item_gallery($request)
 	{
 		$imageId = $request->get_param('image_id');
+
+		(new OrderLogService)->add(
+			(int)$request->get_param('id'),
+			'delete',
+			'delete order item image',
+			$request->get_params()
+		);
 
 		return $this->db->table('order_item_gallery')->delete($imageId);
 	}
@@ -283,17 +294,21 @@ class OrderController extends \WP_REST_Controller
 			return $data;
 		}
 
-		$updated = $this->db->table('orders')
-			->where('id', $id)
-			->update($data);
+		try {
+			$this->db->table('orders')
+				->where('id', $id)
+				->update($data);
 
-		if ($updated) {
+			// add order log
+			(new OrderLogService)->add($id, 'update', 'update order', $data);
+
 			$updatedOrder = $this->db->table('orders')->where('id', $id)->first();
 
 			return new WP_REST_Response($updatedOrder, 200);
+		} catch (\Throwable $th) {
+			error_log($th->getMessage());
+			return new WP_Error('cant-update', $th->getMessage(), ['status' => 500]);
 		}
-
-		return new WP_Error('cant-update', __('Update Failed.', 'cake'), ['status' => 500]);
 	}
 
 	/**
@@ -325,6 +340,8 @@ class OrderController extends \WP_REST_Controller
 	 */
 	public function get_items_permissions_check($request)
 	{
+		if (getenv('ENVIRONMENT') === 'local') return true;
+
 		return current_user_can('read');
 	}
 
@@ -387,7 +404,6 @@ class OrderController extends \WP_REST_Controller
 	 */
 	protected function prepare_item_for_database($request)
 	{
-
 		$prepared = [];
 
 		// ID.
@@ -398,6 +414,10 @@ class OrderController extends \WP_REST_Controller
 			}
 
 			$prepared['creator'] = $existing->creator;
+		}
+
+		if (isset($request['framer'])) {
+			$prepared['framer'] = (int)$request['framer'];
 		}
 
 		// order status

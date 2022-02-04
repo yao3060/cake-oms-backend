@@ -61,30 +61,43 @@ class MemberController extends \WP_REST_Controller
             );
         }
 
-		$currentUser = wp_get_current_user();
+        $userGroup = $request->get_param('user-group');
+        if ($userGroup) {
+            $users = wp_get_users_of_group([
+                'taxonomy' => 'user-group',
+                'term'     => $userGroup,
+                'term_by'  => is_numeric($userGroup) ? 'id' : 'slug'
+            ]);
+        } else {
 
-		$userStores = wp_get_terms_for_user($currentUser, 'user-group');
+            $currentUser = wp_get_current_user();
 
-		$storeIds = collect($userStores)->pluck('term_id');
+            $userStores = wp_get_terms_for_user($currentUser, 'user-group');
 
-	    $users = wp_get_users_of_group([
-		    'taxonomy' => 'user-group',
-		    'term'     => $storeIds[0],
-		    'term_by'  => 'id'
-	    ]);
+            $storeIds = collect($userStores)->pluck('term_id');
 
-		$data = array_map(function ($user)  {
-			return [
-				'id' => $user->ID,
-				'display_name' => $user->display_name,
-				'user_email' => $user->user_email,
-				'mobile_phone' => get_user_meta($user->ID, 'mobile_phone', true),
-				'wechat' => get_user_meta($user->ID, 'wechat', true),
-				'roles' => $user->roles
-			];
-		}, $users);
+            $users = wp_get_users_of_group([
+                'taxonomy' => 'user-group',
+                'term'     => $storeIds[0],
+                'term_by'  => 'id'
+            ]);
+        }
 
-        return new WP_REST_Response( $data, 200);
+
+        $collection  = array_map(function ($user) {
+            return [
+                'id' => $user->ID,
+                'display_name' => $user->display_name,
+                'user_email' => $user->user_email,
+                'mobile_phone' => get_user_meta($user->ID, 'mobile_phone', true),
+                'wechat' => get_user_meta($user->ID, 'wechat', true),
+                'roles' => $user->roles
+            ];
+        }, $users);
+
+        $sorted =  collect($collection)->sortBy('user_email');
+
+        return new WP_REST_Response($sorted, 200);
     }
 
     public function get_items_permissions_check($request)
