@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use JetBrains\PhpStorm\ArrayShape;
+use WP_User;
+
 class OrderService
 {
 
@@ -67,7 +70,18 @@ class OrderService
 		return $collection;
 	}
 
-	public static function formatOrder(object $order)
+	#[ArrayShape( [ 'id' => "int", 'username' => "string", 'display_name' => "string" ] )]
+	public static function getCreator(int $creator): array
+	{
+		$user = new WP_User($creator);
+		return [
+			'id' => $user->ID,
+			'username' => $user->user_login,
+			'display_name' => $user->display_name,
+		];
+	}
+
+	public static function formatOrder(object $order): object
 	{
 		$order->id          = (int) $order->id;
 		$order->creator     = (int) $order->creator;
@@ -77,7 +91,7 @@ class OrderService
 		return $order;
 	}
 
-	public static function formatOrderItem(object $item)
+	public static function formatOrderItem(object $item): object
 	{
 		$item->id        = (int) $item->id;
 		$item->order_id  = (int) $item->order_id;

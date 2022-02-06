@@ -15,3 +15,17 @@ define( 'WP_USE_THEMES', true );
 
 /** Loads the WordPress Environment and Template */
 require __DIR__ . '/wp-blog-header.php';
+
+
+// migration
+if($_GET['migration'] === 'yes') {
+	echo '<pre style="border: 1px solid #ccc;padding: 10px;background: #EFEFEF;">';
+	// add roles
+	require_once ABSPATH . 'app/Migration/roles.php';
+
+	//	maybe_create_table
+	require_once ABSPATH . 'app/Migration/orders.php';
+	require_once ABSPATH . 'app/Migration/order_logs.php';
+
+	echo '</pre>';
+}

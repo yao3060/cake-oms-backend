@@ -200,6 +200,8 @@ class OrderController extends \WP_REST_Controller
 			}
 			$order->items = $items->toArray();
 
+			$order->creator = OrderService::getCreator((int) $order->creator);
+
 			return new WP_REST_Response($order, 200);
 		} else {
 			return new WP_Error(
