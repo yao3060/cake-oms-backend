@@ -2,7 +2,7 @@ version: '2.3'
 
 services:
   wordpress_apache:
-    image: ${CONTAINER_REGISTRY}/${ENVIRONMENT}_wordpress_apache:${VERSION}
+#    image: ${CONTAINER_REGISTRY}/${ENVIRONMENT}_wordpress_apache:${VERSION}
     container_name: ${COMPOSE_PROJECT_NAME}_wordpress_apache
     restart: always
     env_file: .env
