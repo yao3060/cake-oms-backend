@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use Exception;
 use Xpyun\model\PrintRequest;
 use Xpyun\service\PrintService;
 
-class CakePrintService {
+class CakePrintService
+{
 
 	const USER = 'yao3060@163.com';
 	const USER_KEY = 'e77d900065724915b355683868aad040';
@@ -20,14 +22,31 @@ class CakePrintService {
 	private string $companyName;
 	private object $order;
 
-	public function __construct($printer = '14BMAXXC7963149', $order) {
+	public function __construct($order)
+	{
 
 		$this->user = self::USER;
 		$this->userKey = self::USER_KEY;
-		$this->printerSn = $printer;
+
 		$this->service = new PrintService();
 		$this->companyName = get_option('blogname');
 		$this->order = $order;
+
+		$this->printerSn = $this->getPrinterSn();
+	}
+
+	private function getPrinterSn(): string
+	{
+		$userGroups = wp_get_terms_for_user(wp_get_current_user(), 'user-group');
+		if (empty($userGroups)) {
+			throw new Exception('User need bind store.');
+		}
+
+		$printerSn = get_term_meta($userGroups[0]->term_id, 'printer_sn', true);
+		if ($printerSn) {
+			return $printerSn;
+		}
+		return  '14BMAXXC7963149';
 	}
 
 	/**
@@ -88,7 +107,7 @@ class CakePrintService {
 		return $result->content;
 	}
 
-	public function getSign():string
+	public function getSign(): string
 	{
 		return sha1($this->user . $this->userKey . $this->getMillisecond());
 	}
@@ -108,42 +127,62 @@ class CakePrintService {
 	 */
 	protected function getPrintContent(): string
 	{
-
-		$products = '<L><N>商品名称            单价  数量  小计' . PHP_EOL;
-		$products .= sprintf('<L><N>%-24s%-6s%-6s%s' . PHP_EOL, "商品名称", 13, 10, 13);
-		$products .= sprintf('<L><N>%-24s%-6s%-6s%s' . PHP_EOL, "商品名称", 13, 10, 13);
-		$products .= sprintf('%46s' . PHP_EOL, '-');
-		$products .= sprintf('<L><N>%-24s%-6s%-6s%s' . PHP_EOL, "商品名称", 13, 10, 13);
-
 		$printContent = sprintf("<C>" . "<B>%s</B>" . "<BR></C>", $this->companyName);
 		$printContent .= "<BR>";
 		$printContent .= sprintf('<L><N>来源：%s <BR>', $this->order->order_type);
 		$printContent .= sprintf('下单时间：%s <BR>', $this->order->created_at);
 		$printContent .= sprintf('订单编号：%s <BR>', $this->order->order_number);
 
+		$printContent .= $this->renderItemList();
 
-		$printContent .= str_repeat('-', 46) . "<BR>";
-		$printContent .= sprintf('<L><N>%s%s%s%s<BR>',
+		$printContent .= "<BR>";
+		$printContent .= $this->shippingInfo();
+
+		return $printContent;
+	}
+
+	protected function shippingInfo()
+	{
+		return "<L>"
+			. "收货人：" .  $this->order->shipping_name . "<BR>"
+			. "地址：" .  $this->order->shipping_address . "<BR>"
+			. "客户电话：" . $this->order->shipping_phone . "<BR>"
+			. "下单时间：" . $this->order->created_at . "<BR>";
+	}
+
+	protected function renderItemList()
+	{
+		$printContent = str_repeat('-', 46) . "<BR>";
+		$printContent .= sprintf(
+			'<L><N>%s%s%s%s<BR>',
 			append_spaces_to_chinese("商品名称"),
 			append_spaces_to_chinese('单价', 6),
 			append_spaces_to_chinese('数量', 6),
-			'小计');
-		$printContent .= sprintf('<L><N>%s%-6s%-6d%s<BR>',
-			append_spaces_to_chinese("商品名称"), 1.3, 10, 13);
-		$printContent .= sprintf('<L><N>%s%-6s%-6d%s<BR>',
-			append_spaces_to_chinese("商品名称商品名称"), 1.3, 10, 13);
-		$printContent .= str_repeat('-', 46) . "<BR>";
-		$printContent .= sprintf('<L><N>%s%-6s%-6d%s<BR>',
-			append_spaces_to_chinese("合计"), ' ', 20, 26);
+			'小计'
+		);
+		$totalQuantity = 0;
+		foreach ($this->order->items as $item) {
+			$printContent .= sprintf(
+				'<L><N>%s%-6s%-6d%s<BR>',
+				append_spaces_to_chinese($item->product_name),
+				$item->price,
+				$item->quantity,
+				$item->total
+			);
+			$totalQuantity += $item->quantity;
+		}
 
-		$printContent .= "<BR>";
-		$printContent .= "<L>"
-		                . "：" . "珠海市香洲区xx路xx号" . "<BR>"
-		                . "客户电话：" . "1363*****88" . "<BR>"
-		                . "下单时间：" . "2020-9-9 15:07:57" . "<BR>"
-		                . "备注：" . "少放辣 不吃香菜" . "<BR>";
+		$printContent .= str_repeat('-', 46) . "<BR>";
+		$printContent .= sprintf(
+			'<L><N>%s%-6s%-6d%s<BR>',
+			append_spaces_to_chinese("合计"),
+			' ',
+			$totalQuantity,
+			$item->total
+		);
+
+		$printContent .= $this->order->note;
 
 		return $printContent;
-
 	}
 }

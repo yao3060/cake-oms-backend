@@ -68,3 +68,29 @@ if (!function_exists('write_log')) {
     }
   }
 }
+
+if (!function_exists('cake_migration')) {
+  function cake_migration()
+  {
+    if (isset($_GET['migration']) && $_GET['migration'] === 'yes') {
+      echo '<pre style="border: 1px solid #ccc;padding: 10px;background: #EFEFEF;">';
+      // add roles
+      require_once ABSPATH . 'app/Migration/roles.php';
+
+      //	maybe_create_table
+      require_once ABSPATH . 'app/Migration/orders.php';
+      require_once ABSPATH . 'app/Migration/order_logs.php';
+      require_once ABSPATH . 'app/Migration/stores.php';
+
+      echo '</pre>';
+    }
+  }
+}
+
+if (!function_exists('append_spaces_to_chinese')) :
+  function append_spaces_to_chinese($string, $length = 30): string
+  {
+    $strLen = mb_strlen($string) * 2;
+    return  $string . str_repeat(' ', $length - $strLen);
+  }
+endif;
