@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use JetBrains\PhpStorm\ArrayShape;
 use WP_User;
 
 class OrderService
@@ -70,7 +69,6 @@ class OrderService
 		return $collection;
 	}
 
-	#[ArrayShape( [ 'id' => "int", 'username' => "string", 'display_name' => "string" ] )]
 	public static function getCreator(int $creator): array
 	{
 		$user = new WP_User($creator);

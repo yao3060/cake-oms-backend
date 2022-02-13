@@ -2,6 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Filters\BillingPhoneFilter;
+use App\Filters\FramerFilter;
+use App\Filters\KeywordFilter;
+use App\Filters\OrderNumberFilter;
+use App\Filters\PickupNumberFilter;
+use App\Filters\StatusFilter;
+use App\Filters\StoreUserFilter;
 use App\Services\OrderLogService;
 use App\Services\OrderService;
 use WP_REST_Request;
@@ -87,55 +94,35 @@ class OrderController extends \WP_REST_Controller
 	 */
 	public function get_items($request)
 	{
-		$user = wp_get_current_user();
-
-		//get parameters from request
-		$perPage = $request->get_param('per_page') ? (int) $request->get_param('per_page') : 10;
-		$orderBy = $request->get_param('orderby') ?? 'id';
-		$order   = $request->get_param('order') ?? 'desc';
-
 		$query = $this->db->table('orders');
 
-		// if it's not admin user,  filter by store id
-		if (!current_user_can('administrator')) {
-			$groups = wp_get_terms_for_user($user, 'user-group');
-			if (!$groups) {
-				return new WP_Error(
-					'user_not_bind_store',
-					'用户没有绑定店铺',
-					['status' => 403]
-				);
-			}
-			$storeIds = collect($groups)->pluck('term_id');
-			$query->whereIn('store_id', $storeIds);
-		}
+		// if it's store user,  filter by store id
+		$query = StoreUserFilter::handle($query, $request);
+
+		// if it's framers
+		$query = FramerFilter::handle($query, $request);
 
 		// by status and status is not all
-		if ($request->get_param('status') && $request->get_param('status') !== 'all') {
-			$query->where('order_status', $request->get_param('status'));
-		}
+		$query = StatusFilter::handle($query, $request);
+
 		// search by keyword
-		if ($keyword = $request->get_param('keyword')) {
-			$query->where('order_number', 'like', '%' . $keyword . '%')
-				->orWhere('billing_phone', 'like', '%' . $keyword . '%')
-				->orWhere('shipping_phone', 'like', '%' . $keyword . '%');
+		if ($request->get_param('keyword')) {
+			$query = KeywordFilter::handle($query, $request);
 		} else {
 			// filter
-			if ($orderNumber = $request->get_param('order_number')) {
-				$query->where('order_number', $orderNumber);
-			}
-			if ($billingPhone = $request->get_param('billing_phone')) {
-				$query->where("billing_phone", 'like', "%" . $billingPhone . "%");
-			}
-			if ($pickupNumber = $request->get_param('pickup_number')) {
-				$query->where('pickup_number', $pickupNumber);
-			}
+			$query = OrderNumberFilter::handle($query, $request);
+
+			$query = BillingPhoneFilter::handle($query, $request);
+
+			$query = PickupNumberFilter::handle($query, $request);
 		}
 
+		write_log([$query->toSql(), $query->getBindings()]);
+
 		/**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
-		$orders = $query->orderBy($orderBy, $order)
+		$orders = $query->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
 			->paginate(
-				$perPage,
+				$request->get_param('per_page') ? (int) $request->get_param('per_page') : 10,
 				['*'],
 				'page',
 				$request->get_param('page') ?? 1

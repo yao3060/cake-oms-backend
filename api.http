@@ -1,11 +1,16 @@
+@BASE_URL=http://localhost:8000/wp-json
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NDY1MDI3MCwibmJmIjoxNjQ0NjUwMjcwLCJleHAiOjE2NDUyNTUwNzAsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.Avob-onFgJ4FC2McD7e4QTkvakbVbwT7EvY6snDLGko
+@FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NDY1MDYxMiwibmJmIjoxNjQ0NjUwNjEyLCJleHAiOjE2NDUyNTU0MTIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.Inr8Vn3bUWtzNkU1MpABh-uBOKDZw8La9V4s8o1iR_4
+
+
 ### Login
 POST {{BASE_URL}}/jwt-auth/v1/token
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "Yao123"
+  "username": "framer_manager_1",
+  "password": "123456"
 }
 
 ### Profile
@@ -24,10 +29,10 @@ Content-Type: application/json
 GET {{BASE_URL}}/oms/v1/orders
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{TOKEN}}
+Authorization: Bearer {{FRAMER_TOKEN}}
 
 {
-  "status": "processing",
+  "status": "all",
   "keyword": "",
   "per_page": 2
 }
