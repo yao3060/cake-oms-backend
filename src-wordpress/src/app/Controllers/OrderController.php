@@ -20,7 +20,6 @@ class OrderController extends \WP_REST_Controller
 {
 
 	private $db = null;
-	private $dbPrefix = '';
 
 	public function __construct()
 	{
