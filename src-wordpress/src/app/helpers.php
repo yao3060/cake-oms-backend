@@ -82,6 +82,8 @@ if (!function_exists('cake_migration')) {
       require_once ABSPATH . 'app/Migration/order_logs.php';
       require_once ABSPATH . 'app/Migration/stores.php';
 
+      require_once ABSPATH . 'app/Migration/users.php';
+
       echo '</pre>';
     }
   }
