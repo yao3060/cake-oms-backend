@@ -130,6 +130,8 @@ class CakePrintService
 		$printContent = sprintf("<C>" . "<B>%s</B>" . "<BR></C>", $this->companyName);
 		$printContent .= "<BR>";
 		$printContent .= sprintf('<L><N>来源：%s <BR>', $this->order->order_type);
+		$printContent .= sprintf('点送：%s <BR>', $this->order->pickup_method);
+		$printContent .= sprintf('收银：%s <BR>', UserService::getCashier((int) $this->order->creator));
 		$printContent .= sprintf('下单时间：%s <BR>', $this->order->created_at);
 		$printContent .= sprintf('订单编号：%s <BR>', $this->order->order_number);
 
