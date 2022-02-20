@@ -188,6 +188,8 @@ class OrderController extends \WP_REST_Controller
 
 			$order->creator = OrderService::getCreator((int) $order->creator);
 
+			$order->framer = OrderService::getCreator((int) $order->framer);
+
 			return new WP_REST_Response($order, 200);
 		} else {
 			return new WP_Error(

@@ -135,12 +135,19 @@ class CakePrintService
 		$printContent .= sprintf('下单时间：%s <BR>', $this->order->created_at);
 		$printContent .= sprintf('订单编号：%s <BR>', $this->order->order_number);
 
+		$printContent .= $this->billingInfo();
+
 		$printContent .= $this->renderItemList();
 
 		$printContent .= "<BR>";
 		$printContent .= $this->shippingInfo();
 
 		return $printContent;
+	}
+
+	protected function billingInfo()
+	{
+		return "";
 	}
 
 	protected function shippingInfo()

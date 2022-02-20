@@ -1,5 +1,5 @@
 <?php
-$users = [
+  $users = [
     [
         'user_login' => 'administrator',
         'user_email' => 'administrator@app.com',
