@@ -13,13 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: preview wordpress dist
-      run: ls -la src-wordpress/src
 
     - name: Validate composer.json and composer.lock
-    - run: cd src-wordpress/src
-    - run: composer validate --strict
+      run: cd src-wordpress/src && composer validate --strict
 
     - name: Cache Composer packages
       id: composer-cache
@@ -31,10 +27,8 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-    - run: cd src-wordpress/src
-    - run: composer install --prefer-dist --no-progress
-    - run: composer dump-autoload -o
-      
+      run: cd src-wordpress/src && composer install --prefer-dist --no-progress && composer dump-autoload -o
+
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.2
       with:
@@ -45,4 +39,3 @@ jobs:
         remote_port: 22
         remote_user: root
         remote_key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
-
