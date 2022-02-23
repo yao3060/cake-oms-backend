@@ -32,7 +32,7 @@ jobs:
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.2
       with:
-        switches: -avzr --delete --exclude="" --include="" --filter=""
+        switches: -avzr --exclude="" --include="" --filter=""
         path: src-wordpress/src/
         remote_path: /var/www/cake-oms/backend/
         remote_host: yaoin.net
