@@ -17,8 +17,8 @@ jobs:
     - name: cd wordpress src
       run: cd src-wordpress/src && ls -la
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+#     - name: Validate composer.json and composer.lock
+#       run: composer validate --strict
 
     - name: Cache Composer packages
       id: composer-cache
