@@ -14,11 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: cd wordpress src
-      run: cd src-wordpress/src && ls -la
+    - name: preview wordpress dist
+      run: ls -la src-wordpress/src
 
-#     - name: Validate composer.json and composer.lock
-#       run: composer validate --strict
+    - name: Validate composer.json and composer.lock
+    - run: cd src-wordpress/src
+    - run: composer validate --strict
 
     - name: Cache Composer packages
       id: composer-cache
@@ -30,16 +31,18 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+    - run: cd src-wordpress/src
+    - run: composer install --prefer-dist --no-progress
 
     - name: optimize autoloader
-      run: composer dump-autoload -o
+    - run: cd src-wordpress/src
+    - run: composer dump-autoload -o
       
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.2
       with:
         switches: -avzr --delete --exclude="" --include="" --filter=""
-        path: ./
+        path: src-wordpress/src/
         remote_path: /var/www/cake-oms/backend/
         remote_host: yaoin.net
         remote_port: 22
