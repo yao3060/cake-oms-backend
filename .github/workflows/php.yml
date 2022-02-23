@@ -13,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: cd wordpress src
+      run: cd src-wordpress/src && ls -la
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
