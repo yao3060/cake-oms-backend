@@ -33,9 +33,6 @@ jobs:
     - name: Install dependencies
     - run: cd src-wordpress/src
     - run: composer install --prefer-dist --no-progress
-
-    - name: optimize autoloader
-    - run: cd src-wordpress/src
     - run: composer dump-autoload -o
       
     - name: rsync deployments
