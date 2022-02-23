@@ -1,6 +1,8 @@
 {
   "name": "cake/oms",
   "description": "desc",
+  "license": "MIT",
+  "type": "project",
   "authors": [
     {
       "name": "YAO",
