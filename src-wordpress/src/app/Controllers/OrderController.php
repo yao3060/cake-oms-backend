@@ -9,6 +9,7 @@ use App\Filters\OrderNumberFilter;
 use App\Filters\PickupNumberFilter;
 use App\Filters\StatusFilter;
 use App\Filters\StoreUserFilter;
+use App\Permissions\OrderUpdatePermission;
 use App\Services\OrderLogService;
 use App\Services\OrderService;
 use WP_REST_Request;
@@ -370,7 +371,11 @@ class OrderController extends \WP_REST_Controller
 	 */
 	public function update_item_permissions_check($request)
 	{
-		return $this->create_item_permissions_check($request);
+		// $currentUser = wp_get_current_user();
+		if ($request->get_param('status')) {
+			return (new OrderUpdatePermission($request, wp_get_current_user()))->check();
+		}
+		return true;
 	}
 
 	/**
