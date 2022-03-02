@@ -29,11 +29,11 @@ services:
     ports:
       - "9999:8080"
 
-  # wordpress_cli:
-  #   image: wordpress:cli
-  #   container_name: ${COMPOSE_PROJECT_NAME}_wordpress_cli
-  #   volumes:
-  #     - ./src-wordpress/src:/var/www/html:delegated
-  #   env_file: .env
-  #   working_dir: /var/www/html
-  #   command: [ "tail", "-f", "/dev/null" ]
+  wordpress_cli:
+    image: wordpress:cli-php8.0
+    container_name: ${COMPOSE_PROJECT_NAME}_wordpress_cli
+    volumes:
+      - ./src-wordpress/src:/var/www/html:delegated
+    env_file: .env
+    working_dir: /var/www/html
+    command: [ "tail", "-f", "/dev/null" ]

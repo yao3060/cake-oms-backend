@@ -2,6 +2,8 @@
 @TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODA3NywibmJmIjoxNjQ1OTI4MDc3LCJleHAiOjE2NDY1MzI4NzcsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.7z6BVWIC9X0DFQXyJySmHV90HC9MJ9BidPddpz1aYbY
 @FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyNzkwMiwibmJmIjoxNjQ1OTI3OTAyLCJleHAiOjE2NDY1MzI3MDIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.tJBeQgKbvU8swH1nBzM9BMUZyJ3VnwdmN0P-W_jks74
 
+@EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
+
 ### Admin Login
 POST {{BASE_URL}}/jwt-auth/v1/token
 Accept: application/json
@@ -10,6 +12,16 @@ Content-Type: application/json
 {
   "username": "admin",
   "password": "Yao123"
+}
+
+### employee Login
+POST {{BASE_URL}}/jwt-auth/v1/token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "yuangong01",
+  "password": "login_password"
 }
 
 ### Login
@@ -97,4 +109,17 @@ Authorization: Bearer {{TOKEN}}
 
 {
    "store": "no001"
+}
+
+
+
+
+### GET TOKEN
+POST http://8.140.115.178:8001/blade-auth/token
+Accept: application/json
+Authorization: Basic c3dvcmQ6c3dvcmRfc2VjcmV0
+
+{
+  "account": "thirduser",
+  "password": "123456"
 }
