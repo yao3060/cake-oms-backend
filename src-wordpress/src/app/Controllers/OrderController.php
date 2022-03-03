@@ -21,11 +21,13 @@ class OrderController extends \WP_REST_Controller
 {
 
 	private $db = null;
+    private OrderService $orderService;
 
 	public function __construct()
 	{
 		$this->db       = \WeDevs\ORM\Eloquent\Database::instance();
 		$this->dbPrefix = $this->db->db->prefix;
+        $this->orderService = new OrderService;
 	}
 
 	public function register_routes()
@@ -263,11 +265,17 @@ class OrderController extends \WP_REST_Controller
 	 */
 	public function create_item($request)
 	{
-		$data = $this->prepare_item_for_database($request);
-
-		return new WP_REST_Response($data, 200);
-
-		return new WP_Error('cant-create', __('message', 'text-domain'), array('status' => 500));
+        try {
+            $orderId = $this->orderService->create($this->prepare_item_for_database($request));
+            return new WP_REST_Response([
+                'data' => ['order_id' => $orderId],
+                'message' => 'Order Created',
+                'code' => 'order_created'
+            ], 201);
+        } catch (\Throwable $th) {
+            error_log($th->getMessage());
+            return new WP_Error('cant-create', $th->getMessage(), array('status' => 500));
+        }
 	}
 
 	/**
@@ -401,6 +409,8 @@ class OrderController extends \WP_REST_Controller
 	{
 		$prepared = [];
 
+        $schema = $this->get_item_schema();
+
 		// ID.
 		if (isset($request['id'])) {
 			$existing = $this->db->table('orders')->where('id', $request['id'])->first();
@@ -482,4 +492,166 @@ class OrderController extends \WP_REST_Controller
 			),
 		);
 	}
+
+    public function get_item_schema() {
+        $schema = [
+            '$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'order',
+			'type'       => 'object',
+            'properties' => [
+                'order_number' => [
+                    'description' => '订单编号',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'store_name' => [
+                    'description' => '店铺名',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'order_status' => [
+                    'description' => '订单状态',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'order_type' => [
+                    'description' => '订单类型:预约，小程序外卖',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'payment_method' => [
+                    'description' => '支付方式:现金，支付宝，微信，储值卡',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'pickup_method' => [
+                    'description' => '提货方式: 自提，配送',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'deposit' => [
+                    'description' => '预约金额',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'balance' => [
+                    'description' => '待收款',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'billing_name' => [
+                    'description' => '预定人姓名',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'billing_phone' => [
+                    'description' => '预定人电话',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'billing_store' => [
+                    'description' => '预定门店',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'pickup_store' => [
+                    'description' => '取货门店',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'created_at' => [
+                    'description' => '下单时间',
+					'type'        => 'datetime',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'pickup_time' => [
+                    'description' => '取货时间',
+					'type'        => 'datetime',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'sales' => [
+                    'description' => '导购员编号',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'pickup_number' => [
+                    'description' => '派单编号',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'shipping_name' => [
+                    'description' => '收货人',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'shipping_phone' => [
+                    'description' => '收货人电话',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'shipping_address' => [
+                    'description' => '收货人地址',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'membership_number' => [
+                    'description' => '会员卡号',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'member_name' => [
+                    'description' => '会员姓名',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'member_balance' => [
+                    'description' => '会员余额',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'total' => [
+                    'description' => '订单金额',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'note' => [
+                    'description' => '备注',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'items' => [
+                    'description' => '商品',
+					'type'        => 'array',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'items[].name' => [
+                    'description' => '商品名称',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'items[].price' => [
+                    'description' => '商品单价',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'items[].quantity' => [
+                    'description' => '商品数量',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'items[].total' => [
+                    'description' => '商品小计',
+					'type'        => 'float',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+                'items[].note' => [
+                    'description' => '商品备注 ',
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+                ],
+            ]
+        ];
+
+        return $schema;
+    }
 }

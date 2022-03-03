@@ -16,6 +16,13 @@ class OrderService
 		$this->dbPrefix = $this->db->db->prefix;
 	}
 
+    public function create(array $data): int
+    {
+        $orderId = $this->db->table('orders')->insertGetId($data);
+
+        return $orderId;
+    }
+
 
 	public function getOrderById(int $id): object|null
 	{
