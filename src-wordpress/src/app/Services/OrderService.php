@@ -23,6 +23,20 @@ class OrderService
         return $orderId;
     }
 
+    public function createOrderItems(int $orderId, array $items)
+    {
+        foreach($items as $item ) {
+            $this->db->table('order_items')->insert([
+                'order_id' => $orderId,
+                'product_name' => $item['name'] ?? '',
+                'price' => $item['price'] ?? 0,
+                'quantity' => $item['quantity'] ?? 0,
+                'total' => $item['total'] ?? 0,
+                'note' => $item['total'] ?? ''
+            ]);
+        }
+    }
+
 
 	public function getOrderById(int $id): object|null
 	{

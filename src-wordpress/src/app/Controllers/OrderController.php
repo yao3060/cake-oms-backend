@@ -267,6 +267,7 @@ class OrderController extends \WP_REST_Controller
 	{
         try {
             $orderId = $this->orderService->create($this->prepare_item_for_database($request));
+            $this->orderService->createOrderItems($orderId, $request['items']);
             return new WP_REST_Response([
                 'data' => ['order_id' => $orderId],
                 'message' => 'Order Created',
@@ -409,8 +410,6 @@ class OrderController extends \WP_REST_Controller
 	{
 		$prepared = [];
 
-        $schema = $this->get_item_schema();
-
 		// ID.
 		if (isset($request['id'])) {
 			$existing = $this->db->table('orders')->where('id', $request['id'])->first();
@@ -421,6 +420,32 @@ class OrderController extends \WP_REST_Controller
 			$prepared['creator'] = $existing->creator;
 		}
 
+        // order_number
+        $existing = $this->db->table('orders')->where('order_number', $request['order_number'])->first();
+        if (is_wp_error($existing)) {
+            return $existing;
+        }
+
+        // store_name
+        if (isset($request['store_name'])) {
+            $term = wp_create_term( $request['store_name'], 'user-group');
+            $prepared['store_id'] = is_numeric($term)? $term : $term['term_id'];
+        }
+
+        $fillable = [
+            'order_status', 'order_type', 'payment_method', 'pickup_method', 'deposit', 'balance',
+            'billing_name', 'billing_phone', 'billing_store','pickup_store',
+            'shipping_name', 'shipping_phone', 'shipping_address',
+            'sales',
+            'pickup_number',
+            'membership_number', 'member_name', 'member_balance',
+            'note'
+        ];
+
+        foreach ($fillable as $key) {
+			$prepared[$key] = $request[$key];
+		}
+
 		if (isset($request['framer'])) {
 			$prepared['framer'] = (int)$request['framer'];
 		}
@@ -429,17 +454,6 @@ class OrderController extends \WP_REST_Controller
 		if (is_string($request['status'])) {
 			$prepared['order_status'] = $request['status'];
 		}
-
-		$shippingKeys = ['shipping_name', 'shipping_phone', 'shipping_address'];
-		foreach ($shippingKeys as $key) {
-			if (empty($request[$key])) {
-				continue;
-			}
-			$prepared[$key] = $request[$key];
-		}
-
-		// order note
-		$prepared['note'] = $request['note'];
 
 		// Post date.
 		$prepared['updated_at'] = date('Y-m-d H:i:s');

@@ -5,7 +5,7 @@
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
 
 ### Admin Login
-POST {{BASE_URL}}/jwt-auth/v1/token
+POST https://oms-backend.yaoin.net/wp-json/jwt-auth/v1/token
 Accept: application/json
 Content-Type: application/json
 
@@ -94,7 +94,7 @@ DELETE {{BASE_URL}}/oms/v1/order-items/4/image
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
- 
+
 ### PrintOrder  https://oms-backend.yaoin.net/wp-json/oms/v1/orders/22/print
 GET {{BASE_URL}}/oms/v1/print/orders/22
 Accept: application/json
@@ -122,4 +122,28 @@ Authorization: Basic c3dvcmQ6c3dvcmRfc2VjcmV0
 {
   "account": "thirduser",
   "password": "123456"
+}
+
+
+POST https://oms-backend.yaoin.net/wp-json/oms/v1/orders
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "order_number": "NO000001",
+  "store_name": "徐汇店",
+  "shipping_address": "高新四路高新大都荟",
+  "shipping_name": "刘国良",
+  "shipping_phone": "13593464918",
+  "note": "This is your first post. Edit or delete it, then start writing!",
+  "items": [
+    {
+      "name": "Starbulks",
+      "price": 9.99,
+      "quantity": 1,
+      "total": 9.99,
+      "note": "少糖"
+    }
+  ]
 }
