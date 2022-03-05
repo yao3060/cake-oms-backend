@@ -16,26 +16,26 @@ class OrderService
 		$this->dbPrefix = $this->db->db->prefix;
 	}
 
-    public function create(array $data): int
-    {
-        $orderId = $this->db->table('orders')->insertGetId($data);
+	public function create(array $data): int
+	{
+		$orderId = $this->db->table('orders')->insertGetId($data);
 
-        return $orderId;
-    }
+		return $orderId;
+	}
 
-    public function createOrderItems(int $orderId, array $items)
-    {
-        foreach($items as $item ) {
-            $this->db->table('order_items')->insert([
-                'order_id' => $orderId,
-                'product_name' => $item['name'] ?? '',
-                'price' => $item['price'] ?? 0,
-                'quantity' => $item['quantity'] ?? 0,
-                'total' => $item['total'] ?? 0,
-                'note' => $item['total'] ?? ''
-            ]);
-        }
-    }
+	public function createOrderItems(int $orderId, array $items)
+	{
+		foreach ($items as $item) {
+			$this->db->table('order_items')->insert([
+				'order_id' => $orderId,
+				'product_name' => $item['name'] ?? '',
+				'price' => $item['price'] ?? 0,
+				'quantity' => $item['quantity'] ?? 0,
+				'total' => $item['total'] ?? 0,
+				'note' => $item['total'] ?? ''
+			]);
+		}
+	}
 
 
 	public function getOrderById(int $id): object|null
@@ -122,5 +122,15 @@ class OrderService
 		$item->total     = number_format($item->total, 2);
 		$item->note     = is_null($item->note) ? '' : $item->note;
 		return $item;
+	}
+
+	public static function createStore($storeName, $taxonomy = 'user-group')
+	{
+		$id = term_exists($storeName, $taxonomy);
+		if ($id) {
+			return $id;
+		}
+
+		return wp_insert_term($storeName, $taxonomy);
 	}
 }

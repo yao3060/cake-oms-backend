@@ -111,39 +111,52 @@ Authorization: Bearer {{TOKEN}}
    "store": "no001"
 }
 
-
-
-
-### GET TOKEN
-POST http://8.140.115.178:8001/blade-auth/token
-Accept: application/json
-Authorization: Basic c3dvcmQ6c3dvcmRfc2VjcmV0
-
-{
-  "account": "thirduser",
-  "password": "123456"
-}
-
-
-POST https://oms-backend.yaoin.net/wp-json/oms/v1/orders
+### Create Order
+POST {{BASE_URL}}/oms/v1/orders
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "order_number": "NO000001",
-  "store_name": "徐汇店",
-  "shipping_address": "高新四路高新大都荟",
-  "shipping_name": "刘国良",
-  "shipping_phone": "13593464918",
-  "note": "This is your first post. Edit or delete it, then start writing!",
-  "items": [
-    {
-      "name": "Starbulks",
-      "price": 9.99,
-      "quantity": 1,
-      "total": 9.99,
-      "note": "少糖"
-    }
-  ]
+    "order_number": "NO022",
+    "store_name": "龙华店",
+    "order_status": "unverified",
+    "order_type": "预约",
+    "payment_method": "现金",
+    "pickup_method": "自提",
+    "deposit": "99",
+    "balance": "199",
+    "billing_name": "YAO",
+    "billing_phone": "135141325566",
+    "billing_store": "徐汇店",
+    "pickup_store": "徐汇店",
+    "created_at": "2022-02-28 22:43:43",
+    "updated_at": "2022-02-28 22:43:43",
+    "pickup_time": "2022-03-02 22:43:43",
+    "sales": 11,
+    "pickup_number": "123457",
+    "shipping_name": "刘国良",
+    "shipping_phone": "13593464918",
+    "shipping_address": "高新四路高新大都荟",
+    "membership_number": "135141325566",
+    "member_name": "YAO",
+    "member_balance": "11111",
+    "total": "298",
+    "note": "",
+    "items": [
+        {
+            "product_name": "蜘蛛侠",
+            "price": 11.00,
+            "quantity": 2,
+            "total": 22.00,
+            "note": "",
+        },
+        {
+            "product_name": "蜘蛛侠 2",
+            "price": 199.00,
+            "quantity": 1,
+            "total": 199.00,
+            "note": ""
+        }
+    ]
 }
