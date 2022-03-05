@@ -12,6 +12,7 @@ use App\Filters\StoreUserFilter;
 use App\Permissions\OrderUpdatePermission;
 use App\Services\OrderLogService;
 use App\Services\OrderService;
+use RuntimeException;
 use WP_REST_Request;
 use WP_REST_Server;
 use WP_REST_Response;
@@ -139,7 +140,7 @@ class OrderController extends \WP_REST_Controller
 		}
 
 		$orderIds = $orders->map(function ($order) {
-			return (int) $order->id;
+			return (int) $order->ID;
 		});
 		$items    = $this->db->table('order_items')->whereIn('order_id', $orderIds)->get();
 		//format items
@@ -266,7 +267,12 @@ class OrderController extends \WP_REST_Controller
 	public function create_item($request)
 	{
 		try {
+
 			$orderId = $this->orderService->create($this->prepare_item_for_database($request));
+			if (!$orderId) {
+				throw new RuntimeException('Create order failed. 原因请查看日志。');
+			}
+
 			$this->orderService->createOrderItems($orderId, $request['items']);
 			return new WP_REST_Response([
 				'data' => ['order_id' => $orderId],
@@ -275,7 +281,7 @@ class OrderController extends \WP_REST_Controller
 			], 201);
 		} catch (\Throwable $th) {
 			error_log($th->getMessage());
-			return new WP_Error('cant-create', $th->getMessage(), array('status' => 500));
+			return new WP_Error('cant-create-order', $th->getMessage(), array('status' => 500));
 		}
 	}
 
@@ -368,7 +374,7 @@ class OrderController extends \WP_REST_Controller
 	 */
 	public function create_item_permissions_check($request)
 	{
-		return true; //current_user_can('edit_something');
+		return current_user_can('administrator');
 	}
 
 	/**
@@ -439,31 +445,31 @@ class OrderController extends \WP_REST_Controller
 			$prepared['store_id'] = is_numeric($term) ? $term : $term['term_id'];
 
 			// sales
-			if ($request['sales']) {
-				$user = get_user_by('login', $request['sales']);
-				if ($user) {
-					$prepared['sales'] = $user->ID;
-				} else {
-					$prepared['sales'] = wp_insert_user([
-						'user_login' => $request['sales'],
-						'user_email' => $request['sales'] . '@app.com',
-						'display_name' => $request['sales'],
-						'user_pass' => '123456',
-						'show_admin_bar_front' => false,
-						'role' => 'employee'
-					]);
-					wp_set_terms_for_user($prepared['sales'], 'user-group', $prepared['store_id']);
-				}
-			}
+			// if ($request['sales']) {
+			// 	$user = get_user_by('login', $request['sales']);
+			// 	if ($user) {
+			// 		$prepared['sales'] = $user->ID;
+			// 	} else {
+			// 		$prepared['sales'] = wp_insert_user([
+			// 			'user_login' => $request['sales'],
+			// 			'user_email' => $request['sales'] . '@app.com',
+			// 			'display_name' => $request['sales'],
+			// 			'user_pass' => '123456',
+			// 			'show_admin_bar_front' => false,
+			// 			'role' => 'employee'
+			// 		]);
+			// 		wp_set_terms_for_user($prepared['sales'], 'user-group', $prepared['store_id']);
+			// 	}
+			// }
 		}
 
 		$fillable = [
 			'order_status', 'order_type', 'payment_method', 'pickup_method', 'deposit', 'balance',
 			'billing_name', 'billing_phone', 'billing_store', 'pickup_store',
 			'shipping_name', 'shipping_phone', 'shipping_address',
-			'pickup_number',
+			'pickup_number', 'sales',
 			'membership_number', 'member_name', 'member_balance',
-			'note'
+			'note', 'total'
 		];
 		foreach ($fillable as $key) {
 			$prepared[$key] = $request[$key];
@@ -479,7 +485,13 @@ class OrderController extends \WP_REST_Controller
 		}
 
 		// Post date.
-		$prepared['updated_at'] = date('Y-m-d H:i:s');
+		// created_at
+		$prepared['created_at'] = $request['created_at'];
+		$prepared['updated_at'] = isset($request['id']) ? date('Y-m-d H:i:s') : $request['created_at'];
+
+		$prepared['items_count'] = count($request['items']);
+
+
 
 		return $prepared;
 	}
@@ -564,12 +576,12 @@ class OrderController extends \WP_REST_Controller
 				],
 				'deposit' => [
 					'description' => '预约金额',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'balance' => [
 					'description' => '待收款',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'billing_name' => [
@@ -593,13 +605,13 @@ class OrderController extends \WP_REST_Controller
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'created_at' => [
-					'description' => '下单时间',
-					'type'        => 'datetime',
+					'description' => '下单时间 Datetime',
+					'type'        => 'string',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'pickup_time' => [
-					'description' => '取货时间',
-					'type'        => 'datetime',
+					'description' => '取货时间 Datetime',
+					'type'        => 'string',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'sales' => [
@@ -639,12 +651,12 @@ class OrderController extends \WP_REST_Controller
 				],
 				'member_balance' => [
 					'description' => '会员余额',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'total' => [
 					'description' => '订单金额',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'note' => [
@@ -664,17 +676,17 @@ class OrderController extends \WP_REST_Controller
 				],
 				'items[].price' => [
 					'description' => '商品单价',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'items[].quantity' => [
 					'description' => '商品数量',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'items[].total' => [
 					'description' => '商品小计',
-					'type'        => 'float',
+					'type'        => 'number',
 					'context'     => array('view', 'edit', 'embed'),
 				],
 				'items[].note' => [

@@ -6,7 +6,6 @@ use WP_User;
 
 class OrderService
 {
-
 	private \WeDevs\ORM\Eloquent\Database|null|false $db = null;
 	private string $dbPrefix = '';
 
@@ -18,9 +17,24 @@ class OrderService
 
 	public function create(array $data): int
 	{
-		$orderId = $this->db->table('orders')->insertGetId($data);
+		global $wpdb;
 
-		return $orderId;
+		$keys = array_keys($data);
+		$format = array_map(function ($key) {
+			if (in_array($key, [
+				'store_id', 'creator', 'framer',
+				'deposit', 'balance', 'member_balance', 'items_count', 'total'
+			])) {
+				return '%d';
+			}
+			return '%s';
+		}, $keys);
+
+		if (!$wpdb->insert($this->dbPrefix . 'orders', $data, $format)) {
+			return false;
+		}
+
+		return (int) $wpdb->insert_id;
 	}
 
 	public function createOrderItems(int $orderId, array $items)
@@ -102,10 +116,11 @@ class OrderService
 
 	public static function formatOrder(object $order): object
 	{
-		$order->id          = (int) $order->id;
+		$order->id          = (int) $order->ID;
 		$order->creator     = (int) $order->creator;
-		$order->sales       = (int) $order->sales;
+		$order->sales       = $order->sales;
 		$order->items_count = (int) $order->items_count;
+		unset($order->ID);
 
 		return $order;
 	}

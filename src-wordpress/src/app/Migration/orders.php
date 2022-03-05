@@ -6,7 +6,7 @@ $tableName = $wpdb->prefix . 'orders';
 
 $ddl = <<<EOF
 CREATE TABLE $tableName (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增 ID ',
+  `ID` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增 ID ',
   `order_number` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '订单编号',
   `store_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '门店名',
   `store_id` mediumint unsigned NOT NULL DEFAULT '0',
@@ -43,8 +43,8 @@ CREATE TABLE $tableName (
   KEY `order_status` (`order_status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 EOF;
-if(maybe_create_table( $tableName, $ddl)){
-	echo $tableName . ' Created.' . PHP_EOL;
+if (maybe_create_table($tableName, $ddl)) {
+  echo $tableName . ' Created.' . PHP_EOL;
 }
 
 $wp_order_items = $wpdb->prefix . 'order_items';
@@ -64,8 +64,8 @@ CREATE TABLE $wp_order_items (
   KEY `media_id` (`media_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 EOF;
-if(maybe_create_table( $wp_order_items, $wp_order_items_ddl)){
-	echo $wp_order_items . ' Created.' . PHP_EOL;
+if (maybe_create_table($wp_order_items, $wp_order_items_ddl)) {
+  echo $wp_order_items . ' Created.' . PHP_EOL;
 }
 
 
@@ -81,6 +81,6 @@ CREATE TABLE $wp_order_item_gallery (
   KEY `item_id` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 EOF;
-if(maybe_create_table( $wp_order_item_gallery, $wp_order_item_gallery_ddl)){
-	echo $wp_order_item_gallery . ' Created.' .PHP_EOL;
+if (maybe_create_table($wp_order_item_gallery, $wp_order_item_gallery_ddl)) {
+  echo $wp_order_item_gallery . ' Created.' . PHP_EOL;
 }
