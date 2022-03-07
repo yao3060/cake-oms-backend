@@ -1,11 +1,11 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODA3NywibmJmIjoxNjQ1OTI4MDc3LCJleHAiOjE2NDY1MzI4NzcsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.7z6BVWIC9X0DFQXyJySmHV90HC9MJ9BidPddpz1aYbY
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NjY0NDA3NiwibmJmIjoxNjQ2NjQ0MDc2LCJleHAiOjE2NDcyNDg4NzYsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.um-DFC41AeH03HMg3aGi4B2rjpRvtJoElSIw4XzZFPc
 @FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyNzkwMiwibmJmIjoxNjQ1OTI3OTAyLCJleHAiOjE2NDY1MzI3MDIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.tJBeQgKbvU8swH1nBzM9BMUZyJ3VnwdmN0P-W_jks74
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
 
 ### Admin Login
-POST https://oms-backend.yaoin.net/wp-json/jwt-auth/v1/token
+POST {{BASE_URL}}/jwt-auth/v1/token
 Accept: application/json
 Content-Type: application/json
 
@@ -50,12 +50,10 @@ Content-Type: application/json
 GET {{BASE_URL}}/oms/v1/orders
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{FRAMER_TOKEN}}
+Authorization: Bearer {{TOKEN}}
 
 {
-  "status": "pending",
-  "keyword": "",
-  "per_page": 2
+  "per_page": 10
 }
 
 ### update order

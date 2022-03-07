@@ -295,7 +295,9 @@ class OrderController extends \WP_REST_Controller
 	public function update_item($request)
 	{
 		$id   = (int) $request['id'];
+
 		$data = $this->prepare_item_for_database($request);
+        var_dump($data );die;
 		if (is_wp_error($data)) {
 			return $data;
 		}
@@ -414,15 +416,13 @@ class OrderController extends \WP_REST_Controller
 	 */
 	protected function prepare_item_for_database($request)
 	{
-		$prepared = [
-			'order_number' => $request['order_number']
-		];
+		$prepared = [];
 
 		// ID.
 		if (isset($request['id'])) {
 			$existing = $this->db->table('orders')->where('id', $request['id'])->first();
-			if (is_wp_error($existing)) {
-				return $existing;
+			if (is_null($existing)) {
+				return new WP_Error('Order Id 不存在');
 			}
 
 			if ((int) $existing->creator < 1) {
@@ -432,11 +432,14 @@ class OrderController extends \WP_REST_Controller
 			}
 		}
 
-		// order_number
-		$existing = $this->db->table('orders')->where('order_number', $request['order_number'])->first();
-		if (is_wp_error($existing)) {
-			return $existing;
-		}
+        if($request['order_number']) {
+            // order_number
+            $existingOrder = $this->db->table('orders')->where('order_number', $request['order_number'])->first();
+            if ($existingOrder) {
+                return new WP_Error('Order 已经存在');
+            }
+        }
+
 
 		// store_name
 		if ($request['store_name']) {
@@ -444,23 +447,6 @@ class OrderController extends \WP_REST_Controller
 			$prepared['store_name'] = $request['store_name'];
 			$prepared['store_id'] = is_numeric($term) ? $term : $term['term_id'];
 
-			// sales
-			// if ($request['sales']) {
-			// 	$user = get_user_by('login', $request['sales']);
-			// 	if ($user) {
-			// 		$prepared['sales'] = $user->ID;
-			// 	} else {
-			// 		$prepared['sales'] = wp_insert_user([
-			// 			'user_login' => $request['sales'],
-			// 			'user_email' => $request['sales'] . '@app.com',
-			// 			'display_name' => $request['sales'],
-			// 			'user_pass' => '123456',
-			// 			'show_admin_bar_front' => false,
-			// 			'role' => 'employee'
-			// 		]);
-			// 		wp_set_terms_for_user($prepared['sales'], 'user-group', $prepared['store_id']);
-			// 	}
-			// }
 		}
 
 		$fillable = [
@@ -472,26 +458,33 @@ class OrderController extends \WP_REST_Controller
 			'note', 'total'
 		];
 		foreach ($fillable as $key) {
-			$prepared[$key] = $request[$key];
+            if ($request[$key]) {
+                $prepared[$key] = $request[$key];
+            }
 		}
 
-		if (isset($request['framer'])) {
+		if ($request['framer']) {
 			$prepared['framer'] = (int)$request['framer'];
 		}
 
 		// order status
-		if (is_string($request['status'])) {
+		if ($request['status']) {
 			$prepared['order_status'] = $request['status'];
 		}
 
 		// Post date.
 		// created_at
-		$prepared['created_at'] = $request['created_at'];
+        if($request['created_at']) {
+            $prepared['created_at'] = $request['created_at'];
+        }
+
 		$prepared['updated_at'] = isset($request['id']) ? date('Y-m-d H:i:s') : $request['created_at'];
 
-		$prepared['items_count'] = count($request['items']);
+        if(is_array($request['items'])) {
+            $prepared['items_count'] = count($request['items']);
+        }
 
-
+        print_r($prepared);die;
 
 		return $prepared;
 	}
