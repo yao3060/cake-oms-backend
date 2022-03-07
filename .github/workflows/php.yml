@@ -39,3 +39,12 @@ jobs:
         remote_port: 22
         remote_user: root
         remote_key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
+
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: yaoin.net
+        username: root
+        key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
+        port: 22
+        script: chown -R www-data:www-data /var/www/cake-oms/backend/
