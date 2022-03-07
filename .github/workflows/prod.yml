@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Production
 
 on:
   push:
@@ -35,16 +35,16 @@ jobs:
         switches: -avzr --exclude="" --include="" --filter=""
         path: src-wordpress/src/
         remote_path: /var/www/cake-oms/backend/
-        remote_host: yaoin.net
+        remote_host: 47.93.240.166
         remote_port: 22
         remote_user: root
-        remote_key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
+        remote_key: ${{ secrets.DEPLOY_PRODUCTION_SSH_KEY }}
 
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
-        host: yaoin.net
+        host: 47.93.240.166
         username: root
-        key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
+        key: ${{ secrets.DEPLOY_PRODUCTION_SSH_KEY }}
         port: 22
         script: chown -R www-data:www-data /var/www/cake-oms/backend/

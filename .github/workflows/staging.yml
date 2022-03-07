@@ -1,0 +1,50 @@
+name: Staging
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: cd src-wordpress/src && ls -la && composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: cd src-wordpress/src && composer install --prefer-dist --no-progress --ignore-platform-reqs && composer dump-autoload -o
+
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.2
+      with:
+        switches: -avzr --exclude="" --include="" --filter=""
+        path: src-wordpress/src/
+        remote_path: /var/www/cake-oms/backend/
+        remote_host: yaoin.net
+        remote_port: 22
+        remote_user: root
+        remote_key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
+
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: yaoin.net
+        username: root
+        key: ${{ secrets.DEPLOY_STAGING_SSH_KEY }}
+        port: 22
+        script: chown -R www-data:www-data /var/www/cake-oms/backend/
