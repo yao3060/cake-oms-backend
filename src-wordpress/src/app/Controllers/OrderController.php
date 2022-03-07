@@ -297,7 +297,6 @@ class OrderController extends \WP_REST_Controller
 		$id   = (int) $request['id'];
 
 		$data = $this->prepare_item_for_database($request);
-        var_dump($data );die;
 		if (is_wp_error($data)) {
 			return $data;
 		}
@@ -420,10 +419,12 @@ class OrderController extends \WP_REST_Controller
 
 		// ID.
 		if (isset($request['id'])) {
-			$existing = $this->db->table('orders')->where('id', $request['id'])->first();
+			$existing =  $this->orderService->getOrderById((int) $request['id']);
 			if (is_null($existing)) {
 				return new WP_Error('Order Id 不存在');
 			}
+            // if there is order id, unset order number to prevent update order number
+            $request['order_number'] = null;
 
 			if ((int) $existing->creator < 1) {
 				$prepared['creator'] = wp_get_current_user()->ID;
@@ -434,7 +435,7 @@ class OrderController extends \WP_REST_Controller
 
         if($request['order_number']) {
             // order_number
-            $existingOrder = $this->db->table('orders')->where('order_number', $request['order_number'])->first();
+            $existingOrder = $this->orderService->getOrderByOrderNumber($request['order_number']);
             if ($existingOrder) {
                 return new WP_Error('Order 已经存在');
             }
@@ -484,7 +485,6 @@ class OrderController extends \WP_REST_Controller
             $prepared['items_count'] = count($request['items']);
         }
 
-        print_r($prepared);die;
 
 		return $prepared;
 	}

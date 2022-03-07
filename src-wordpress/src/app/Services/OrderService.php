@@ -63,6 +63,17 @@ class OrderService
 		return $order;
 	}
 
+    public function getOrderByOrderNumber(string $sn): object|null
+	{
+		$order = $this->db->table('orders')
+			->where('order_number', $sn)
+			->first();
+		if ($order) {
+			$order = self::formatOrder($order);
+		}
+		return $order;
+	}
+
 	public function getOrderItems(int $orderId): array
 	{
 		$items = $this->db->table('order_items')
