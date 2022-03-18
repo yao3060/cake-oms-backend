@@ -266,9 +266,14 @@ class OrderController extends \WP_REST_Controller
      */
     public function create_item($request)
     {
+        $data = $this->prepare_item_for_database($request);
+        if (is_wp_error($data)) {
+            return $data;
+        }
+
         try {
 
-            $orderId = $this->orderService->create($this->prepare_item_for_database($request));
+            $orderId = $this->orderService->create($data);
             if (!$orderId) {
                 throw new RuntimeException('Create order failed. 原因请查看日志。');
             }
