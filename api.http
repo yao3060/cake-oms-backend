@@ -1,5 +1,5 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NjY0NDA3NiwibmJmIjoxNjQ2NjQ0MDc2LCJleHAiOjE2NDcyNDg4NzYsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.um-DFC41AeH03HMg3aGi4B2rjpRvtJoElSIw4XzZFPc
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NzU2Nzc2NSwibmJmIjoxNjQ3NTY3NzY1LCJleHAiOjE2NDgxNzI1NjUsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.yqjirQzeG_gSbJaAaGbcFJ9KjY-kKNW2ZQjnYXW4FgM
 @FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyNzkwMiwibmJmIjoxNjQ1OTI3OTAyLCJleHAiOjE2NDY1MzI3MDIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.tJBeQgKbvU8swH1nBzM9BMUZyJ3VnwdmN0P-W_jks74
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
@@ -116,6 +116,56 @@ Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
+{
+    "note":"",
+    "billing_phone":"",
+    "membership_number":"",
+    "billing_store":"",
+    "order_number":"22031317264476726311",
+    "shipping_phone":"",
+    "pickup_number":"",
+    "billing_name":"",
+    "member_name":"",
+    "member_balance":0,
+    "sales":"",
+    "pickup_store":"2022-03-13 17:26:50",
+    "order_status":"1",
+    "total":0,
+    "balance":0,
+    "pickup_method":"",
+    "store_name":"",
+    "deposit":0,
+    "pickup_time":"2022-03-13 17:26:50",
+    "shipping_address":"",
+    "shipping_name":"",
+    "order_type":"1",
+    "items": [
+      {
+          "name": "芋泥布里欧",
+          "note": "1人份",
+          "total": 16,
+          "quantity": 1,
+          "price": 16
+      },
+      {
+          "name": "日式榴莲",
+          "note": "1人份",
+          "total": 16,
+          "quantity": 1,
+          "price": 16
+      },
+      {
+          "name": "奶酪包",
+          "note": "1人份",
+          "total": 10,
+          "quantity": 1,
+          "price": 10
+      }
+    ],
+    "payment_method":"在线支付"
+}
+
+####
 {
     "order_number": "NO022",
     "store_name": "龙华店",

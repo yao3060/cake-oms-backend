@@ -1,33 +1,33 @@
-version: '2.3'
+version: "2.3"
 
 services:
-  wordpress_apache:
-#    image: ${CONTAINER_REGISTRY}/${ENVIRONMENT}_wordpress_apache:${VERSION}
-    container_name: ${COMPOSE_PROJECT_NAME}_wordpress_apache
-    restart: always
-    env_file: .env
-    ports:
-      - "${WORDPRESS_HTTP_PORT}:80"
-    volumes:
-      - wordpress-uploads:/var/www/html/wp-content/uploads
+    wordpress_apache:
+        #    image: ${CONTAINER_REGISTRY}/${ENVIRONMENT}_wordpress_apache:${VERSION}
+        container_name: ${COMPOSE_PROJECT_NAME}_wordpress_apache
+        restart: always
+        env_file: .env
+        ports:
+            - "${WORDPRESS_HTTP_PORT}:80"
+        volumes:
+            - wordpress-uploads:/var/www/html/wp-content/uploads
 
-  wordpress_db:
-    image: mysql:8
-    container_name: ${COMPOSE_PROJECT_NAME}_wordpress_db
-    command: --authentication_policy=mysql_native_password
-    restart: always
-    volumes:
-      - wordpress-db:/var/lib/mysql
-    environment:
-      - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
-      - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
+    wordpress_db:
+        image: mysql:8
+        container_name: ${COMPOSE_PROJECT_NAME}_wordpress_db
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        volumes:
+            - wordpress-db:/var/lib/mysql
+        environment:
+            - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
+            - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
 
-  wordpress_cache:
-    restart: "no"
+    wordpress_cache:
+        restart: "no"
 
-  adminer:
-    restart: "no"
+    adminer:
+        restart: "no"
 
 volumes:
-  wordpress-uploads:
-  wordpress-db:
+    wordpress-uploads:
+    wordpress-db:
