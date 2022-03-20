@@ -121,7 +121,7 @@ Authorization: Bearer {{TOKEN}}
     "billing_phone":"",
     "membership_number":"",
     "billing_store":"",
-    "order_number":"22031317264476726311",
+    "order_number":"",
     "shipping_phone":"",
     "pickup_number":"",
     "billing_name":"",

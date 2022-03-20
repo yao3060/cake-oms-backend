@@ -422,6 +422,10 @@ class OrderController extends \WP_REST_Controller
     {
         $prepared = [];
 
+        if (!$request['id'] && !$request['order_number']) {
+            return new WP_Error('`order_number` 不存在');
+        }
+
         // ID.
         if (isset($request['id'])) {
             $existing =  $this->orderService->getOrderById((int) $request['id']);
