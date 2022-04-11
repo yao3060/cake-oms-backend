@@ -556,7 +556,7 @@ class OrderController extends \WP_REST_Controller
                     'context'     => array('view', 'edit', 'embed'),
                 ],
                 'order_status' => [
-                    'description' => '订单状态',
+                    'description' => '订单状态 (1:unverified, 2:verified, 3:processing, 4:completed, 5:trash)',
                     'type'        => 'string',
                     'context'     => array('view', 'edit', 'embed'),
                 ],
