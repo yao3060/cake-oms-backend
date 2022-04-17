@@ -548,16 +548,16 @@ class OrderController extends \WP_REST_Controller
                 'order_number' => [
                     'description' => '订单编号',
                     'type'        => 'string',
-                    'context'     => array('view', 'edit', 'embed'),
+                    'context'     => ['view', 'edit', 'embed'],
                 ],
                 'store_name' => [
                     'description' => '店铺名',
                     'type'        => 'string',
-                    'context'     => array('view', 'edit', 'embed'),
+                    'context'     => ['view', 'edit', 'embed'],
                 ],
                 'order_status' => [
                     'description' => '订单状态 (1:unverified, 2:verified, 3:processing, 4:completed, 5:trash)',
-                    'type'        => 'string',
+                    'type'        => 'number',
                     'context'     => array('view', 'edit', 'embed'),
                 ],
                 'order_type' => [
