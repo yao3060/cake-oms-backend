@@ -39,6 +39,13 @@ class OrderService
         return (int) $wpdb->insert_id;
     }
 
+    public function update(int $id, array $data)
+    {
+        $this->db->table('orders')->where('ID', $id)->update($data);
+        // add order log
+        (new OrderLogService)->add($id, 'update', 'update order', $data);
+    }
+
     public function createOrderItems(int $orderId, array $items)
     {
         foreach ($items as $item) {

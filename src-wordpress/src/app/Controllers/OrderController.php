@@ -267,22 +267,30 @@ class OrderController extends \WP_REST_Controller
     public function create_item($request)
     {
         $data = $this->prepare_item_for_database($request);
+
         if (is_wp_error($data)) {
             return $data;
         }
 
         try {
-
-            $orderId = $this->orderService->create($data);
-            if (!$orderId) {
-                throw new RuntimeException('Create order failed. 原因请查看日志。');
+            $idUpdate = false;
+            if (isset($data['id']) && $data['id']) {
+                $orderId = (int)$data['id'];
+                unset($data['id']);
+                $this->orderService->update($orderId, $data);
+                $idUpdate = true;
+            } else {
+                $orderId = $this->orderService->create($data);
+                if (!$orderId) {
+                    throw new RuntimeException('Create order failed. 原因请查看日志。');
+                }
+                $this->orderService->createOrderItems($orderId, $request['items']);
             }
 
-            $this->orderService->createOrderItems($orderId, $request['items']);
             return new WP_REST_Response([
+                'code' => $idUpdate ? 'order_updated' : 'order_created',
+                'message' => $idUpdate ? 'Order Updated' : 'Order Created',
                 'data' => ['order_id' => $orderId],
-                'message' => 'Order Created',
-                'code' => 'order_created'
             ], 201);
         } catch (\Throwable $th) {
             error_log($th->getMessage());
@@ -446,7 +454,7 @@ class OrderController extends \WP_REST_Controller
             // order_number
             $existingOrder = $this->orderService->getOrderByOrderNumber($request['order_number'] ?? '');
             if ($existingOrder) {
-                return new WP_Error('Order 已经存在');
+                $prepared['id'] = $existingOrder->id;
             }
             $prepared['order_number'] = $request['order_number'];
         }
