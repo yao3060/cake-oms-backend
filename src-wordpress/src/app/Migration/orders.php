@@ -24,7 +24,7 @@ CREATE TABLE $tableName (
   `pickup_store` varchar(40) DEFAULT NULL COMMENT '取货门店',
   `created_at` datetime DEFAULT NULL COMMENT '下单时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
-  `pickup_time` datetime DEFAULT NULL COMMENT '取货时间',
+  `pickup_time` varchar(20) DEFAULT NULL COMMENT '取货时间',
   `sales` varchar(40) DEFAULT NULL COMMENT '导购员编号',
   `pickup_number` varchar(40) DEFAULT NULL COMMENT '派单编号',
   `shipping_name` varchar(40) DEFAULT NULL COMMENT '收货人',
@@ -44,7 +44,7 @@ CREATE TABLE $tableName (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 EOF;
 if (maybe_create_table($tableName, $ddl)) {
-  echo $tableName . ' Created.' . PHP_EOL;
+    echo $tableName . ' Created.' . PHP_EOL;
 }
 
 $wp_order_items = $wpdb->prefix . 'order_items';
@@ -65,7 +65,7 @@ CREATE TABLE $wp_order_items (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 EOF;
 if (maybe_create_table($wp_order_items, $wp_order_items_ddl)) {
-  echo $wp_order_items . ' Created.' . PHP_EOL;
+    echo $wp_order_items . ' Created.' . PHP_EOL;
 }
 
 
@@ -82,5 +82,8 @@ CREATE TABLE $wp_order_item_gallery (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 EOF;
 if (maybe_create_table($wp_order_item_gallery, $wp_order_item_gallery_ddl)) {
-  echo $wp_order_item_gallery . ' Created.' . PHP_EOL;
+    echo $wp_order_item_gallery . ' Created.' . PHP_EOL;
 }
+
+
+// ALTER TABLE `wp_orders` CHANGE `pickup_time` `pickup_time` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '取货时间';
