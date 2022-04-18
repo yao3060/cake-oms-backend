@@ -1,5 +1,5 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NzU2Nzc2NSwibmJmIjoxNjQ3NTY3NzY1LCJleHAiOjE2NDgxNzI1NjUsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.yqjirQzeG_gSbJaAaGbcFJ9KjY-kKNW2ZQjnYXW4FgM
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MDE4OTE4MiwibmJmIjoxNjUwMTg5MTgyLCJleHAiOjE2NTA3OTM5ODIsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.NlW8Gl1aUptE4F6IKpfjd850KuCbJo8UdZe11ZXVzr4
 @FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyNzkwMiwibmJmIjoxNjQ1OTI3OTAyLCJleHAiOjE2NDY1MzI3MDIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.tJBeQgKbvU8swH1nBzM9BMUZyJ3VnwdmN0P-W_jks74
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
@@ -117,59 +117,9 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-    "note":"",
-    "billing_phone":"",
-    "membership_number":"",
-    "billing_store":"",
-    "order_number":"",
-    "shipping_phone":"",
-    "pickup_number":"",
-    "billing_name":"",
-    "member_name":"",
-    "member_balance":0,
-    "sales":"",
-    "pickup_store":"2022-03-13 17:26:50",
-    "order_status":"1",
-    "total":0,
-    "balance":0,
-    "pickup_method":"",
-    "store_name":"",
-    "deposit":0,
-    "pickup_time":"2022-03-13 17:26:50",
-    "shipping_address":"",
-    "shipping_name":"",
-    "order_type":"1",
-    "items": [
-      {
-          "name": "芋泥布里欧",
-          "note": "1人份",
-          "total": 16,
-          "quantity": 1,
-          "price": 16
-      },
-      {
-          "name": "日式榴莲",
-          "note": "1人份",
-          "total": 16,
-          "quantity": 1,
-          "price": 16
-      },
-      {
-          "name": "奶酪包",
-          "note": "1人份",
-          "total": 10,
-          "quantity": 1,
-          "price": 10
-      }
-    ],
-    "payment_method":"在线支付"
-}
-
-####
-{
     "order_number": "NO022",
-    "store_name": "龙华店",
-    "order_status": "unverified",
+    "store_name": "龙华店 333",
+    "order_status": 5,
     "order_type": "预约",
     "payment_method": "现金",
     "pickup_method": "自提",
@@ -182,7 +132,7 @@ Authorization: Bearer {{TOKEN}}
     "created_at": "2022-02-28 22:43:43",
     "updated_at": "2022-02-28 22:43:43",
     "pickup_time": "2022-03-02 22:43:43",
-    "sales": 11,
+    "sales": "11",
     "pickup_number": "123457",
     "shipping_name": "刘国良",
     "shipping_phone": "13593464918",
@@ -198,10 +148,10 @@ Authorization: Bearer {{TOKEN}}
             "price": 11.00,
             "quantity": 2,
             "total": 22.00,
-            "note": "",
+            "note": ""
         },
         {
-            "product_name": "蜘蛛侠 2",
+            "product_name": "蜘蛛侠",
             "price": 199.00,
             "quantity": 1,
             "total": 199.00,

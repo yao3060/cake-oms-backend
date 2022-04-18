@@ -487,7 +487,7 @@ class OrderController extends \WP_REST_Controller
 
         // order status
         if ($request['status']) {
-            $prepared['order_status'] = $request['status'];
+            $prepared['order_status'] = $this->getOrderStatus((int)$request['status']);
         }
 
         // created_at
@@ -503,6 +503,25 @@ class OrderController extends \WP_REST_Controller
 
 
         return $prepared;
+    }
+
+    /** 订单状态 (1:unverified, 2:verified, 3:processing, 4:completed, 5:trash) */
+    public function getOrderStatus(int $status = 1)
+    {
+        switch ($status) {
+            case 1:
+                return 'unverified';
+            case 2:
+                return 'verified';
+            case 3:
+                return 'processing';
+            case 4:
+                return 'completed';
+            case 5:
+                return 'trash';
+            default:
+                return 'unverified';
+        }
     }
 
     /**
