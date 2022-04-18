@@ -468,7 +468,7 @@ class OrderController extends \WP_REST_Controller
         }
 
         $fillable = [
-            'order_status', 'order_type', 'payment_method', 'pickup_method', 'deposit', 'balance',
+            'order_type', 'payment_method', 'pickup_method', 'deposit', 'balance',
             'billing_name', 'billing_phone', 'billing_store', 'pickup_store',
             'shipping_name', 'shipping_phone', 'shipping_address',
             'pickup_number', 'sales',
@@ -486,8 +486,11 @@ class OrderController extends \WP_REST_Controller
         }
 
         // order status
+        if ($request['order_status']) {
+            $prepared['order_status'] = $this->getOrderStatus((int)$request['order_status']);
+        }
         if ($request['status']) {
-            $prepared['order_status'] = $this->getOrderStatus((int)$request['status']);
+            $prepared['order_status'] = $request['status'];
         }
 
         // created_at
@@ -638,7 +641,7 @@ class OrderController extends \WP_REST_Controller
                     'context'     => array('view', 'edit', 'embed'),
                 ],
                 'pickup_time' => [
-                    'description' => '取货时间 Datetime',
+                    'description' => '取货时间',
                     'type'        => 'string',
                     'context'     => array('view', 'edit', 'embed'),
                 ],
