@@ -139,7 +139,7 @@ Authorization: Bearer {{TOKEN}}
     "shipping_address": "高新四路高新大都荟",
     "membership_number": "135141325566",
     "member_name": "YAO",
-    "member_balance": "11111",
+    "member_balance": "123",
     "total": "298",
     "note": "",
     "items": [

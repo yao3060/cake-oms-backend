@@ -472,13 +472,18 @@ class OrderController extends \WP_REST_Controller
             'billing_name', 'billing_phone', 'billing_store', 'pickup_store',
             'shipping_name', 'shipping_phone', 'shipping_address',
             'pickup_number', 'pickup_time', 'sales',
-            'membership_number', 'member_name', 'member_balance',
+            'membership_number', 'member_name',
             'note', 'total'
         ];
         foreach ($fillable as $key) {
             if ($request[$key]) {
                 $prepared[$key] = $request[$key];
             }
+        }
+
+        // member_balance
+        if (!empty($request['member_balance'])) {
+            $prepared['member_balance'] = $request['member_balance'];
         }
 
         if ($request['framer']) {
@@ -682,7 +687,7 @@ class OrderController extends \WP_REST_Controller
                 ],
                 'member_balance' => [
                     'description' => '会员余额',
-                    'type'        => 'number',
+                    'type'        => 'string',
                     'context'     => array('view', 'edit', 'embed'),
                 ],
                 'total' => [
