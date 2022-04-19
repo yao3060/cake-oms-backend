@@ -471,7 +471,7 @@ class OrderController extends \WP_REST_Controller
             'order_type', 'payment_method', 'pickup_method', 'deposit', 'balance',
             'billing_name', 'billing_phone', 'billing_store', 'pickup_store',
             'shipping_name', 'shipping_phone', 'shipping_address',
-            'pickup_number', 'sales',
+            'pickup_number', 'pickup_time', 'sales',
             'membership_number', 'member_name', 'member_balance',
             'note', 'total'
         ];

@@ -1,5 +1,5 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MDE4OTE4MiwibmJmIjoxNjUwMTg5MTgyLCJleHAiOjE2NTA3OTM5ODIsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.NlW8Gl1aUptE4F6IKpfjd850KuCbJo8UdZe11ZXVzr4
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MDM3MDg5MywibmJmIjoxNjUwMzcwODkzLCJleHAiOjE2NTA5NzU2OTMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.ricSl2ihVYeHdv4HUpPv7fpuWuQQtaCNPj7alzCuDr0
 @FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyNzkwMiwibmJmIjoxNjQ1OTI3OTAyLCJleHAiOjE2NDY1MzI3MDIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.tJBeQgKbvU8swH1nBzM9BMUZyJ3VnwdmN0P-W_jks74
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
@@ -98,7 +98,7 @@ Authorization: Bearer {{TOKEN}}
 GET {{BASE_URL}}/oms/v1/print/orders/22
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{FRAMER_TOKEN}}
+Authorization: Bearer {{TOKEN}}
 
 ### PrintOrder
 GET {{BASE_URL}}/oms/v1/members
@@ -131,7 +131,7 @@ Authorization: Bearer {{TOKEN}}
     "pickup_store": "徐汇店",
     "created_at": "2022-02-28 22:43:43",
     "updated_at": "2022-02-28 22:43:43",
-    "pickup_time": "2022-03-02 22:43:43",
+    "pickup_time": "03-02 22:43",
     "sales": "11",
     "pickup_number": "123457",
     "shipping_name": "刘国良",
