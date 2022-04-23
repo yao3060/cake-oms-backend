@@ -149,9 +149,9 @@ class OrderService
     {
         if ($order->creator) {
             $currentUserId = wp_get_current_user()->ID;
-            if ($currentUserId !== $order->creator) {
+            // 只有下单人，管理员, 门店管理员也可以看
+            if (!is_administrator() && !is_store_manager() && $currentUserId !== $order->creator) {
                 $order->billing_phone = mask_mobile_phone($order->billing_phone);
-                //shipping_phone
                 $order->shipping_phone = mask_mobile_phone($order->shipping_phone);
             }
         }
