@@ -47,7 +47,7 @@ Accept: application/json
 Content-Type: application/json
 
 ### get orders
-GET {{BASE_URL}}/oms/v1/orders/22
+GET {{BASE_URL}}/oms/v1/orders/24
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}

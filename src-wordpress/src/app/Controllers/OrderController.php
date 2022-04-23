@@ -177,10 +177,12 @@ class OrderController extends \WP_REST_Controller
     public function get_item($request): WP_Error|WP_REST_Response
     {
         $id    = $request->get_param('id');
-        $order = $this->db->table('orders')->where('id', $id)->first();
+        $order = $this->orderService->getOrderById((int)$id); // $this->db->table('orders')->where('ID', $id)->first();
 
         if ($order) {
-            $order = OrderService::formatOrder($order);
+
+            $order = OrderService::mask($order);
+
             $items = $this->db->table('order_items')->where('order_id', $id)->get();
             if ($items->count()) {
                 foreach ($items as $key => $item) {
@@ -189,6 +191,8 @@ class OrderController extends \WP_REST_Controller
                 }
             }
             $order->items = $items->toArray();
+
+            // mask phone number
 
             $order->creator = OrderService::getCreator((int) $order->creator);
 

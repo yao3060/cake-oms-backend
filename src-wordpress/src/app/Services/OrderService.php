@@ -64,7 +64,7 @@ class OrderService
     public function getOrderById(int $id): object|null
     {
         $order = $this->db->table('orders')
-            ->where('id', $id)
+            ->where('ID', $id)
             ->first();
         if ($order) {
             $order = self::formatOrder($order);
@@ -142,6 +142,19 @@ class OrderService
         $order->items_count = (int) $order->items_count;
         unset($order->ID);
 
+        return $order;
+    }
+
+    public static function mask(object $order): object
+    {
+        if ($order->creator) {
+            $currentUserId = wp_get_current_user()->ID;
+            if ($currentUserId !== $order->creator) {
+                $order->billing_phone = mask_mobile_phone($order->billing_phone);
+                //shipping_phone
+                $order->shipping_phone = mask_mobile_phone($order->shipping_phone);
+            }
+        }
         return $order;
     }
 
