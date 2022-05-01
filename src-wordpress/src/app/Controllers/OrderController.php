@@ -99,6 +99,11 @@ class OrderController extends \WP_REST_Controller
     {
         $query = $this->db->table('orders');
 
+        $pre = $this->orderService->preGetOrders($request->get_params());
+        if (is_wp_error($pre)) {
+            return $pre;
+        }
+
         // if it's store user,  filter by store id
         $query = StoreUserFilter::handle($query, $request);
 

@@ -1,6 +1,6 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MDM3MDg5MywibmJmIjoxNjUwMzcwODkzLCJleHAiOjE2NTA5NzU2OTMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.ricSl2ihVYeHdv4HUpPv7fpuWuQQtaCNPj7alzCuDr0
-@FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyNzkwMiwibmJmIjoxNjQ1OTI3OTAyLCJleHAiOjE2NDY1MzI3MDIsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.tJBeQgKbvU8swH1nBzM9BMUZyJ3VnwdmN0P-W_jks74
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MTQwNjE5NSwibmJmIjoxNjUxNDA2MTk1LCJleHAiOjE2NTIwMTA5OTUsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.s-BtF40eGepFLJnsQonQPNt1pxVXzQ411X18Hzx-2vI
+@FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MTQwNjgwOCwibmJmIjoxNjUxNDA2ODA4LCJleHAiOjE2NTIwMTE2MDgsImRhdGEiOnsidXNlciI6eyJpZCI6IjUifX19.10hA_J1w3TEo7XAxQ0JI5p92IJcEUV_e4DEoE-_1OSk
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
 
@@ -12,6 +12,16 @@ Content-Type: application/json
 {
   "username": "admin",
   "password": "Yao123"
+}
+
+### FRAMER Login
+POST {{BASE_URL}}/jwt-auth/v1/token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "framer1",
+  "password": "login_password"
 }
 
 ### employee Login
@@ -47,14 +57,11 @@ Accept: application/json
 Content-Type: application/json
 
 ### get orders
-GET {{BASE_URL}}/oms/v1/orders/24
+GET {{BASE_URL}}/oms/v1/orders?status=unverified
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{TOKEN}}
+Authorization: Bearer {{FRAMER_TOKEN}}
 
-{
-  "per_page": 10
-}
 
 ### update order
 PUT {{BASE_URL}}/oms/v1/orders/22

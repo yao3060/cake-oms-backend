@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use WP_User;
+use WP_Error;
 
 class OrderService
 {
@@ -95,6 +96,20 @@ class OrderService
             return $items->toArray();
         }
         return [];
+    }
+
+    public function preGetOrders(array $params = [])
+    {
+        $status = $params['status'] ?? 'all';
+
+        // if `Flower` request `unverified` orders
+        if (is_framer_user() && $status == 'unverified') {
+            return new WP_Error(
+                'no_unverified_orders_found',
+                __('No Orders', 'cake'),
+                ['status' => 404]
+            );
+        }
     }
 
 

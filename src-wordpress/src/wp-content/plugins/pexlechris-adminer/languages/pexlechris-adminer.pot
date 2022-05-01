@@ -1,0 +1,41 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Database Management tool - Adminer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 16:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.4.6; wp-5.9"
+
+#. Name of the plugin
+msgid "Database Management tool - Adminer"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.pexlechris.dev"
+msgstr ""
+
+#. Description of the plugin
+msgid "Manage the database from your WordPress Dashboard using Adminer"
+msgstr ""
+
+#. Author of the plugin
+msgid "Pexle Chris"
+msgstr ""
+
+#: pexlechris-adminer.php:56 pexlechris-adminer.php:72
+#: pexlechris-adminer.php:73
+msgid "WP Adminer"
+msgstr ""
+
+#: pexlechris-adminer.php:198
+msgid "You are connecting to the database..."
+msgstr ""
