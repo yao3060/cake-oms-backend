@@ -452,6 +452,7 @@ class OrderController extends \WP_REST_Controller
             // if there is order id, unset order number to prevent update order number
             $request['order_number'] = null;
 
+            // 谁修改订单便是下单人
             if ((int) $existing->creator < 1) {
                 $prepared['creator'] = wp_get_current_user()->ID;
             } else {

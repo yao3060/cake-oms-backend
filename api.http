@@ -4,6 +4,8 @@
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
 
+@SUPPORT_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MTQwODY0NywibmJmIjoxNjUxNDA4NjQ3LCJleHAiOjE2NTIwMTM0NDcsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.zhs-k1DPQiG1ODql9zgsUPAooCLLG7Gl4THhF1EZxwA
+
 ### Admin Login
 POST {{BASE_URL}}/jwt-auth/v1/token
 Accept: application/json
@@ -14,6 +16,16 @@ Content-Type: application/json
   "password": "Yao123"
 }
 
+### xuhui02 徐汇 店长
+POST {{BASE_URL}}/jwt-auth/v1/token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "xuhui02",
+  "password": "login_password"
+}
+
 ### FRAMER Login
 POST {{BASE_URL}}/jwt-auth/v1/token
 Accept: application/json
@@ -22,6 +34,16 @@ Content-Type: application/json
 {
   "username": "framer1",
   "password": "login_password"
+}
+
+### 客服 Login
+POST {{BASE_URL}}/jwt-auth/v1/token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "kehu01",
+  "password": "password"
 }
 
 ### employee Login
@@ -60,7 +82,7 @@ Content-Type: application/json
 GET {{BASE_URL}}/oms/v1/orders?status=unverified
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{FRAMER_TOKEN}}
+Authorization: Bearer {{SUPPORT_TOKEN}}
 
 
 ### update order

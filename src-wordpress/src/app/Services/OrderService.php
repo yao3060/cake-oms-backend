@@ -102,7 +102,7 @@ class OrderService
     {
         $status = $params['status'] ?? 'all';
 
-        // if `Flower` request `unverified` orders
+        // if `framer` request `unverified` orders
         if (is_framer_user() && $status == 'unverified') {
             return new WP_Error(
                 'no_unverified_orders_found',

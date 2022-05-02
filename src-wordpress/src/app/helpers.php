@@ -22,12 +22,20 @@ if (!function_exists('is_framer_manager')) {
     }
 }
 
+if (!function_exists('is_customer_service_manager')) {
+    function is_customer_service_manager()
+    {
+        return current_user_can('customer-service-manager');
+    }
+}
+
 if (!function_exists('is_customer_service')) {
     function is_customer_service()
     {
         return current_user_can('customer-service');
     }
 }
+
 
 if (!function_exists('is_store_manager')) {
     function is_store_manager()
