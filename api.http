@@ -70,7 +70,7 @@ Content-Type: application/json
 POST {{BASE_URL}}/wp/v2/users/me
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{TOKEN}}
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MTQ4MTMyMSwibmJmIjoxNjUxNDgxMzIxLCJleHAiOjE2NTIwODYxMjEsImRhdGEiOnsidXNlciI6eyJpZCI6IjMifX19.Cvtd2x_mPT65uzhIXSdU_6Vzm-TY-vCp95Oe-_71GW4
 
 
 ### get home icon menus
