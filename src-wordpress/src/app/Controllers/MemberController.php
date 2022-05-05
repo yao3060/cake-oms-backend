@@ -95,9 +95,9 @@ class MemberController extends \WP_REST_Controller
             ];
         }, $users);
 
-        $sorted =  collect($collection)->sortBy('user_email');
+        // $sorted =  collect($collection)->sortBy('user_email');
 
-        return new WP_REST_Response($sorted, 200);
+        return new WP_REST_Response($collection, 200);
     }
 
     public function get_items_permissions_check($request)
