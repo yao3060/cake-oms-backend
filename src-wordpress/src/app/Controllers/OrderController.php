@@ -456,7 +456,7 @@ class OrderController extends \WP_REST_Controller
             if ((int) $existing->creator < 1) {
                 $prepared['creator'] = wp_get_current_user()->ID;
             } else {
-                $prepared['creator'] = (int)$existing->creator;
+                $prepared['creator'] = $request['creator'] ?? (int)$existing->creator;
             }
         }
 
