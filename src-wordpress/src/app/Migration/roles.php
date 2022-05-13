@@ -31,3 +31,11 @@ if (add_role('store-manager', '店长', get_role('editor')->capabilities)) {
 } else {
     echo  'Role 店长 exist.' . PHP_EOL;
 }
+
+
+// add permissions
+$framer = get_role('framer');
+$framer->add_cap('list_users');
+
+$framerManager = get_role('framer-manager');
+$framerManager->add_cap('list_users');
