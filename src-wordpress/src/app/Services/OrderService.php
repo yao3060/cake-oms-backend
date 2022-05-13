@@ -144,8 +144,8 @@ class OrderService
         $user = new WP_User($creator);
         return [
             'id' => $user->ID,
-            'username' => $user->user_login,
-            'display_name' => $user->display_name,
+            'username' => $user->user_login ?? '',
+            'display_name' => $user->display_name ?? '',
         ];
     }
 
