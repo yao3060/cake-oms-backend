@@ -8,18 +8,16 @@ use WP_REST_Request;
 class FramerFilter extends Filter
 {
 
-  public static function handle(Builder $query, WP_REST_Request $request): Builder
-  {
-    if (!is_framer_user()) {
-      return $query;
-    }
+    public static function handle(Builder $query, WP_REST_Request $request): Builder
+    {
+        if (!is_framer_user()) {
+            return $query;
+        }
 
-    if (is_framer_manager()) {
-      $query->whereNotNull('framer');
-    } else {
-      $query->where('framer', get_current_user_id());
-    }
+        if (is_framer()) {
+            $query->where('framer', get_current_user_id());
+        }
 
-    return $query;
-  }
+        return $query;
+    }
 }
