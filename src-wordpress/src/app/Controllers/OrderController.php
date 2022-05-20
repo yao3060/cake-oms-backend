@@ -439,11 +439,11 @@ class OrderController extends \WP_REST_Controller
     {
         $prepared = [];
 
-        // check do_not_save_order_without_pickup_time
-        $options = get_option(\App\Admin\Settings\Order::OPTION_NAME);
-        if ($options['do_not_save_order_without_pickup_time'] && !$request['pickup_time']) {
-            return new WP_Error('`pickup_time` is required.');
-        }
+//         // check do_not_save_order_without_pickup_time
+//         $options = get_option(\App\Admin\Settings\Order::OPTION_NAME);
+//         if ($options['do_not_save_order_without_pickup_time'] && !$request['pickup_time']) {
+//             return new WP_Error('`pickup_time` is required.');
+//         }
 
         if (!$request['id'] && !$request['order_number']) {
             return new WP_Error('`order_number` 不存在');
