@@ -49,7 +49,7 @@ class Loco_api_WordPressTranslations {
     public function getAvailableCore(){
         $locales = $this->locales;
         if( is_null($locales) ){
-            $locales = array();
+            $locales = [];
             // get official locales from API if we have network
             $cached = $this->wp_get_available_translations();
             if( is_array($cached) && $cached ){
@@ -64,6 +64,7 @@ class Loco_api_WordPressTranslations {
                 // debug so we can see on front end that data was offline
                 // $locales['en-debug'] = ( new Loco_Locale('en','','debug') )->setName('OFFLINE DATA');
             }
+            /* @var string $tag */
             foreach( $cached as $tag => $raw ){
                 $locale = Loco_Locale::parse($tag);
                 if( $locale->isValid() ){

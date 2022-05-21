@@ -9,7 +9,7 @@ class Loco_config_ArrayModel extends Loco_config_Model {
      * {@inheritdoc}
      */
     public function createDom(){
-        return new LocoConfigDocument( array('#document', array(), array() ) );
+        return new LocoConfigDocument( ['#document', [], [] ] );
     }
     
     
@@ -32,7 +32,7 @@ class Loco_config_ArrayModel extends Loco_config_Model {
      */
     public function loadArray( array $root ){
         $dom = $this->getDom();
-        $dom->load( array('#document', array(), array($root) ) );
+        $dom->load( ['#document', [], [$root] ] );
     }
 
 
@@ -118,17 +118,14 @@ abstract class LocoConfigNode implements IteratorAggregate {
         return $this->data[0];
     }
     
-    /*protected function get_attributes(){
-        return $this->data[1];
-    }*/
-    
+
     protected function get_childNodes(){
         return $this->getIterator();
     }
     
     
     public function __get( $prop ){
-        $method = array( $this, 'get_'.$prop );
+        $method = [ $this, 'get_'.$prop ];
         if( is_callable($method) ){
             return call_user_func( $method );
         }
@@ -152,9 +149,10 @@ abstract class LocoConfigNode implements IteratorAggregate {
     /**
      * @return LocoConfigNodeList
      */
+    #[ReturnTypeWillChange]
     public function getIterator(){
         if( ! $this->children ){
-            $raw = isset($this->data[2]) ? $this->data[2] : array();
+            //$raw = isset($this->data[2]) ? $this->data[2] : array();
             $this->children = new LocoConfigNodeList( $this->data[2] );
         }
         return $this->children;
@@ -183,42 +181,50 @@ class LocoConfigNodeList implements Iterator, Countable, ArrayAccess {
 
     private $n;
     
-    public function __construct( array $nodes = array() ){
+    public function __construct( array $nodes = [] ){
         $this->nodes = $nodes;
         $this->n = count( $nodes );
     }
-    
+
+    #[ReturnTypeWillChange]
     public function count(){
         return $this->n;
     }
-    
+
+    #[ReturnTypeWillChange]
     public function rewind(){
         $this->i = -1;
         $this->next();
     }
-    
+
+    #[ReturnTypeWillChange]
     public function key(){
         return $this->i;
     }
 
+    #[ReturnTypeWillChange]
     public function current(){
         return $this[ $this->i ];
     }
-    
+
+    #[ReturnTypeWillChange]
     public function valid(){
         return is_int($this->i);
     }
-    
+
+    #[ReturnTypeWillChange]
     public function next(){
         if( ++$this->i === $this->n ){
             $this->i = null;
         }
     }
- 
+
+    #[ReturnTypeWillChange]
     public function offsetExists( $i ){
         return $i >= 0 && $i < $this->n;
     }
-    
+
+    #[ReturnTypeWillChange]
     public function offsetGet( $i ){
         $node = $this->nodes[$i];
         if( ! $node instanceof LocoConfigNode ){
@@ -236,6 +242,7 @@ class LocoConfigNodeList implements Iterator, Countable, ArrayAccess {
     /**
      * @codeCoverageIgnore
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $i, $value ){
         throw new Exception('Use append');
     }
@@ -243,6 +250,7 @@ class LocoConfigNodeList implements Iterator, Countable, ArrayAccess {
     /**
      * @codeCoverageIgnore
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset( $i ){
         throw new Exception('Read only');
     }
@@ -292,7 +300,7 @@ class LocoConfigDocument extends LocoConfigNode {
      * @return LocoConfigElement
      */
     public function createElement( $name ){
-        return new LocoConfigElement( array( $name, array(), array() ) );
+        return new LocoConfigElement( [ $name, [], [] ] );
     }
 
 

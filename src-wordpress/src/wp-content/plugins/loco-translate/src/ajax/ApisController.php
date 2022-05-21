@@ -22,14 +22,14 @@ class Loco_ajax_ApisController extends Loco_mvc_AjaxController {
             $modal->set('apis',$apis);
             // help buttons
             $locale = $this->get('locale');
-            $modal->set( 'help', new Loco_mvc_ViewParams( array (
+            $modal->set( 'help', new Loco_mvc_ViewParams(  [
                 'text' => __('Help','loco-translate'),
                 'href' => apply_filters('loco_external','https://localise.biz/wordpress/plugin/manual/providers'),
-            ) ) );
-            $modal->set('prof', new Loco_mvc_ViewParams( array (
+            ] ) );
+            $modal->set('prof', new Loco_mvc_ViewParams(  [
                 'text' => __('Need a human?','loco-translate'),
                 'href' => apply_filters('loco_external','https://localise.biz/wordpress/translation?l='.$locale),
-            ) ) );
+            ] ) );
             // render auto-translate modal or prompt for configuration
             if( $apis ){
                 $html = $modal->render('ajax/modal-apis-batch');
@@ -45,9 +45,8 @@ class Loco_ajax_ApisController extends Loco_mvc_AjaxController {
         $hook = (string) $post->hook;
         
         // API client must be hooked in using loco_api_providers filter
-        // this normally filters on Loco_api_Providers::export() but should do the same with an empty array.
         $config = null;
-        foreach( apply_filters('loco_api_providers', Loco_api_Providers::builtin() ) as $candidate ){
+        foreach( Loco_api_Providers::export() as $candidate ){
             if( is_array($candidate) && array_key_exists('id',$candidate) && $candidate['id'] === $hook ){
                 $config = $candidate;
                 break;
@@ -89,22 +88,6 @@ class Loco_ajax_ApisController extends Loco_mvc_AjaxController {
         $this->set('targets',$targets);
 
         return parent::render();
-    }
-
-
-    /**
-     * Built-in Yandex API v2 support.
-     * https://cloud.yandex.com/docs/translate/api-ref/
-     * 
-     * @param string[] input strings
-     * @param Loco_Locale target locale for translations
-     * @param array our own api configuration
-     * @return string[] output strings
-     * @throws Loco_error_Exception
-     */
-    public function filter_loco_api_translate_yandex( array $sources, Loco_Locale $locale, array $config ){
-        $client = new Loco_api_YandexClient($config);
-        return $client->translate($sources,$locale);
     }
 
 }

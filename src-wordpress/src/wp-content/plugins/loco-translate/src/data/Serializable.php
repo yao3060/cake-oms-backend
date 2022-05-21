@@ -37,7 +37,7 @@ abstract class Loco_data_Serializable extends ArrayObject {
     /**
      * {@inheritdoc}
      */
-    public function __construct( array $data = array() ){
+    public function __construct( array $data = [] ){
         $this->setFlags( ArrayObject::ARRAY_AS_PROPS );
         parent::__construct( $data );
         $this->dirty = (bool) $data;
@@ -109,6 +109,7 @@ abstract class Loco_data_Serializable extends ArrayObject {
      * {@inheritdoc}
      * override so we can set dirty flag
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $prop, $value ){
         if( ! isset($this[$prop]) || $value !== $this[$prop] ){
             parent::offsetSet( $prop, $value );
@@ -121,6 +122,7 @@ abstract class Loco_data_Serializable extends ArrayObject {
      * {@inheritdoc}
      * override so we can set dirty flag
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset( $prop ){
         if( isset($this[$prop]) ){
             parent::offsetUnset($prop);
@@ -163,12 +165,12 @@ abstract class Loco_data_Serializable extends ArrayObject {
      * @return array
      */
     protected function getSerializable(){
-        return array (
+        return  [
             'c' => get_class($this),
             'v' => $this->getVersion(),
             'd' => $this->getArrayCopy(),
             't' => time(),
-        );
+        ];
     }
 
 

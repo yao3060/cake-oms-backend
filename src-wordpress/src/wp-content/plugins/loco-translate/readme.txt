@@ -1,10 +1,10 @@
 === Loco Translate ===
 Contributors: timwhitlock
 Tags: translation, translators, localization, localisation, l10n, i18n, Gettext, PO, MO, productivity, multilingual, internationalization
-Requires at least: 4.1
-Requires PHP: 5.2.4
-Tested up to: 5.8.1
-Stable tag: 2.5.5
+Requires at least: 5.2
+Requires PHP: 5.6.20
+Tested up to: 5.9.2
+Stable tag: 2.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,36 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 
 
 == Changelog ==
+
+= 2.6.1 =
+* Bumped WordPress version to 5.9.2
+* Fix for CVE-2022-0765 reported by Taurus Omar via wpscan
+
+= 2.6.0 =
+* Dropped support for WordPress < 5.2
+* Code upgrades for >= PHP 5.6.20
+* Bumped WordPress version to 5.9.1
+* Removed Yandex API integration
+* Added loco_compile_script_reference filter
+* Plural-Forms retained when copying PO to same language
+
+= 2.5.8 =
+* Compatible with PHP 8.1
+* Bumped WordPress version to 5.9
+* Added deprecation warning prior to v2.6
+
+= 2.5.7 = 
+* Fixed bug in 2.5.6 where remote APIs could not be used in batch mode
+* Enforcing 10k character limit per request for Microsoft and Yandex Translators
+* Style fix for revision/diff table under restore tab
+
+= 2.5.6 =
+* Added loco_api_provider_source filter
+* Fixed bug loading user preferences saved in older version
+* Refactored file finder to avoid recursive function calls
+* Fixed bug displaying two forms for zero plural languages
+* Added Lecto AI to translation API providers
+* Bumped WordPress version to 5.8.3
 
 = 2.5.5 =
 * Fixed double file extension vulnerability reported by WordFence
@@ -431,7 +461,7 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 
 == Upgrade Notice ==
 
-= 2.5.5 =
+= 2.6.1 =
 * Various improvements and bug fixes
 
 

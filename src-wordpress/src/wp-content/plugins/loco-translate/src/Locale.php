@@ -116,7 +116,7 @@ class Loco_Locale implements JsonSerializable {
      */
     public function setSubtags( array $tag ){
         $this->valid = false;
-        $default = array( 'lang' => '', 'region' => '', 'variant' => '' );
+        $default = [ 'lang' => '', 'region' => '', 'variant' => '' ];
         // disallow setting of unsupported tags
         if( $bad = array_diff_key($tag, $default) ){
             throw new Loco_error_LocaleException('Unsupported subtags: '.implode(',',$bad) );
@@ -222,7 +222,7 @@ class Loco_Locale implements JsonSerializable {
     public function getIcon(){
         $icon = $this->icon;
         if( is_null($icon) ){
-            $tag = array();
+            $tag = [];
             if( ! $this->tag['lang'] ){
                 $tag[] = 'lang lang-zxx';
             }
@@ -353,6 +353,7 @@ class Loco_Locale implements JsonSerializable {
     /**
      * @return array
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize(){
         $a = $this->tag;
         $a['label'] = $this->getName();
@@ -385,16 +386,6 @@ class Loco_Locale implements JsonSerializable {
 
 
     /**
-     * @return int
-     */
-    public function getPluralCount(){
-        $raw = $this->getPluralData();
-        return count( $raw[1] );
-    }
-
-
-
-    /**
      * @param array[]
      * @return array
      */
@@ -403,13 +394,13 @@ class Loco_Locale implements JsonSerializable {
         // handle languages with no plural forms, where n is always 0
         if( ! isset($raw[1][1]) ){
             // Translators: Plural category for languages that have no plurals
-            $raw[1] = array( _x('All forms','Plural category','loco-translate') );
+            $raw[1] = [ _x('All forms','Plural category','loco-translate') ];
             $raw[0] = '0';
         }
         // else translate all implemented plural forms
         // for meaning of categories, see http://cldr.unicode.org/index/cldr-spec/plural-rules
         else {
-            $forms = array(
+            $forms = [
                 // Translators: Plural category for zero quantity
                 'zero' => _x('Zero','Plural category','loco-translate'),
                 // Translators: Plural category for singular quantity
@@ -422,7 +413,7 @@ class Loco_Locale implements JsonSerializable {
                 'many' => _x('Many','Plural category','loco-translate'),
                 // Translators: General plural category not covered by other forms
                 'other' => _x('Other','Plural category','loco-translate'),
-            );
+            ];
             foreach( $raw[1] as $k => $v ){
                 if( isset($forms[$v]) ){
                     $raw[1][$k] = $forms[$v];
@@ -432,7 +423,6 @@ class Loco_Locale implements JsonSerializable {
         $this->plurals = $raw;
         return $raw;
     }
-
 
 
     /**
@@ -445,11 +435,10 @@ class Loco_Locale implements JsonSerializable {
     }
 
 
-
     /**
      * Apply PO style Plural-Forms header.
      * @param string e.g. "nplurals=2; plural=n != 1;"
-     * @return Loco_Locale
+     * @return self
      */
     public function setPluralFormsHeader( $str ){
         if( ! preg_match('/^nplurals=(\\d);\s*plural=([ +\\-\\/*%!=<>|&?:()n0-9]+);?$/', $str, $match ) ){
@@ -470,19 +459,10 @@ class Loco_Locale implements JsonSerializable {
                     $forms[] = $name;
                 }
                 $forms[] = 'other';
-                $this->setPlurals( array($exprn,$forms) );
+                $this->setPlurals( [$exprn,$forms] );
             }
         }
         return $this;
-    }
-
-
-
-    /**
-     * @return string
-     */
-    public function exportJson(){
-        return json_encode( $this->jsonSerialize() );
     }
 
 

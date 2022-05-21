@@ -40,7 +40,7 @@ class Loco_mvc_FileParams extends Loco_mvc_ViewParams {
             $s = $a[0];
             $d = trim($a[1],'0') and $s .= '.'.$d;
         }
-        $units = array( ' bytes', ' KB', ' MB', ' GB', ' TB' );
+        $units = [ ' bytes', ' KB', ' MB', ' GB', ' TB' ];
         $s .= $units[$i];
         
         return $s;
@@ -52,7 +52,7 @@ class Loco_mvc_FileParams extends Loco_mvc_ViewParams {
      * @return Loco_mvc_FileParams 
      */
     public static function create( Loco_fs_File $file ) {
-        return new Loco_mvc_FileParams( array(), $file );
+        return new Loco_mvc_FileParams( [], $file );
     }
 
 
@@ -62,7 +62,7 @@ class Loco_mvc_FileParams extends Loco_mvc_ViewParams {
      * @param Loco_fs_File
      */
     public function __construct( array $props, Loco_fs_File $file ){
-        parent::__construct( array (
+        parent::__construct(  [
             'name' => '',
             'path' => '',
             'relpath' => '',
@@ -73,7 +73,7 @@ class Loco_mvc_FileParams extends Loco_mvc_ViewParams {
             'smode' => '',
             'owner' => '',
             'group' => '',
-        ) + $props );
+        ] + $props );
         $this->file = $file;
     }
 
@@ -82,8 +82,9 @@ class Loco_mvc_FileParams extends Loco_mvc_ViewParams {
      * {@inheritdoc}
      * Override to get live information from file object
      */
+    #[ReturnTypeWillChange]
     public function offsetGet( $prop ){
-        $getter = array( $this, '_get_'.$prop );
+        $getter = [ $this, '_get_'.$prop ];
         if( is_callable($getter) ){
             return call_user_func( $getter );
         }
@@ -95,8 +96,9 @@ class Loco_mvc_FileParams extends Loco_mvc_ViewParams {
      * {@inheritdoc}
      * Override to ensure all properties populated
      */
+    #[ReturnTypeWillChange]
     public function getArrayCopy(){
-        $a = array();
+        $a = [];
         foreach( $this as $prop => $dflt ){
             $a[$prop] = $this[$prop];
         }

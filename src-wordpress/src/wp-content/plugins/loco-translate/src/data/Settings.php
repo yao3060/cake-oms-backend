@@ -24,7 +24,7 @@
  * @property string $deepl_api_key API key for DeepL Translator
  * @property string $deepl_api_url Base URL for DeepL Translator version
  * @property string $google_api_key API key for Google Translate
- * @property string $yandex_api_key API key for Yandex.Translate
+ * @property string $lecto_api_key API key for Lecto Translation API
  * @property string $microsoft_api_key API key for Microsoft Translator text API
  * @property string $microsoft_api_region API region for Microsoft Translator text API
  *
@@ -42,15 +42,15 @@ class Loco_data_Settings extends Loco_data_Serializable {
      * Available options and their defaults
      * @var array
      */
-    private static $defaults = array (
+    private static $defaults =  [
         'version' => '',
         'gen_hash' => false,
         'use_fuzzy' => true,
         'fuzziness' => 20,
         'num_backups' => 5,
-        'pot_alias' => array( 'default.po', 'en_US.po', 'en.po' ),
-        'php_alias' => array( 'php', 'twig' ),
-        'jsx_alias' => array(),
+        'pot_alias' => [ 'default.po', 'en_US.po', 'en.po' ],
+        'php_alias' => [ 'php', 'twig' ],
+        'jsx_alias' => [],
         'fs_persist' => false,
         'fs_protect' => 1,
         'pot_protect' => 1,
@@ -64,10 +64,10 @@ class Loco_data_Settings extends Loco_data_Serializable {
         'deepl_api_key' => '',
         'deepl_api_url' => '',
         'google_api_key' => '',
-        'yandex_api_key' => '',
         'microsoft_api_key' => '',
         'microsoft_api_region' => 'global',
-    );
+        'lecto_api_key' => '',
+    ];
 
 
     /**
@@ -172,11 +172,11 @@ class Loco_data_Settings extends Loco_data_Serializable {
         if( version_compare($old,$new,'<') ){
             $this->persist();
             $updated = true;
-            // feature alerts:
-            if( '2.5.' === substr($new,0,4) && '2.5.' !== substr($old,0,4) ){
-                Loco_error_AdminNotices::info( __('Loco Translate 2.5 adds supports for JSON language pack generation.','loco-translate') )
-                   ->addLink( apply_filters('loco_external','https://localise.biz/wordpress/plugin/manual/json'), __('Documentation','loco-translate') );
-            }
+            /*/ feature alerts:
+            if( '2.6.' === substr($new,0,4) && '2.6.' !== substr($old,0,4) ){
+                Loco_error_AdminNotices::info( __('Loco Translate 2.6 adds ......','loco-translate') )
+                   ->addLink( apply_filters('loco_external','https://localise.biz/wordpress/plugin/changelog'), __('Documentation','loco-translate') );
+            }*/
         }
         return $updated;
     }
@@ -211,7 +211,7 @@ class Loco_data_Settings extends Loco_data_Serializable {
             }
         }
         // enforce missing values that must have a default, but were passed empty
-        foreach( array('php_alias','max_php_size','po_width') as $prop ){
+        foreach( ['php_alias','max_php_size','po_width'] as $prop ){
             if( isset($data[$prop]) && '' === $data[$prop] ){
                 parent::offsetSet( $prop, self::$defaults[$prop] );
             }

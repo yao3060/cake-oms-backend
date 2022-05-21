@@ -72,7 +72,7 @@ class Loco_fs_File {
     /**
      * Internally set path value and flag whether relative or absolute
      * @param string
-     * @return string
+     * @return void
      */
     private function setPath( $path ){
         $path = (string) $path;
@@ -87,7 +87,6 @@ class Loco_fs_File {
             $this->path = $path;
             $this->info = null;
         }
-        return $path;
     }
 
 
@@ -110,14 +109,13 @@ class Loco_fs_File {
     /**
      * Copy write context with our file reference
      * @param Loco_fs_FileWriter|null
-     * @return Loco_fs_File
+     * @return void
      */
     private function cloneWriteContext( Loco_fs_FileWriter $context = null ){
         if( $context ){
             $context = clone $context;
             $this->w = $context->setFile($this);
         }
-        return $this;
     }
 
 
@@ -381,10 +379,10 @@ class Loco_fs_File {
             }
             else {
                 if( ! $this->rel || ! $base ){
-                    $b = array();
+                    $b = [];
                 }
                 else {
-                    $b = self::explode( $base, array() );
+                    $b = self::explode( $base, [] );
                 }
                 $b = self::explode( $path, $b );
                 $this->setPath( implode('/',$b) );
@@ -429,7 +427,7 @@ class Loco_fs_File {
      */
     public function getRelativePath( $base ){
         $path = $this->normalize();
-        if( $abspath = self::abs($path) ){
+        if( self::abs($path) ){
             // base may needs require normalizing
             $file = new Loco_fs_File($base);
             $base = $file->normalize();
@@ -606,16 +604,11 @@ class Loco_fs_File {
 
     /**
      * Copy this object as a WordPress script translation file
-     * @param string relative path to .js file
-     * @param string optional base URL if you want to run relative path filters
+     * @param string relative path to .js file presumed to exist
      * @return self
      */
-    public function cloneJson( $ref, $url = '' ){
+    public function cloneJson( $ref ){
         $name = $this->filename();
-        // Hook into load_script_textdomain_relative_path if script URL provided
-        if( is_string($url) && '' !== $url ){
-            $ref = apply_filters( 'load_script_textdomain_relative_path', $ref, trailingslashit($url).ltrim($ref,'/') );
-        }
         if( is_string($ref) && '' !== $ref ){
             // Hashable reference is always finally unminified, as per load_script_textdomain()
             if( substr($ref,-7) === '.min.js' ) {

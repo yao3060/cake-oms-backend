@@ -1,0 +1,2089 @@
+# Translation of Plugins - Loco Translate - Stable (latest release) in Chinese (China)
+# This file is distributed under the same license as the Plugins - Loco Translate - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-10-21 09:31:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: zh_CN\n"
+"Project-Id-Version: Plugins - Loco Translate - Stable (latest release)\n"
+
+#: tpl/admin/file/head.php:10
+msgid "Edit file headers"
+msgstr "编辑文件头"
+
+#: tpl/admin/file/conf.php:23
+msgid "Relative path to template file"
+msgstr "模板文件的相对路径"
+
+#: tpl/admin/file/conf.php:57 tpl/admin/file/head.php:34
+msgid "Save"
+msgstr "保存"
+
+#: tpl/admin/file/conf.php:48 tpl/admin/init/init-po.php:163
+msgid "Merge strings from related JSON files"
+msgstr "从相关的JSON文件中合并字符串"
+
+#: src/js/Strings.php:37
+msgid "%s translation copied"
+msgid_plural "%s translations copied"
+msgstr[0] "复制了%s的翻译"
+
+#: src/admin/config/ApisController.php:66
+msgid "API URL"
+msgstr "API URL"
+
+#. translators: Where %s is any number of strings
+#: src/gettext/Metadata.php:194 src/js/Strings.php:87
+msgid "%s string"
+msgid_plural "%s strings"
+msgstr[0] "%s 个字符串"
+
+#: src/admin/file/MoveController.php:85
+msgid "%s file moved"
+msgid_plural "%s files moved"
+msgstr[0] "%s 个文件已移动"
+
+#: tpl/admin/file/info-pot.php:31
+msgid "%s word"
+msgid_plural "%s words"
+msgstr[0] "%s 个字符"
+
+#: src/gettext/Compiler.php:232
+msgid "PO file saved and MO/JSON files compiled"
+msgstr "PO文件已保存，MO/JSON文件已编译"
+
+#: src/gettext/Compiler.php:136 src/gettext/Compiler.php:194
+msgid "JSON compilation failed for %s"
+msgstr "%s的JSON编译失败"
+
+#: src/data/Settings.php:177
+msgid "Loco Translate 2.5 adds supports for JSON language pack generation."
+msgstr "Loco Translate 2.5增加了对JSON语言包生成的支持。"
+
+#: tpl/admin/config/version.php:75
+msgid "Update Now"
+msgstr "立即更新"
+
+#. translators: Where %s is the full version number of WordPress
+#: tpl/admin/config/version.php:69
+msgid "WordPress %s"
+msgstr "WordPress %s"
+
+#. translators: (1) Name of software, e.g. "WordPress" (2) Version number, e.g.
+#. "5.6"
+#: tpl/admin/config/version.php:53 tpl/admin/config/version.php:72
+msgid "Your version of %1$s is very old. We recommend you upgrade to at least v%2$s, but preferably to the latest stable version."
+msgstr "您的 %1$s 版本很旧。我们建议您至少升级到 v %2$s ，但最好是最新的稳定版本。"
+
+#. translators: Where %s is the full version number of PHP
+#: tpl/admin/config/version.php:49
+msgid "PHP %s"
+msgstr "PHP %s"
+
+#: tpl/admin/config/settings.php:162
+msgid "Delete redundant files"
+msgstr "删除多余文件"
+
+#: tpl/admin/config/settings.php:156
+msgid "Pretty formatting"
+msgstr "美化格式"
+
+#: tpl/admin/config/settings.php:145 tpl/admin/config/settings.php:151
+msgid "Compiling JSON files"
+msgstr "编译JSON文件"
+
+#. translators: This is HTML formatted. (1) placeholder for language code, (2)
+#. Example language code
+#: tpl/admin/init/upload.php:50
+msgid "Your file must be named as shown above where %1$s is the language code, e.g. %2$s"
+msgstr "文件名必须如上所示，其中%1$s是语言代码，例如%2$s"
+
+#: tpl/admin/init/upload.php:45
+msgid "Upload PO file"
+msgstr "上传PO文件"
+
+#. translators: Indicates that POT files are optional, which is not recommended
+#: tpl/admin/config/settings.php:107
+msgid "Sync with source when template missing"
+msgstr "模板丢失时与源码同步"
+
+#: tpl/admin/config/settings.php:99
+msgid "Fuzzy matching tolerance"
+msgstr "模糊匹配容差"
+
+#: tpl/admin/config/settings.php:89 tpl/admin/config/settings.php:95
+msgid "Syncing PO files"
+msgstr "同步PO文件"
+
+#: tpl/admin/help/side-bar.php:15
+msgid "Info and tutorials"
+msgstr "信息和教程"
+
+#: src/ajax/ApisController.php:30
+msgid "Need a human?"
+msgstr "需要人吗？"
+
+#: src/ajax/UploadController.php:70
+msgid "Your file is identical to the existing one"
+msgstr "您的文件与现有的一个文件相同"
+
+#: src/admin/init/UploadController.php:52
+msgid "Upload a translation file"
+msgstr "上传一个翻译文件"
+
+#: src/admin/init/UploadController.php:29 tpl/admin/init/upload.php:58
+msgid "Upload"
+msgstr "上传"
+
+#: src/admin/bundle/ViewController.php:106
+msgid "Upload PO"
+msgstr "上传PO"
+
+#. Translators: %s will be replaced with the name of a missing POT file
+#: src/ajax/SyncController.php:55
+msgid "Falling back to source extraction because %s is missing"
+msgstr "正在返回源提取，因为缺少%s"
+
+#: tpl/admin/bundle/inc-po-table.php:60
+msgid "Move"
+msgstr "移动"
+
+#: tpl/admin/config/prefs.php:29 tpl/admin/config/prefs.php:33
+msgid "Restrict locales"
+msgstr "限制地区语言"
+
+#. Translators: Button that opens window for auto-translating
+#: src/admin/file/EditController.php:198
+msgctxt "Editor"
+msgid "Auto"
+msgstr "自动"
+
+#: src/js/Strings.php:155
+msgctxt "Editor"
+msgid "Suggest translation"
+msgstr "建议翻译"
+
+#: src/js/Strings.php:152
+msgctxt "Editor"
+msgid "Toggle Fuzzy"
+msgstr "切换模糊"
+
+#: src/js/Strings.php:80
+msgid "Keep this translation"
+msgstr "保留此翻译"
+
+#: src/js/Strings.php:77
+msgid "Loading suggestions"
+msgstr "加载建议"
+
+#: src/js/Strings.php:74
+msgid "Suggested translations"
+msgstr "建议翻译"
+
+#: src/js/Strings.php:71
+msgid "Use this translation"
+msgstr "使用此翻译"
+
+#: src/js/Strings.php:68
+msgid "Nothing needed updating"
+msgstr "无需更新"
+
+#: src/js/Strings.php:65
+msgid "%s string updated"
+msgid_plural "%s strings updated"
+msgstr[0] "%s字符串已更新"
+
+#: src/js/Strings.php:62
+msgid "%1$s string translated via %2$s"
+msgid_plural "%1$s strings translated via %2$s"
+msgstr[0] "%1$s个字符串已使用 %2$s 完成翻译"
+
+#: src/js/Strings.php:58
+msgid "Translation job aborted with %s string remaining"
+msgid_plural "Translation job aborted with %s strings remaining"
+msgstr[0] "翻译工作被中止，剩余%s个字符串"
+
+#: src/js/Strings.php:55
+msgid "Translation progress %s%%"
+msgstr "翻译进度%s%%"
+
+#: src/js/Strings.php:51
+msgid "%s characters will be sent for translation."
+msgstr "%s个 字符将被发送并翻译。"
+
+#: src/js/Strings.php:47
+msgid "%s unique source strings."
+msgstr "%s 个唯一源字符串。"
+
+#: src/js/Strings.php:41
+msgid "Strings up to date with %s"
+msgstr "使用%s更新的字符串"
+
+#: src/js/Strings.php:33
+msgid "%s string marked Fuzzy"
+msgid_plural "%s strings marked Fuzzy"
+msgstr[0] "%s 个字符串被标记为模糊"
+
+#: tpl/admin/config/apis.php:121
+msgid "See full disclaimer"
+msgstr "查看完整免责声明"
+
+#: tpl/admin/config/apis.php:120
+msgid "Third party services are subject to their own terms of use and may incur costs from the provider"
+msgstr "第三方服务受其自身使用条款的约束，并由可能会从服务提供商处产生费用"
+
+#: tpl/admin/config/apis.php:118
+msgid "Important"
+msgstr "重要提示"
+
+#: src/admin/config/ApisController.php:67
+msgid "API region"
+msgstr "API区域"
+
+#: src/admin/config/ApisController.php:65
+msgid "API key"
+msgstr "API密钥"
+
+#: src/admin/config/ApisController.php:12
+#: src/admin/config/BaseController.php:20
+#: src/admin/config/BaseController.php:42 tpl/admin/help/tab-config-apis.php:2
+msgid "API keys"
+msgstr "API密钥"
+
+#: tpl/ajax/modal-apis-empty.php:11
+msgid "Add automatic translation services in the plugin settings."
+msgstr "在插件设置中添加自动翻译服务。"
+
+#: tpl/ajax/modal-apis-empty.php:9
+msgid "No translation APIs configured"
+msgstr "未配置翻译API"
+
+#: tpl/ajax/modal-apis-batch.php:29
+msgid "Mark new translations as Fuzzy"
+msgstr "将新翻译标记为模糊"
+
+#: tpl/ajax/modal-apis-batch.php:23
+msgid "Overwrite existing translations"
+msgstr "覆盖现有翻译"
+
+#: tpl/ajax/modal-apis-batch.php:10
+msgid "Auto-translate this file"
+msgstr "自动翻译此文件"
+
+#. translators: Warning when POT file is opened in the file editor. It can be
+#. disabled in settings.
+#: src/admin/file/EditController.php:159
+msgid "This is NOT a translation file. Manual editing of source strings is not recommended."
+msgstr "这不是翻译文件。不推荐手动编辑源字符串。"
+
+#: src/fs/FileWriter.php:315
+msgid "Modification of POT (template) files is disallowed by the plugin settings"
+msgstr "插件设置不允许修改POT（模板）文件"
+
+#: tpl/admin/init/init-prompt.php:42
+msgid "You can use existing translations as a template using the Copy feature."
+msgstr "可以使用“复制”功能将现有翻译用作模板。"
+
+#: tpl/admin/init/init-prompt.php:40
+msgid "Suggestion"
+msgstr "建议"
+
+#: tpl/admin/file/move-pot.php:14
+msgid "Enter a new location for this file"
+msgstr "输入此文件的新位置"
+
+#: tpl/admin/file/move.php:17
+msgid "The following file will be moved/renamed to the new location:"
+msgid_plural "The following files will be moved/renamed to the new location:"
+msgstr[0] "以下文件将被移动或重命名到新位置："
+
+#: tpl/admin/file/move.php:14
+msgid "Confirm relocation"
+msgstr "确认迁移"
+
+#: tpl/admin/file/move-po.php:14
+msgid "Choose a new location for these translations"
+msgstr "为这些翻译选择新位置"
+
+#: tpl/admin/bundle/alias.php:14
+msgid "This plugin doesn't have its own translation files, but can be translated in the default text domain"
+msgstr "此插件没有自己的翻译文件，但可以使用默认的文本域进行翻译"
+
+#: tpl/admin/config/settings.php:197
+msgid "Editing of POT (template) files"
+msgstr "编辑POT（模板）文件"
+
+#: tpl/admin/config/settings.php:81
+msgid "Recommended"
+msgstr "推荐"
+
+#: tpl/admin/config/settings.php:81
+msgid "Enable Ajax file uploads"
+msgstr "启用Ajax文件上传"
+
+#: src/fs/FileWriter.php:245
+msgid "Parent directory isn't writable"
+msgstr "父目录不可写"
+
+#: src/ajax/FsConnectController.php:160
+msgid "This move operation requires permission"
+msgstr "此移动操作需要权限"
+
+#: src/ajax/FsConnectController.php:127
+msgid "This directory is managed by WordPress. Removed files may be restored during updates"
+msgstr "此目录由 WordPress 管理。目录下被移除的文件在更新后可能会被还原"
+
+#: src/admin/file/MoveController.php:106 src/admin/file/MoveController.php:133
+msgid "Move %s"
+msgstr "移动%s"
+
+#: src/admin/file/MoveController.php:89
+msgid "%s file could not be moved"
+msgid_plural "%s files could not be moved"
+msgstr[0] "%s 个文件无法被移动"
+
+#: src/admin/file/BaseController.php:107
+msgid "Relocate"
+msgstr "迁移"
+
+#: tpl/admin/file/move.php:24
+msgid "Move files"
+msgstr "移动文件"
+
+#: tpl/admin/errors/file-sec.php:14
+msgid "Access to this file is blocked for security reasons"
+msgstr "出于安全原因，对该文件的访问已被阻止"
+
+#: tpl/admin/errors/file-sec.php:11
+msgid "File access disallowed"
+msgstr "文件访问被禁止"
+
+#: src/admin/bundle/ViewController.php:115
+msgid "View template"
+msgstr "查看模板"
+
+#: tpl/admin/config/version.php:18 tpl/admin/config/version.php:76
+msgid "Install manually"
+msgstr "手动安装"
+
+#: tpl/admin/config/version.php:14
+msgid "A newer version of Loco Translate is available for download"
+msgstr "最新版本的Loco Translate可供下载"
+
+#: tpl/admin/help/side-bar.php:9
+msgid "Official plugin page"
+msgstr "官方插件页面"
+
+#: tpl/admin/common/inc-fsconn.php:28
+msgid "File is protected by the bundle configuration"
+msgstr "文件已受捆绑包配置的保护"
+
+#: tpl/admin/common/inc-fsconn.php:27
+msgid "Read only"
+msgstr "只读"
+
+#: tpl/admin/config/settings.php:43
+msgid "Scan JavaScript files with extensions:"
+msgstr "扫描带以下扩展名的 JavaScript文件："
+
+#: src/admin/init/InitPoController.php:243
+msgid "Assign template"
+msgstr "指定模板"
+
+#: src/js/Strings.php:149
+msgctxt "Editor"
+msgid "Translated"
+msgstr "已翻译"
+
+#: src/js/Strings.php:146
+msgctxt "Editor"
+msgid "Untranslated"
+msgstr "未翻译"
+
+#: src/hooks/AdminHooks.php:66
+msgid "Administrators and auditors may wish to review Loco's <a href=\"%s\">plugin privacy notice</a>."
+msgstr "管理员和审核员或许想查看Loco的<a href=\"%s\">插件隐私声明</a>。"
+
+#: src/hooks/AdminHooks.php:64
+msgid "This plugin doesn't collect any data from public website visitors."
+msgstr "此插件不会收集任何来自公开网站访客的数据。"
+
+#: tpl/admin/bundle/inc-po-table.php:51 tpl/admin/bundle/locale.php:66
+msgid "View"
+msgstr "查看"
+
+#: tpl/admin/root.php:14
+msgid "Your admin language is %s."
+msgstr "您的管理语言是%s。"
+
+#: tpl/admin/root.php:12
+msgid "The language of this site is %s."
+msgstr "此站点的语言为 %s。"
+
+#: tpl/admin/list/locales.php:25
+msgid "Site language"
+msgstr "站点语言"
+
+#: tpl/admin/list/locales.php:22
+msgid "Files found"
+msgstr "找到的文件"
+
+#: tpl/admin/list/locales.php:16
+msgid "Locale code"
+msgstr "地区语言代码"
+
+#: tpl/admin/list/locales.php:13
+msgid "Locale name"
+msgstr "地区语言名称"
+
+#: tpl/admin/file/info.php:110
+msgid "Files in this location can be modified or deleted by WordPress automatic updates"
+msgstr "这个位置的文件可以被WordPress自动更新机智修改或删除"
+
+#: tpl/admin/file/info.php:107
+msgid "WordPress updates"
+msgstr "WordPress更新"
+
+#: tpl/admin/file/info-mo.php:18 tpl/admin/file/info-po.php:24
+#: tpl/admin/file/info-pot.php:21
+msgid "File size"
+msgstr "文件大小"
+
+#: tpl/admin/file/diff.php:17
+msgctxt "Button label for a next revision"
+msgid "Next"
+msgstr "下一步"
+
+#: tpl/admin/file/diff.php:14
+msgctxt "Button label for a previous revision"
+msgid "Previous"
+msgstr "上一步"
+
+#: tpl/admin/file/diff.php:6
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "M j @ H:i"
+
+#: tpl/admin/errors/no-locale.php:11
+msgid "No files found for this language"
+msgstr "未找到此语言的文件"
+
+#: tpl/admin/errors/no-backups.php:18
+msgid "File backups are disabled in your plugin settings"
+msgstr "文件备份在您的插件设置中被禁用"
+
+#: tpl/admin/errors/no-backups.php:16
+msgid "Backup files will be written when you save translations from Loco Translate editor"
+msgstr "当您从Loco Translate编辑器保存翻译后，其便会写入备份文件中"
+
+#: tpl/admin/errors/no-backups.php:12
+msgid "No previous file revisions"
+msgstr "以前没有修改过文件"
+
+#: src/admin/config/SettingsController.php:68
+msgid "Disallow"
+msgstr "不允许"
+
+#: src/admin/config/SettingsController.php:67
+msgid "Allow (with warning)"
+msgstr "允许（有警告）"
+
+#: src/admin/config/SettingsController.php:66
+msgid "Allow"
+msgstr "允许"
+
+#: tpl/admin/config/settings.php:187
+msgid "Modification of installed files"
+msgstr "修改已安装的文件"
+
+#: tpl/admin/config/settings.php:181
+msgid "Save credentials in session"
+msgstr "在会话中保存凭据"
+
+#: tpl/admin/config/settings.php:170 tpl/admin/config/settings.php:176
+msgid "File system access"
+msgstr "文件系统访问"
+
+#: tpl/admin/common/inc-fsconn.php:56
+msgid "Click \"Connect\" to authenticate with the server"
+msgstr "点击 \"连接 \"来验证服务器的身份"
+
+#. translators: Page title for installed languages page
+#: src/mvc/AdminRouter.php:61
+msgid "Languages &lsaquo; Loco"
+msgstr "语言&lsaquo; Loco"
+
+#: src/mvc/AdminRouter.php:59
+msgid "Languages"
+msgstr "语言"
+
+#: src/fs/FileWriter.php:310
+msgid "Modification of installed files is disallowed by the plugin settings"
+msgstr "插件设置不允许修改已安装的文件"
+
+#. translators: Where %s is a file name
+#: src/ajax/DiffController.php:47
+msgid "Revisions are identical, you can delete %s"
+msgstr "修订内容相同，您可以删除%s"
+
+#. translators: Where %s is the name of the invalid POT file
+#. translators: Where %s is the name of the invalid POT file
+#: src/admin/file/EditController.php:121 src/ajax/SyncController.php:72
+msgid "Translation template is invalid (%s)"
+msgstr "翻译模板无效（%s）"
+
+#: src/admin/file/DiffController.php:58 src/admin/file/DiffController.php:76
+msgid "Restore %s"
+msgstr "还原%s"
+
+#: src/admin/file/DiffController.php:35
+msgid "File restored"
+msgstr "文件恢复"
+
+#: src/admin/file/BaseController.php:106 tpl/admin/file/diff.php:31
+msgid "Restore"
+msgstr "恢复"
+
+#: src/admin/bundle/LocaleController.php:137
+msgid "See all core translations"
+msgstr "查看所有核心翻译"
+
+#: src/admin/bundle/LocaleController.php:130
+#: src/admin/file/EditController.php:161 src/data/Settings.php:178
+#: tpl/admin/common/inc-fsconn.php:16 tpl/admin/common/inc-fsconn.php:41
+#: tpl/admin/config/apis.php:128 tpl/admin/config/prefs.php:45
+#: tpl/admin/config/settings.php:234 tpl/admin/errors/no-backups.php:22
+msgid "Documentation"
+msgstr "文档"
+
+#: src/admin/bundle/LocaleController.php:129
+msgid "No core translation files are installed for this language"
+msgstr "该语言没有安装核心翻译文件"
+
+#: src/ajax/FsConnectController.php:130
+msgid "Changes to this file may be overwritten or deleted when you update WordPress"
+msgstr "当您更新WordPress时，对该文件的更改可能会被覆盖或删除"
+
+#: src/ajax/FsConnectController.php:124
+msgid "This directory is managed by WordPress, be careful what you delete"
+msgstr "这个目录由WordPress管理，小心您删除的内容"
+
+#: src/ajax/FsConnectController.php:121
+msgid "This file may be overwritten or deleted when you update WordPress"
+msgstr "当您更新WordPress时，这个文件可能会被覆盖或删除"
+
+#: src/ajax/FsConnectController.php:163
+msgid "Saving this file requires permission"
+msgstr "保存此文件需要权限"
+
+#: src/ajax/FsConnectController.php:157
+msgid "Deleting this file requires permission"
+msgstr "删除该文件所需的权限"
+
+#: src/ajax/FsConnectController.php:154
+msgid "Creating this file requires permission"
+msgstr "创建此文件需要权限"
+
+#. Translators: Plural category for zero quantity
+#: src/Locale.php:414
+msgctxt "Plural category"
+msgid "Zero"
+msgstr "零"
+
+#: src/admin/init/InitPoController.php:321 tpl/admin/file/info.php:113
+msgid "What's this?"
+msgstr "这是什么？"
+
+#: tpl/admin/init/init-prompt.php:46
+msgid "See FAQ"
+msgstr "参见常见问题"
+
+#. Translators: Where %s is the size of a file
+#: tpl/admin/init/init-pot.php:18
+msgid "largest is %s"
+msgstr "最大的是%s"
+
+#: tpl/admin/config/settings.php:68
+msgid "Maximum line length (zero disables wrapping)"
+msgstr "最大行长度（零表示静止换行）"
+
+#. Translators: (1) Number of files (2) Maximum size of file that will be
+#. included (3) Size of the largest encountered
+#: src/ajax/SyncController.php:98
+msgid "%1$s file has been skipped because it's %3$s. (Max is %2$s). Check all strings are present before saving."
+msgid_plural "%1$s files over %2$s have been skipped. (Largest is %3$s). Check all strings are present before saving."
+msgstr[0] "%1$s个文件已被跳过，因大小超过了%3$s(最大限制为%2$s)。在保存之前，请检查所有字符串是否存在。"
+
+#: src/admin/bundle/ConfController.php:95
+msgid "Child theme declares the same Text Domain as the parent theme"
+msgstr "子主题声明与父主题相同的文本域"
+
+#. Translators: General plural category not covered by other forms
+#: src/Locale.php:424
+msgctxt "Plural category"
+msgid "Other"
+msgstr "其他"
+
+#. Translators: Plural category used in some multi-plural languages
+#: src/Locale.php:422
+msgctxt "Plural category"
+msgid "Many"
+msgstr "多数"
+
+#. Translators: Plural category used in some multi-plural languages
+#: src/Locale.php:420
+msgctxt "Plural category"
+msgid "Few"
+msgstr "少数"
+
+#. Translators: Plural category used in some multi-plural languages
+#: src/Locale.php:418
+msgctxt "Plural category"
+msgid "Two"
+msgstr "两个"
+
+#. Translators: Plural category for singular quantity
+#: src/Locale.php:416
+msgctxt "Plural category"
+msgid "One"
+msgstr "一个"
+
+#. Translators: Plural category for languages that have no plurals
+#: src/Locale.php:406
+msgctxt "Plural category"
+msgid "All forms"
+msgstr "所有表单"
+
+#: tpl/admin/config/version.php:28
+msgid "You're running a development snapshot of Loco Translate"
+msgstr "您正在运行Loco Translate的开发快照"
+
+#. Author URI of the plugin
+msgid "https://localise.biz/wordpress/plugin"
+msgstr "https://localise.biz/wordpress/plugin"
+
+#. Description of the plugin
+msgid "Translate themes and plugins directly in WordPress"
+msgstr "直接在WordPress中翻译主题和插件"
+
+#: src/admin/bundle/LocaleController.php:147 tpl/admin/root.php:54
+msgid "See all plugins"
+msgstr "查看所有插件"
+
+#: tpl/admin/root.php:50
+msgid "These plugins have recently loaded translation files into the admin area"
+msgstr "这些插件最近都将翻译文件加载到了管理区中"
+
+#: tpl/admin/root.php:47
+msgid "Running plugins:"
+msgstr "运行插件："
+
+#: src/admin/bundle/LocaleController.php:142 tpl/admin/root.php:39
+msgid "See all themes"
+msgstr "查看所有主题"
+
+#: tpl/admin/root.php:35
+msgid "Active theme:"
+msgstr "当前主题："
+
+#: tpl/admin/root.php:26
+msgid "Translations have been recently modified in the following bundles"
+msgstr "以下翻译包最近被修改过"
+
+#: tpl/admin/root.php:23
+msgid "Recently updated:"
+msgstr "最近更新："
+
+#: src/admin/RootController.php:84
+msgid "Welcome to Loco Translate"
+msgstr "欢迎来到Loco Translate"
+
+#: tpl/admin/list/inc-table.php:20
+msgid "Sets"
+msgstr "集合"
+
+#: tpl/admin/bundle/locale.php:32 tpl/admin/list/inc-table.php:11
+msgid "Bundle name"
+msgstr "捆绑包名称"
+
+#: tpl/admin/init/init-pot.php:42 tpl/admin/init/init-prompt.php:33
+msgid "About templates"
+msgstr "关于模板"
+
+#: tpl/admin/init/init-prompt.php:24
+msgid "This bundle doesn't define a translations template file"
+msgstr "此捆绑包未定义翻译模板文件"
+
+#: tpl/admin/init/init-prompt.php:20
+msgid "This bundle's template file doesn't exist yet. We recommend you create it before adding languages"
+msgstr "此捆绑包的模板文件还不存在。我们建议您在添加语言之前先创建模板文件"
+
+#: tpl/admin/init/init-prompt.php:16
+msgid "Template missing"
+msgstr "模板丢失"
+
+#: tpl/admin/init/init-pot.php:30
+msgid "Strings will be extracted to:"
+msgstr "字符串将提取到："
+
+#. Translators: (1) Number of files excluded (2) the maximum size of file that
+#. was included
+#: tpl/admin/init/init-pot.php:24
+msgid "Excludes %1$s file over %2$s"
+msgid_plural "Excludes %1$s files over %2$s"
+msgstr[0] "排除大小超过 %2$s的 %1$s个文件"
+
+#. Translators: Where %s is the size of a file
+#: tpl/admin/init/init-pot.php:16
+msgid "%s on disk"
+msgstr "磁盘上的%s"
+
+#: tpl/admin/init/init-pot.php:12
+msgid "Source files to scan:"
+msgstr "要扫描的源文件："
+
+#: tpl/admin/init/init-po.php:183
+msgid "Start translating"
+msgstr "开始翻译"
+
+#: tpl/admin/init/init-po.php:173
+msgid "Use this file as template when running Sync"
+msgstr "运行同步时将此文件用作模板"
+
+#: tpl/admin/file/conf.php:38 tpl/admin/init/init-po.php:153
+msgid "Just copy English source strings"
+msgstr "只需复制英语源字符串"
+
+#: tpl/admin/file/conf.php:32 tpl/admin/init/init-po.php:147
+msgid "Copy target translations from \"%s\""
+msgstr "从“%s”复制目标翻译"
+
+#: tpl/admin/file/conf.php:12 tpl/admin/init/init-po.php:136
+msgid "Template options"
+msgstr "模板选项"
+
+#: tpl/admin/init/init-po.php:93 tpl/admin/init/upload.php:15
+msgid "Choose a location"
+msgstr "选择位置"
+
+#: tpl/admin/init/init-po.php:79
+msgid "Custom language"
+msgstr "自定义语言"
+
+#: tpl/admin/init/init-po.php:67
+msgid "Available languages"
+msgstr "可用语言"
+
+#: src/admin/bundle/LocaleController.php:116
+#: src/admin/list/LocalesController.php:35 tpl/admin/init/init-po.php:61
+msgid "Installed languages"
+msgstr "已安装的语言"
+
+#: tpl/admin/init/init-po.php:60
+msgid "No language selected"
+msgstr "未选择语言"
+
+#: tpl/admin/init/init-po.php:55
+msgid "WordPress language"
+msgstr "WordPress语言"
+
+#: tpl/admin/init/init-po.php:48
+msgid "Choose a language"
+msgstr "选择一种语言"
+
+#: tpl/admin/init/init-po.php:13
+msgid "Create template instead"
+msgstr "创建模板"
+
+#: tpl/admin/init/init-po.php:12
+msgid "You're creating translations directly from source code"
+msgstr "您正在直接从源代码创建翻译"
+
+#: tpl/admin/help/tab-support.php:6
+msgid "Getting help with Loco Translate"
+msgstr "获取Loco Translate的帮助"
+
+#: tpl/admin/help/tab-config-apis.php:9 tpl/admin/help/tab-config.php:9
+msgid "Full documentation"
+msgstr "完整文档"
+
+#: tpl/admin/help/tab-config.php:6
+msgid "User options apply to your WordPress login, across all sites"
+msgstr "用户选项应用于所有站点的WordPress登录"
+
+#: tpl/admin/help/tab-config.php:5
+msgid "Site options apply to all users of Loco Translate across the current site"
+msgstr "站点选项适用于当前站点中所有Loco Translate用户"
+
+#: tpl/admin/help/side-bar.php:12
+msgid "Support forum"
+msgstr "支持论坛"
+
+#: tpl/admin/help/side-bar.php:6
+msgid "For more information:"
+msgstr "更多信息："
+
+#: tpl/admin/file/view-mo.php:11
+msgid "File is in binary MO format"
+msgstr "文件是二进制MO格式"
+
+#. Translators: Where %s is the name (or number) of an operating system user
+#: tpl/admin/file/info.php:96
+msgid "To create new files here you'll have to connect to the remote file system, or make the directory writeable by %s"
+msgstr "若要在此创建新文件，您必须连接到远程文件系统，或使该目录可由 %s 写入"
+
+#: tpl/admin/file/info.php:92
+msgid "This directory can't be written to directly by the web server"
+msgstr "此目录无法被 web 服务器直接写入"
+
+#: tpl/admin/file/info.php:81
+msgid "Note that the file may not be deletable due to additional ownership permissions"
+msgstr "注意，由于有额外的所有权权限，该文件可能无法被删除"
+
+#. Translators: Where %s is the name (or number) of an operating system user
+#: tpl/admin/file/info.php:73
+msgid "The containing directory is writeable by %s, so you can add new files in the same location"
+msgstr "包含目录可以由%s写入，因此您可以在同一位置添加新文件"
+
+#: tpl/admin/file/info.php:69
+msgid "Directory is writeable"
+msgstr "目录是可写的"
+
+#. Translators: "either" meaning that the file itself can't exist without a
+#. containing directory
+#: tpl/admin/file/info.php:59
+msgid "The containing directory for this file doesn't exist either"
+msgstr "此文件的包含目录也不存在"
+
+#: tpl/admin/file/info.php:55
+msgid "Directory doesn't exist"
+msgstr "目录不存在"
+
+#. Translators: Where %s is the name (or number) of an operating system user
+#: tpl/admin/file/info.php:43
+msgid "To make changes you'll have to connect to the remote file system, or make the file writeable by %s"
+msgstr "要进行更改，您必须连接到远程文件系统，或使该文件可写%s"
+
+#: tpl/admin/file/info.php:39
+msgid "This file can't be updated directly by the web server"
+msgstr "此文件无法由Web服务器直接更新"
+
+#: tpl/admin/file/info.php:27
+msgid "You can update these translations directly from the editor to the file system"
+msgstr "您可以直接从编辑器将这些翻译更新到文件系统"
+
+#. Translators: Where %s is the type of file, e.g. "po"
+#: tpl/admin/file/info.php:24
+msgid "%s file is writeable"
+msgstr "%s文件是可写的"
+
+#: tpl/admin/file/info.php:14
+msgid "File doesn't exist"
+msgstr "文件不存在"
+
+#: tpl/admin/file/info-pot.php:27
+msgid "Last extracted"
+msgstr "最后提取"
+
+#: tpl/admin/file/info-po.php:88
+msgid "These translations are not linked to a POT file. Sync operations will extract strings directly from source code."
+msgstr "这些翻译未链接到POT文件。 同步操作将直接从源代码中提取字符串。"
+
+#: tpl/admin/file/info-po.php:84
+msgid "Missing template"
+msgstr "缺少模板"
+
+#. Translators: Where %s is the name of a template file
+#: tpl/admin/file/info-po.php:75
+msgid "PO file has different source strings to \"%s\". Try running Sync before making any changes."
+msgstr "PO文件具有与“%s”不同的源字符串。请尝试在进行任何更改之前运行同步。"
+
+#: tpl/admin/file/info-po.php:71
+msgid "Out of sync with template"
+msgstr "与模板不同步"
+
+#. Translators: Where %s is the name of a template file
+#: tpl/admin/file/info-po.php:64
+msgid "PO file has the same source strings as \"%s\""
+msgstr "PO文件具有与“%s”相同的源字符串"
+
+#: tpl/admin/file/info-po.php:60
+msgid "In sync with template"
+msgstr "与模板同步"
+
+#: tpl/admin/file/info-po.php:50
+msgid "We can't find the binary MO file that belongs with these translations"
+msgstr "我们找不到属于这些翻译的二进制MO文件"
+
+#: tpl/admin/file/info-po.php:47
+msgid "Binary file missing"
+msgstr "缺少二进制文件"
+
+#: tpl/admin/file/info-other.php:11
+msgid "Unexpected file type"
+msgstr "意外的文件类型"
+
+#: tpl/admin/file/info-mo.php:41
+msgid "We can't find the original PO file from which this was compiled"
+msgstr "我们找不到可编译为 mo 的原始 PO 文件"
+
+#: tpl/admin/file/info-mo.php:38
+msgid "PO file missing"
+msgstr "PO文件丢失"
+
+#: tpl/admin/file/info-mo.php:27
+msgid "Compiled translations"
+msgstr "编译的翻译"
+
+#: tpl/admin/file/info-mo.php:24 tpl/admin/file/info-po.php:30
+msgid "Last translation"
+msgstr "上次翻译"
+
+#: tpl/admin/file/info-mo.php:21 tpl/admin/file/info-po.php:27
+#: tpl/admin/file/info-pot.php:24
+msgid "File modified"
+msgstr "文件修改"
+
+#: tpl/admin/file/info-mo.php:15
+msgid "compiled"
+msgstr "编译"
+
+#: tpl/admin/file/delete.php:30
+msgid "Delete Permanently"
+msgstr "永久删除"
+
+#: tpl/admin/file/delete.php:16
+msgid "Are you sure you want to <strong>permanently</strong> delete the following file?"
+msgstr "您确定要<strong>永久</strong>删除以下文件吗？"
+
+#: tpl/admin/file/delete.php:12
+msgid "Confirm delete"
+msgstr "确认删除"
+
+#: tpl/admin/errors/no-tokenizer.php:25
+msgid "You can still translate any bundle that has a <a href=\"%s\" target=\"_blank\">template</a>"
+msgstr "您仍然可以翻译任何包含<a href=\"%s\" target=\"_blank\">模板</a>的捆绑包"
+
+#. Translators: change "en" in the URL to your language if it's available at
+#. https://www.php.net/docs.php
+#: tpl/admin/errors/no-tokenizer.php:17
+msgid "Loco requires the <a href=\"http://php.net/manual/en/book.tokenizer.php\" target=\"_blank\">Tokenizer extension</a> to scan PHP source code for translatable strings"
+msgstr "Loco需要<a href=\"http://php.net/manual/en/book.tokenizer.php\" target=\"_blank\"> Tokenizer扩展</a>才能扫描可翻译字符串的PHP源代码"
+
+#: tpl/admin/errors/no-tokenizer.php:11
+msgid "About the Tokenizer"
+msgstr "关于Tokenizer"
+
+#: tpl/admin/errors/file-missing.php:14
+msgid "Either this file is missing or the server doesn't have permission to access it"
+msgstr "此文件丢失或服务器没有访问权限"
+
+#: tpl/admin/errors/file-missing.php:11
+msgid "File not found"
+msgstr "文件未找到"
+
+#: tpl/admin/errors/file-isdir.php:14
+msgid "This page was expecting a file, but the path is actually a directory"
+msgstr "此页需要一个文件，但路径实际上是一个目录"
+
+#: tpl/admin/errors/file-isdir.php:11
+msgid "File is a directory"
+msgstr "文件是一个目录"
+
+#: tpl/admin/config/version.php:38
+msgid "You're running the latest version of Loco Translate"
+msgstr "您正在运行最新版本的Loco Translate"
+
+#: tpl/admin/config/version.php:17
+msgid "Upgrade to %s"
+msgstr "升级到%s"
+
+#: tpl/admin/config/version.php:11 tpl/admin/config/version.php:25
+#: tpl/admin/config/version.php:35
+msgid "Version %s"
+msgstr "版本%s"
+
+#: tpl/admin/config/settings.php:216
+msgid "Allow full access to these roles"
+msgstr "允许这些角色进行全面访问"
+
+#: tpl/admin/config/settings.php:210
+msgid "Grant access to roles"
+msgstr "授予角色访问权限"
+
+#: tpl/admin/config/settings.php:75 tpl/admin/config/settings.php:182
+msgid "Not recommended"
+msgstr "不推荐"
+
+#: tpl/admin/config/settings.php:75
+msgid "Add UTF-8 byte order mark"
+msgstr "添加UTF-8字节顺序标记"
+
+#: tpl/admin/config/settings.php:52 tpl/admin/config/settings.php:58
+msgid "Saving PO/POT files"
+msgstr "保存PO或POT文件"
+
+#: tpl/admin/config/settings.php:37
+msgid "Scan PHP files with extensions:"
+msgstr "扫描带以下扩展名的 PHP文件："
+
+#: tpl/admin/config/settings.php:31
+msgid "Skip PHP files larger than:"
+msgstr "跳过大于以下值的 PHP 文件："
+
+#: tpl/admin/config/settings.php:21 tpl/admin/config/settings.php:27
+msgid "Extracting strings"
+msgstr "提取字符串"
+
+#: tpl/admin/config/prefs.php:16 tpl/admin/config/prefs.php:20
+msgid "Translator credit"
+msgstr "译者信息"
+
+#. translators: text field placeholder
+#: tpl/admin/common/inc-table-filter.php:6
+msgid "Filter..."
+msgstr "过滤……"
+
+#: tpl/admin/common/inc-fsconn.php:60
+msgid "Connect"
+msgstr "连接"
+
+#. Translators: When a file or folder cannot be modified due to filesystem
+#. permissions
+#: tpl/admin/common/inc-fsconn.php:50 tpl/admin/file/info.php:36
+#: tpl/admin/file/info.php:89
+msgid "Write protected"
+msgstr "写保护"
+
+#: tpl/admin/bundle/view.php:55
+msgid "This bundle isn't automatically compatible and requires configuring before you can use all the functions of Loco Translate"
+msgstr "此捆绑包不能自动兼容，需要配置才能使用Loco Translate的所有功能"
+
+#: tpl/admin/bundle/view.php:52
+msgid "unconfigured"
+msgstr "未配置"
+
+#. Translators: %s is a URL. Keep the <a> tag intact
+#: tpl/admin/bundle/view.php:35 tpl/admin/bundle/view.php:57
+msgid "Click the <a href=\"%s\">setup</a> tab to complete the bundle configuration"
+msgstr "点击<a href=\"%s\">配置</a>选项卡完成捆绑包配置"
+
+#: tpl/admin/bundle/view.php:32
+msgid "This bundle isn't fully configured, so we don't know what the following files are for"
+msgstr "此捆绑包未完全配置，因此我们不知道以下文件的用途"
+
+#: tpl/admin/bundle/view.php:29
+msgid "Additional files found"
+msgstr "找到其他文件"
+
+#: tpl/admin/bundle/setup.php:15
+msgid "If you have trouble translating this bundle, consider asking the author for help"
+msgstr "如果您在翻译此捆绑包时遇到问题，请考虑向作者寻求帮助"
+
+#: tpl/admin/bundle/setup.php:12
+msgid "Author details"
+msgstr "作者详情"
+
+#: tpl/admin/bundle/setup/saved.php:19
+msgid "Edit config"
+msgstr "编辑配置"
+
+#: tpl/admin/bundle/setup/saved.php:14
+msgid "This bundle's configuration is saved in the WordPress database"
+msgstr "此捆绑包的配置已保存在WordPress数据库中"
+
+#: tpl/admin/bundle/setup/saved.php:11
+msgid "Bundle configuration saved"
+msgstr "捆绑包配置已保存"
+
+#: tpl/admin/bundle/setup/partial.php:14
+msgid "This bundle's configuration has been automatically detected, but isn't fully complete"
+msgstr "此捆绑包的配置已经被自动检测到，但还不完整"
+
+#: tpl/admin/bundle/setup/partial.php:11
+msgid "Partially configured bundle"
+msgstr "尚未完成配置的捆绑包"
+
+#: tpl/admin/bundle/setup/none.php:15
+msgid "It needs configuring before you can do any translations"
+msgstr "在您进行任何翻译之前，必须先进行正确配置"
+
+#: tpl/admin/bundle/setup/none.php:14
+msgid "This bundle isn't set up for translation in a way we understand"
+msgstr "此捆绑包没有按照我们理解的方式配置翻译"
+
+#: tpl/admin/bundle/setup/none.php:11
+msgid "Unconfigured bundle"
+msgstr "未配置的捆绑包"
+
+#: tpl/admin/bundle/setup/meta.php:14
+msgid "This bundle's configuration has been automatically detected and seems to be fully compatible"
+msgstr "此捆绑包的配置已被自动检测到，且似乎完全兼容"
+
+#: tpl/admin/bundle/setup/inc-nav.php:25
+msgid "Get help with this"
+msgstr "获取帮助"
+
+#: tpl/admin/bundle/setup/inc-nav.php:22
+msgid "Import config from XML"
+msgstr "从XML导入配置"
+
+#: tpl/admin/bundle/setup/core.php:13
+msgid "This bundle's configuration is built into Loco"
+msgstr "此捆绑包的配置已内置于Loco中"
+
+#: tpl/admin/bundle/setup/core.php:10 tpl/admin/bundle/setup/meta.php:11
+msgid "Bundle auto-configured"
+msgstr "已完成自动配置的捆绑包"
+
+#: tpl/admin/bundle/setup/conf.php:55
+msgid "Load config"
+msgstr "加载配置"
+
+#: tpl/admin/bundle/setup/conf.php:49
+msgid "If you've been given a configuration file by a developer, paste the XML code here"
+msgstr "如果开发者给您提供了配置文件，请把XML代码粘贴在这里"
+
+#: tpl/admin/bundle/setup/conf.php:46
+msgid "XML setup"
+msgstr "XML 配置"
+
+#: tpl/admin/bundle/setup/conf.php:34
+msgid "OK, Load this config"
+msgstr "好的，加载这个配置"
+
+#: tpl/admin/bundle/setup/conf.php:28 tpl/admin/bundle/setup/conf.php:35
+#: tpl/admin/bundle/setup/conf.php:56
+msgid "Cancel"
+msgstr "取消"
+
+#: tpl/admin/bundle/setup/conf.php:27
+msgid "Find config"
+msgstr "查找配置"
+
+#: tpl/admin/bundle/setup/conf.php:16
+msgid ""
+"We have a database of non-standard bundle configurations.\n"
+"If we know your bundle, we'll configure it for you automatically"
+msgstr ""
+"我们准备了一个非标准捆绑包配置的数据库。\n"
+"如果在数据库中找到了这个捆绑包，便会自动为您配置"
+
+#: tpl/admin/bundle/setup/conf.php:12
+msgid "Check config repository"
+msgstr "检查配置库"
+
+#: tpl/admin/bundle/setup/author.php:15 tpl/admin/bundle/setup/core.php:14
+#: tpl/admin/bundle/setup/meta.php:15
+msgid "You can make changes in the Advanced tab if you need to override the current settings"
+msgstr "如果需要覆盖当前设置，则可以在“高级”选项卡中进行更改"
+
+#: tpl/admin/bundle/setup/author.php:14
+msgid "This bundle's configuration is provided by the author"
+msgstr "此捆绑包的配置由作者提供"
+
+#: tpl/admin/bundle/setup/author.php:11
+msgid "Official configuration"
+msgstr "官方配置"
+
+#: tpl/admin/bundle/inc-po-table.php:108
+msgid "No translations found for \"%s\""
+msgstr "未找到针对“%s”的翻译"
+
+#: tpl/admin/bundle/inc-po-table.php:54 tpl/admin/bundle/locale.php:69
+msgid "Info"
+msgstr "信息"
+
+#: tpl/admin/bundle/inc-po-table.php:57 tpl/admin/bundle/locale.php:72
+msgid "Copy"
+msgstr "复制"
+
+#: tpl/admin/bundle/inc-po-table.php:48 tpl/admin/bundle/locale.php:63
+msgid "Edit"
+msgstr "编辑"
+
+#: tpl/admin/bundle/inc-po-table.php:28 tpl/admin/bundle/locale.php:49
+msgid "Folder"
+msgstr "文件夹"
+
+#: tpl/admin/bundle/inc-po-table.php:25 tpl/admin/bundle/locale.php:46
+#: tpl/admin/list/inc-table.php:17 tpl/admin/list/locales.php:19
+msgid "Last modified"
+msgstr "最后修改"
+
+#: tpl/admin/bundle/inc-po-table.php:19 tpl/admin/bundle/locale.php:39
+msgid "Pending"
+msgstr "待定"
+
+#: tpl/admin/bundle/inc-po-table.php:16 tpl/admin/bundle/locale.php:36
+#: tpl/admin/file/info-po.php:33
+msgid "Translation progress"
+msgstr "翻译进度"
+
+#: tpl/admin/bundle/inc-po-table.php:13
+msgid "Language"
+msgstr "语言"
+
+#: tpl/admin/bundle/debug.php:8
+msgid "This information is for developers to find problems in the bundle setup"
+msgstr "此信息供开发者查找捆绑包配置中的问题"
+
+#: tpl/admin/bundle/conf.php:159 tpl/admin/bundle/setup/saved.php:18
+msgid "Reset config"
+msgstr "重置配置"
+
+#: tpl/admin/bundle/conf.php:146
+msgid "XML"
+msgstr "XML"
+
+#: tpl/admin/bundle/conf.php:144
+msgid "Parent theme"
+msgstr "父主题"
+
+#: tpl/admin/bundle/conf.php:142
+msgid "Add set"
+msgstr "添加"
+
+#: tpl/admin/bundle/conf.php:141
+msgid "Save config"
+msgstr "保存配置"
+
+#. Translators: Help tip for "Blocked paths" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:134
+msgid "Folders within the bundle that will never be searched for files"
+msgstr "捆绑包中永远不会被搜索到的文件的文件夹"
+
+#: tpl/admin/bundle/conf.php:128
+msgid "Blocked paths"
+msgstr "禁止的路径"
+
+#. Translators: Help tip for "Source file paths" field in advanced bundle
+#. config
+#: tpl/admin/bundle/conf.php:113
+msgid "Files and folders within the bundle that contain localized PHP code"
+msgstr "捆绑包中包含了可本地化PHP代码的文件和文件夹"
+
+#: tpl/admin/bundle/conf.php:100
+msgid "Source file paths"
+msgstr "源文件路径"
+
+#. Translators: Help tip for "Domain path" field in advanced bundle config
+#. Translators: Help tip for "Source file paths" field in advanced bundle
+#. config
+#. Translators: Help tip for "Blocked paths" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:94 tpl/admin/bundle/conf.php:113
+#: tpl/admin/bundle/conf.php:134
+msgid "no wildcards"
+msgstr "没有通配符"
+
+#. Translators: Help tip for "Domain path" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:94
+msgid "Folders within the bundle that contain author-supplied translations"
+msgstr "捆绑包中包含了作者提供翻译的文件夹"
+
+#: tpl/admin/bundle/conf.php:89 tpl/admin/bundle/conf.php:108
+msgid "Exclude"
+msgstr "排除"
+
+#: tpl/admin/bundle/conf.php:85 tpl/admin/bundle/conf.php:104
+msgid "Include"
+msgstr "包括"
+
+#: tpl/admin/bundle/conf.php:81
+msgid "Domain path"
+msgstr "域名路径"
+
+#. Translators: Help tip for "Template file" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:75
+msgid "Relative path from bundle root to the official POT file"
+msgstr "从捆绑包根目录到官方POT文件的相对路径"
+
+#: tpl/admin/bundle/conf.php:71 tpl/admin/common/inc-fsconn.php:12
+msgid "Locked"
+msgstr "锁定"
+
+#. Translators: Help tip for "File prefix" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:59
+msgid "Usually the same as the text domain, but don't leave blank unless you mean to"
+msgstr "通常与文本域相同，除非特意，否则请不要留空"
+
+#: tpl/admin/bundle/conf.php:53
+msgid "File prefix"
+msgstr "文件前缀"
+
+#. Translators: Help tip for "Text domain" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:47
+msgid "The namespace into which WordPress will load translated strings"
+msgstr "供WordPress加载译文字符串的命名空间"
+
+#: tpl/admin/bundle/conf.php:41 tpl/admin/list/inc-table.php:14
+msgid "Text domain"
+msgstr "文本域"
+
+#. Translators: Help tip for "Project name" field in advanced bundle config
+#: tpl/admin/bundle/conf.php:35
+msgid "Descriptive name for this set of translatable strings"
+msgstr "此组可翻译字符串的描述性名称"
+
+#: tpl/admin/bundle/conf.php:29
+msgid "Project name"
+msgstr "项目名称"
+
+#: tpl/admin/bundle/alias.php:17
+msgid "Go to WordPress Core"
+msgstr "转到WordPress核心"
+
+#: tpl/admin/bundle/alias.php:11
+msgid "\"Hello Dolly\" is part of the WordPress core"
+msgstr "\"Hello Dolly \"是WordPress核心的一部分"
+
+#: src/package/Plugin.php:233
+msgid "Plugin not found: %s"
+msgstr "插件未找到：%s"
+
+#: src/package/Header.php:92
+msgid "Visit official site"
+msgstr "访问官方网站"
+
+#. translators: Author credit: "<product>" <version> by <author>
+#: src/package/Header.php:89
+msgid "\"%s\" %s by %s"
+msgstr "\"%s\"%s由%s"
+
+#: src/package/Debugger.php:205
+msgid "Configured domain has no extractable strings"
+msgid_plural "%u configured domains have no extractable strings"
+msgstr[0] "%u配置的域名没有可提取的字符串"
+
+#. translators: 1: Number of strings; 2: Text Domain; e.g. 100 strings
+#. extracted from source code for "loco-translate"
+#: src/package/Debugger.php:187
+msgid "%1$s string extracted from source code for \"%2$s\""
+msgid_plural "%1$s strings extracted from source code for \"%2$s\""
+msgstr[0] "从“%2$s”的源代码中提取了 %1$s个字符串"
+
+#: src/admin/bundle/LocaleController.php:136 src/package/Core.php:87
+msgid "WordPress Core"
+msgstr "WordPress核心"
+
+#: src/package/Core.php:29
+msgid "https://wordpress.org/"
+msgstr "https://cn.wordpress.org/"
+
+#: src/package/Core.php:28
+msgid "The WordPress Team"
+msgstr "WordPress团队"
+
+#: src/package/Core.php:26
+msgid "WordPress core"
+msgstr "WordPress核心"
+
+#: src/output/Buffer.php:129
+msgid "Loco interrupted by output from %s:%u"
+msgstr "Loco被%s：%u的输出中断"
+
+#: src/mvc/FileParams.php:151
+msgid "%s ago"
+msgstr "%s前"
+
+#. translators: relative time when something happened in the last 30 seconds
+#: src/mvc/FileParams.php:149
+msgid "Just now"
+msgstr "现在"
+
+#: src/mvc/FileParams.php:145
+msgid "Y/m/d"
+msgstr "年/月/日"
+
+#: src/mvc/Controller.php:49
+msgid "You do not have sufficient permissions to access this page."
+msgstr "您没有足够的权限访问此页面。"
+
+#: src/mvc/AjaxRouter.php:202
+msgid "Download controller returned empty output"
+msgstr "下载控制器返回空输出"
+
+#: src/mvc/AjaxRouter.php:197
+msgid "Download action not found"
+msgstr "未找到下载操作"
+
+#: src/mvc/AjaxRouter.php:174
+msgid "Ajax controller returned empty JSON"
+msgstr "Ajax控制器返回空JSON"
+
+#: src/mvc/AjaxRouter.php:169
+msgid "Ajax route not found: \"%s\""
+msgstr "找不到Ajax路由：“ %s”"
+
+#: src/mvc/AdminRouter.php:241
+msgid "Page not found"
+msgstr "找不到页面"
+
+#. translators: Page title for core WordPress translations
+#: src/mvc/AdminRouter.php:56
+msgid "Core translations &lsaquo; Loco"
+msgstr "核心翻译&lsaquo; Loco"
+
+#: src/mvc/AdminRouter.php:54 tpl/admin/bundle/setup/conf.php:20
+msgid "WordPress"
+msgstr "WordPress"
+
+#. translators: Page title for plugin translations
+#: src/mvc/AdminRouter.php:51
+msgid "Plugin translations &lsaquo; Loco"
+msgstr "插件翻译 &lsaquo; Loco"
+
+#. translators: Page title for theme translations
+#: src/mvc/AdminRouter.php:46
+msgid "Theme translations &lsaquo; Loco"
+msgstr "主题翻译 &lsaquo; Loco"
+
+#: src/mvc/AdminRouter.php:42
+msgid "Home"
+msgstr "首页"
+
+#: src/mvc/AdminController.php:115
+msgid "Loco Translate is powered by"
+msgstr "Loco Translate是由"
+
+#: src/mvc/AdminController.php:52
+msgid "Help & support"
+msgstr "帮助和支持"
+
+#: src/js/Strings.php:167
+msgctxt "Editor"
+msgid "Translation"
+msgstr "翻译"
+
+#: src/js/Strings.php:164
+msgctxt "Editor"
+msgid "Translation not loaded"
+msgstr "翻译未加载"
+
+#: src/js/Strings.php:161
+msgctxt "Editor"
+msgid "Context not loaded"
+msgstr "上下文未加载"
+
+#: src/js/Strings.php:158
+msgctxt "Editor"
+msgid "Source text not loaded"
+msgstr "源文内容未加载"
+
+#: src/js/Strings.php:143
+msgctxt "Editor"
+msgid "Plural"
+msgstr "复数"
+
+#: src/js/Strings.php:140
+msgctxt "Editor"
+msgid "Single"
+msgstr "单数"
+
+#: src/js/Strings.php:137
+msgctxt "Editor"
+msgid "Comments"
+msgstr "注释"
+
+#: src/js/Strings.php:134
+msgctxt "Editor"
+msgid "Context"
+msgstr "上下文"
+
+#: src/js/Strings.php:131
+msgctxt "Editor"
+msgid "%s translation"
+msgstr "%s翻译"
+
+#: src/js/Strings.php:127 tpl/admin/file/info-pot.php:30
+msgctxt "Editor"
+msgid "Source text"
+msgstr "源文"
+
+#: src/js/Strings.php:114
+msgid "Server returned invalid data"
+msgstr "服务器返回了无效数据"
+
+#: src/js/Strings.php:117
+msgid "Check console output for debugging information"
+msgstr "检查控制台输出的调试信息"
+
+#: src/js/Strings.php:120
+msgid "Provide the following text when reporting a problem"
+msgstr "报告问题时提供以下文本"
+
+#: src/js/Strings.php:14
+msgid "Nothing matches the text filter"
+msgstr "文本过滤器没有任何匹配"
+
+#: src/hooks/AdminHooks.php:103 tpl/ajax/modal-apis-batch.php:37
+msgid "Translate"
+msgstr "翻译"
+
+#. translators: Error thrown when attempting to parse a file that is not PO,
+#. POT or MO
+#: src/gettext/Data.php:23
+msgid "%s is not a Gettext file"
+msgstr "%s不是Gettext文件"
+
+#. Translators: Refers to translation files in an alternative location that
+#. isn't Author, System or Custom.
+#: src/fs/LocaleDirectory.php:72
+msgctxt "File location"
+msgid "Other"
+msgstr "其他"
+
+#. Translators: Refers to translation files in Loco's custom/protected
+#. directory
+#: src/fs/LocaleDirectory.php:69
+msgctxt "File location"
+msgid "Custom"
+msgstr "自定义"
+
+#. Translators: Refers to system-installed translation files - i.e. those under
+#. WP_LANG_DIR
+#: src/fs/LocaleDirectory.php:66
+msgctxt "File location"
+msgid "System"
+msgstr "系统"
+
+#. Translators: Refers to bundled plugin or theme translation files - i.e.
+#. those supplied by the author
+#: src/fs/LocaleDirectory.php:63
+msgctxt "File location"
+msgid "Author"
+msgstr "作者"
+
+#: src/fs/FileWriter.php:305
+msgid "File modification is disallowed by your WordPress config"
+msgstr "您的WordPress配置不允许文件修改"
+
+#: src/fs/FileWriter.php:294
+msgid "Failed to build directory path"
+msgstr "无法构建目录路径"
+
+#: src/fs/FileWriter.php:286
+msgid "Failed to create directory"
+msgstr "创建目录失败"
+
+#: src/fs/FileWriter.php:249
+msgid "Failed to save file"
+msgstr "保存文件失败"
+
+#: src/fs/FileWriter.php:239
+msgid "Permission denied to update file"
+msgstr "拒绝更新文件的权限"
+
+#: src/fs/FileWriter.php:214
+msgid "\"%s\" is a directory, not a file"
+msgstr "“ %s”是一个目录，而不是一个文件"
+
+#: src/fs/FileWriter.php:198
+msgid "Failed to delete %s"
+msgstr "删除%s失败"
+
+#: src/fs/FileWriter.php:160
+msgid "Failed to copy %s to %s"
+msgstr "复制%s到%s失败"
+
+#: src/fs/FileWriter.php:150
+msgid "Refusing to copy over an existing file"
+msgstr "拒绝复制现有文件"
+
+#: src/fs/FileWriter.php:132
+msgid "Failed to chmod %s"
+msgstr "未能修改文件%s"
+
+#: src/fs/FileWriter.php:52
+msgid "Failed to connect to remote server"
+msgstr "无法连接到远程服务器"
+
+#: src/error/XmlParseException.php:8
+msgid "XML parse error"
+msgstr "XML解析错误"
+
+#: src/error/Warning.php:19 src/js/Strings.php:105
+msgid "Warning"
+msgstr "警告"
+
+#: src/error/Success.php:19 src/js/Strings.php:111
+msgid "OK"
+msgstr "确定"
+
+#: src/error/Notice.php:20 src/js/Strings.php:108
+#: tpl/admin/common/inc-fsconn.php:37
+msgid "Notice"
+msgstr "注意"
+
+#: src/error/Exception.php:164 src/js/Strings.php:102
+msgid "Error"
+msgstr "错误"
+
+#: src/data/Permissions.php:155
+msgctxt "User role"
+msgid "Translator"
+msgstr "译者"
+
+#: src/config/XMLModel.php:42
+msgid "XML supplied is empty"
+msgstr "提供的XML为空"
+
+#: src/config/FormModel.php:146
+msgid "Text Domain cannot be empty"
+msgstr "文本域不能为空"
+
+#. translators: used when user name of web server process is unknown
+#: src/compat/PosixExtension.php:111
+msgid "the web server"
+msgstr "网页服务器"
+
+#: src/api/WordPressFileSystem.php:87
+msgid "%s already exists in this folder"
+msgstr " %s已经存在于此文件夹中"
+
+#: src/ajax/XgettextController.php:67
+msgid "Template file created"
+msgstr "模板文件已创建"
+
+#: src/gettext/Compiler.php:107
+msgid "PO file saved, but MO file compilation failed"
+msgstr "PO文件已保存，但MO文件编译失败"
+
+#: src/gettext/Compiler.php:235
+msgid "PO file saved and MO file compiled"
+msgstr "保存PO文件并编译MO文件"
+
+#: src/fs/Revisions.php:220
+msgid "Failed to create backup file in \"%s\". Check file permissions or disable backups"
+msgstr "在\"%s \"中创建备份文件失败。请检查文件权限或禁用备份功能"
+
+#: src/ajax/MsginitController.php:63
+msgid "MO file exists for this language already. Delete it first"
+msgstr "此语言的MO文件已经存在。请先将其删除"
+
+#: src/ajax/FsConnectController.php:117
+msgid "Connected to remote file system"
+msgstr "连接到远程文件系统"
+
+#: src/admin/list/ThemesController.php:14
+msgid "Translate themes"
+msgstr "翻译主题"
+
+#: src/admin/list/PluginsController.php:12
+msgid "Translate plugins"
+msgstr "翻译插件"
+
+#: src/admin/init/InitPotController.php:106
+msgid "New translations template for \"%s\""
+msgstr "“%s”的新翻译模板"
+
+#: src/admin/init/InitPotController.php:105
+msgid "New template file"
+msgstr "新模板文件"
+
+#: src/admin/init/InitPotController.php:57
+msgid "Template file already exists"
+msgstr "模板文件已经存在"
+
+#: src/admin/init/InitPotController.php:16
+msgid "New template"
+msgstr "新模板"
+
+#: src/admin/init/InitPoController.php:233
+msgid "Skip template"
+msgstr "跳过模板"
+
+#. translators: Were %s is number of source files that will be scanned
+#: src/admin/init/InitPoController.php:227
+msgid "%s source file will be scanned for translatable strings"
+msgid_plural "%s source files will be scanned for translatable strings"
+msgstr[0] "将对 %s个源文件进行扫描，以寻找可翻译的字符串"
+
+#. translators: 1: Number of strings; 2: Name of POT file; e.g. "100 strings
+#. found in file.pot"
+#: src/admin/init/InitPoController.php:198
+msgid "%1$s string found in %2$s"
+msgid_plural "%1$s strings found in %2$s"
+msgstr[0] "在 %2$s 中找到 %1$s个字符串"
+
+#: src/admin/init/InitPoController.php:112
+msgid "Initializing new translations in unknown set"
+msgstr "在未知集中初始化新的翻译"
+
+#: src/admin/init/InitPoController.php:108
+msgid "Initializing new translations in \"%s\""
+msgstr "在“%s”中初始化新翻译"
+
+#: src/admin/file/InfoController.php:177
+msgid "Language header is \"%s\" but file name contains \"%s\""
+msgstr "语言标题是“%s”，但文件名包含“%s”"
+
+#: src/admin/file/InfoController.php:170
+msgid "File does not have a valid header"
+msgstr "文件没有有效的标题"
+
+#: src/admin/file/InfoController.php:138 src/package/Header.php:86
+msgid "Unknown author"
+msgstr "未知作者"
+
+#. Translators: Button that toggles between "code" and regular text editing
+#. modes
+#: src/admin/file/EditController.php:206
+msgctxt "Editor"
+msgid "Toggle code view"
+msgstr "切换代码视图"
+
+#. Translators: Button that toggles invisible characters
+#: src/admin/file/EditController.php:204
+msgctxt "Editor"
+msgid "Toggle invisibles"
+msgstr "切换不可见"
+
+#. Translators: Button for downloading a PO, MO or POT file
+#: src/admin/file/EditController.php:200
+msgctxt "Editor"
+msgid "Download"
+msgstr "下载"
+
+#. Translators: Button that reloads current screen
+#: src/admin/file/EditController.php:196
+msgctxt "Editor"
+msgid "Revert"
+msgstr "还原"
+
+#. Translators: Button that runs in-editor sync/operation
+#: src/admin/file/EditController.php:194
+msgctxt "Editor"
+msgid "Sync"
+msgstr "同步"
+
+#. Translators: Button that saves translations to disk
+#: src/admin/file/EditController.php:192
+msgctxt "Editor"
+msgid "Save"
+msgstr "保存"
+
+#. Translators: button for removing a string when manually editing a POT file
+#: src/admin/file/EditController.php:190 src/ajax/ApisController.php:26
+msgid "Help"
+msgstr "帮助"
+
+#. Translators: button for removing a string when manually editing a POT file
+#: src/admin/file/EditController.php:189
+msgctxt "Editor"
+msgid "Remove"
+msgstr "移除"
+
+#. Translators: button for adding a new string when manually editing a POT file
+#: src/admin/file/EditController.php:187
+msgctxt "Editor"
+msgid "Add"
+msgstr "添加"
+
+#: src/admin/file/EditController.php:116
+msgid "Translations don't match template. Run sync to update from %s"
+msgstr "翻译与模板不匹配。请运行同步以从%s更新"
+
+#. translators: %1$s is the file name, %2$s is the bundle name
+#: src/admin/file/EditController.php:18
+msgid "Editing %1$s in %2$s"
+msgstr "在%2$s中编辑%1$s"
+
+#: src/admin/file/DeleteController.php:99
+msgid "%s dependent file will also be deleted"
+msgid_plural "%s dependent files will also be deleted"
+msgstr[0] "%s个依赖文件也将被删除"
+
+#: src/admin/file/DeleteController.php:76
+#: src/admin/file/DeleteController.php:94
+msgid "Delete %s"
+msgstr "删除%s"
+
+#: src/admin/file/DeleteController.php:57 src/admin/file/DiffController.php:45
+msgid "File deleted"
+msgid_plural "%u files deleted"
+msgstr[0] "%u 个文件已删除"
+
+#: src/admin/file/BaseController.php:108 tpl/admin/bundle/inc-po-table.php:63
+#: tpl/admin/bundle/locale.php:75 tpl/admin/file/diff.php:32
+msgid "Delete"
+msgstr "删除"
+
+#: src/admin/file/BaseController.php:105 tpl/admin/bundle/inc-po-table.php:22
+#: tpl/admin/bundle/locale.php:43
+msgid "File info"
+msgstr "文件信息"
+
+#: src/admin/file/BaseController.php:104
+msgid "Source"
+msgstr "源代码"
+
+#: src/admin/file/BaseController.php:103
+msgid "Editor"
+msgstr "编辑"
+
+#: src/admin/config/SettingsController.php:51
+msgid "Super Admin"
+msgstr "超级管理员"
+
+#: src/admin/config/ApisController.php:59
+#: src/admin/config/PrefsController.php:42
+#: src/admin/config/SettingsController.php:79
+#: src/admin/config/VersionController.php:22 src/mvc/AdminRouter.php:66
+#: tpl/admin/help/tab-config.php:2
+msgid "Plugin settings"
+msgstr "插件设置"
+
+#: src/admin/config/DebugController.php:47
+msgid "System diagnostics"
+msgstr "系统诊断"
+
+#: src/admin/config/BaseController.php:21
+#: src/admin/config/VersionController.php:13
+msgid "Version"
+msgstr "版本"
+
+#: src/admin/config/BaseController.php:19
+#: src/admin/config/PrefsController.php:13 src/mvc/AdminRouter.php:71
+msgid "User options"
+msgstr "用户选项"
+
+#: src/admin/config/BaseController.php:18
+msgid "Site options"
+msgstr "站点选项"
+
+#: src/admin/bundle/ViewController.php:132
+#: src/admin/init/InitPoController.php:217 tpl/admin/init/init-pot.php:40
+msgid "Create template"
+msgstr "创建模板"
+
+#: src/admin/bundle/ViewController.php:123
+msgid "Edit template"
+msgstr "编辑模板"
+
+#: src/admin/bundle/ViewController.php:98 src/admin/file/BaseController.php:127
+#: src/admin/init/InitPoController.php:16
+#: src/admin/init/InitPoController.php:115
+msgid "New language"
+msgstr "新语言"
+
+#: src/admin/bundle/SetupController.php:114
+msgid "%s file can't be matched to a known set of strings"
+msgid_plural "%s files can't be matched to a known set of strings"
+msgstr[0] "%s个文件不能与已知的字符串集相匹配"
+
+#: src/admin/bundle/SetupController.php:35
+msgid "Bundle setup"
+msgstr "捆绑包配置"
+
+#: src/admin/bundle/SetupController.php:25
+msgid "Setup tab"
+msgstr "配置选项卡"
+
+#. translators: where %s is a plugin or theme
+#: src/admin/bundle/SetupController.php:15
+msgid "Set up %s"
+msgstr "配置%s"
+
+#: src/admin/bundle/DebugController.php:24
+msgid "Bundle diagnostics"
+msgstr "捆绑包诊断"
+
+#: src/admin/bundle/ConfController.php:140 tpl/admin/bundle/setup/core.php:17
+#: tpl/admin/bundle/setup/inc-nav.php:19
+msgid "Advanced configuration"
+msgstr "高级配置"
+
+#: src/admin/bundle/ConfController.php:55
+msgid "Advanced tab"
+msgstr "高级选项卡"
+
+#. translators: where %s is a plugin or theme
+#: src/admin/bundle/ConfController.php:16
+msgid "Configure %s"
+msgstr "配置%s"
+
+#: src/admin/bundle/BaseController.php:113
+#: src/admin/config/BaseController.php:24
+#: src/admin/config/DebugController.php:12 src/error/Debug.php:19
+msgid "Debug"
+msgstr "调试"
+
+#: src/admin/bundle/BaseController.php:110 tpl/admin/file/conf.php:58
+#: tpl/admin/file/move.php:26
+msgid "Advanced"
+msgstr "高级"
+
+#: src/admin/bundle/BaseController.php:109
+msgid "Setup"
+msgstr "配置"
+
+#: src/admin/bundle/BaseController.php:53
+msgid "Configuration reset"
+msgstr "配置重置"
+
+#: src/admin/bundle/BaseController.php:38
+msgid "Configuration saved"
+msgstr "配置已保存"
+
+#. translators: home screen title where %s is the version number
+#: src/admin/RootController.php:23
+msgid "Loco Translate %s"
+msgstr "Loco Translate %s"
+
+#: src/admin/bundle/BaseController.php:108
+#: src/admin/bundle/LocaleController.php:34
+#: src/admin/bundle/ViewController.php:25
+#: src/admin/config/BaseController.php:41 src/admin/file/EditController.php:27
+#: src/admin/file/InfoController.php:26 src/admin/file/ViewController.php:26
+#: src/admin/init/InitPoController.php:25
+#: src/admin/init/InitPotController.php:25 src/admin/list/BaseController.php:45
+#: src/admin/list/LocalesController.php:24 src/admin/RootController.php:12
+msgid "Overview"
+msgstr "概览"
+
+#: src/admin/bundle/LocaleController.php:146 src/admin/Navigation.php:44
+#: src/mvc/AdminRouter.php:49
+msgid "Plugins"
+msgstr "插件"
+
+#: src/admin/bundle/LocaleController.php:141 src/admin/Navigation.php:41
+#: src/mvc/AdminRouter.php:44
+msgid "Themes"
+msgstr "主题"
+
+#: src/Locale.php:324
+msgid "Invalid locale"
+msgstr "无效的地区语言"
+
+#: loco.php:143
+msgid "Loco Translate requires the \"%s\" PHP extension. Ask your hosting provider to install it"
+msgstr "Loco Translate需要\"%s\"PHP扩展。请要求您的主机提供商安装此扩展"
+
+#. Author of the plugin
+msgid "Tim Whitlock"
+msgstr "Tim Whitlock"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/loco-translate/"
+msgstr "https://wordpress.org/plugins/loco-translate/"
+
+#. Translators: Placeholder text for text filter above editor
+#: src/admin/file/EditController.php:202
+msgid "Filter translations"
+msgstr "过滤翻译"
+
+#: tpl/admin/bundle/conf.php:65 tpl/admin/bundle/inc-po-table.php:42
+#: tpl/admin/file/edit-pot.php:10 tpl/admin/file/info-pot.php:18
+#: tpl/admin/file/view-pot.php:9
+msgid "Template file"
+msgstr "模板文件"
+
+#: tpl/admin/config/apis.php:127 tpl/admin/config/prefs.php:44
+#: tpl/admin/config/settings.php:233
+msgid "Save settings"
+msgstr "保存设置"
+
+#: tpl/admin/config/settings.php:62
+msgid "Number of backups to keep of each file:"
+msgstr "每个文件要保留的备份数量："
+
+#: tpl/admin/config/settings.php:137
+msgid "Include Fuzzy strings"
+msgstr "包括模糊字符串"
+
+#: tpl/admin/config/settings.php:131
+msgid "Generate hash tables"
+msgstr "生成哈希表"
+
+#: tpl/admin/config/settings.php:120 tpl/admin/config/settings.php:126
+msgid "Compiling MO files"
+msgstr "编译MO文件"
+
+#: tpl/admin/bundle/locale.php:14 tpl/admin/common/inc-po-header.php:8
+#: tpl/admin/file/edit-pot.php:12 tpl/admin/file/view-pot.php:11
+msgctxt "Modified time"
+msgid "Updated"
+msgstr "更新于"
+
+#: tpl/admin/init/init-prompt.php:45
+msgid "Back"
+msgstr "返回"
+
+#: src/js/Strings.php:83
+msgid "Your changes will be lost if you continue without saving"
+msgstr "如果您不保存而继续，则修改将会丢失"
+
+#: src/js/Strings.php:29
+msgid "%s obsolete string removed"
+msgid_plural "%s obsolete strings removed"
+msgstr[0] "移除了 %s 个过时的字符串"
+
+#: src/js/Strings.php:25
+msgid "%s new string added"
+msgid_plural "%s new strings added"
+msgstr[0] "添加了 %s个新字符串"
+
+#: src/js/Strings.php:44
+msgid "Strings up to date with source code"
+msgstr "源代码最新的字符串"
+
+#: src/js/Strings.php:21
+msgid "Merged from source code"
+msgstr "从源代码合并"
+
+#: src/js/Strings.php:18
+msgid "Merged from %s"
+msgstr "已从 %s合并"
+
+#. translators: Where %s is either PO or POT
+#: src/admin/file/HeadController.php:80 src/gettext/Compiler.php:239
+msgid "%s file saved"
+msgstr "%s文件已保存"
+
+#: src/js/Strings.php:123
+msgid "Unknown error"
+msgstr "未知错误"
+
+#: src/admin/file/EditController.php:160 src/mvc/AdminRouter.php:67
+#: src/mvc/AdminRouter.php:72 tpl/admin/common/inc-fsconn.php:18
+#: tpl/admin/common/inc-fsconn.php:43 tpl/admin/errors/no-backups.php:24
+#: tpl/ajax/modal-apis-empty.php:15
+msgid "Settings"
+msgstr "设置"
+
+#. Plugin Name of the plugin
+#: src/hooks/AdminHooks.php:63 src/mvc/AdminRouter.php:37
+msgid "Loco Translate"
+msgstr "Loco Translate"
+
+#. translators: Page title for plugin home screen
+#: src/mvc/AdminRouter.php:39
+msgid "Loco, Translation Management"
+msgstr "Loco，翻译管理"
+
+#: src/gettext/Metadata.php:209 src/js/Strings.php:99
+msgid "%s untranslated"
+msgstr "%s未翻译"
+
+#: src/gettext/Metadata.php:206 src/js/Strings.php:95
+msgid "%s fuzzy"
+msgstr "%s模糊"
+
+#: src/gettext/Metadata.php:204 src/js/Strings.php:91
+msgid "%s%% translated"
+msgstr "%s%%已翻译"
+
+#: src/admin/config/ApisController.php:43
+#: src/admin/config/PrefsController.php:26
+#: src/admin/config/SettingsController.php:31
+msgid "Settings saved"
+msgstr "设置已保存"
+
+#: src/error/WriteException.php:13
+msgid "Permission denied"
+msgstr "拒绝批准"

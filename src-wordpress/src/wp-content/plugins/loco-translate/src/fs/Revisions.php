@@ -32,7 +32,7 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
      * Paths to delete when object removed from memory
      * @var array
      */
-    private $trash = array();
+    private $trash = [];
     
 
     /**
@@ -145,7 +145,7 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
      */
     public function getPaths(){
         if( is_null($this->paths) ){
-            $this->paths = array();
+            $this->paths = [];
             $regex = $this->getRegExp();
             $finder = new Loco_fs_FileFinder( $this->master->dirname() );
             $finder->setRecursive(false);
@@ -180,7 +180,8 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
     /**
      * Get number of backups plus master
      * @return int
-     */    
+     */
+    #[ReturnTypeWillChange]
     public function count(){
         if( ! $this->length ){
             $this->length = 1 + count( $this->getPaths() );

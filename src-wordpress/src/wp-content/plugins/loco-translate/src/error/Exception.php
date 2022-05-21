@@ -14,7 +14,7 @@ class Loco_error_Exception extends Exception implements JsonSerializable {
      * Links to help docs etc.. to show along side error message
      * @var array
      */
-    private $links = array();
+    private $links = [];
 
     /**
      * Override file in which exception was thrown
@@ -168,8 +168,9 @@ class Loco_error_Exception extends Exception implements JsonSerializable {
     /**
      * @return array
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize(){
-        return array (
+        return  [
             'code' => $this->getCode(),
             'type' => $this->getType(),
             'class' => get_class($this),
@@ -177,7 +178,7 @@ class Loco_error_Exception extends Exception implements JsonSerializable {
             'message' => $this->getMessage(),
             //'file' => str_replace( ABSPATH, '', $this->getRealFile() ),
             //'line' => $this->getRealLine()
-        );
+        ];
     }
 
 

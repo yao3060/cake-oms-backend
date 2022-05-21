@@ -2,7 +2,9 @@
 /**
  * Base layout for all admin pages 
  */
-?><div class="wrap" id="loco-admin"><?php 
+/* @var Loco_mvc_View $this */
+/* @var Loco_mvc_ViewParams $params */
+?><div class="wrap" id="loco-admin"><?php
 
     if( $this->has('breadcrumb') ):?> 
     <h1>

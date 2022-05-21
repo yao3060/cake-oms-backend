@@ -23,9 +23,9 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
      * {@inheritdoc}
      */
     public function getHelpTabs(){
-        return array (
+        return  [
             __('Overview','default') => $this->viewSnippet('tab-file-edit'),
-        );
+        ];
     }
 
 
@@ -34,8 +34,8 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
      * @return array
      */
     private function getNonces( $readonly ){
-        $nonces = array();
-        foreach( $readonly ? array('fsReference') : array('sync','save','fsReference','apis') as $name ){
+        $nonces = [];
+        foreach( $readonly ? ['fsReference'] : ['sync','save','fsReference','apis'] as $name ){
             $nonces[$name] = wp_create_nonce($name);
         }
         return $nonces;
@@ -48,6 +48,7 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
     public function render(){
         
         // file must exist for editing
+        /* @var Loco_fs_File $file */
         $file = $this->get('file');
         if( $fail = $this->getFileError($file) ){
             return $fail; 
@@ -146,6 +147,10 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
             }
         }
         
+        // WordPress source locale is always en_US, but filter allows override for purpose of sending to translation APIs.
+        $tag = apply_filters('loco_api_provider_source', 'en', $file->getPath() );
+        $source = Loco_Locale::parse($tag);
+        
         $settings =  Loco_data_Settings::get();
         
         if( is_null($locale) ){
@@ -166,23 +171,23 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
         // back end expects paths relative to wp-content
         $wp_content = loco_constant('WP_CONTENT_DIR');
         
-        $this->set( 'js', new Loco_mvc_ViewParams( array(
+        $this->set( 'js', new Loco_mvc_ViewParams( [
             'podata' => $data->jsonSerialize(),
             'powrap' => (int) $settings->po_width,
             'multipart' => (bool) $settings->ajax_files,
             'locale' => $locale ? $locale->jsonSerialize() : null,
+            'source' => $source->jsonSerialize(),
             'potpath' => $locale && $potfile ? $potfile->getRelativePath($wp_content) : null,
             'syncmode' => $syncmode,
             'popath' => $this->get('path'),
             'readonly' => $readonly,
-            'project' => $project ? array (
+            'project' => $project ?  [
                 'bundle' => $bundle->getId(),
-                'domain' => (string) $project->getId(),
-            ) : null,
+                'domain' => $project->getId(),
+            ] : null,
             'nonces' => $this->getNonces($readonly),
-            'apis' => $locale && ! $readonly ? Loco_api_Providers::configured() : null,
-        ) ) );
-        $this->set( 'ui', new Loco_mvc_ViewParams( array(
+        ] ) );
+        $this->set( 'ui', new Loco_mvc_ViewParams( [
              // Translators: button for adding a new string when manually editing a POT file
              'add'      => _x('Add','Editor','loco-translate'),
              // Translators: button for removing a string when manually editing a POT file
@@ -204,15 +209,15 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
              'invs'     => _x('Toggle invisibles','Editor','loco-translate'),
              // Translators: Button that toggles between "code" and regular text editing modes
              'code'     => _x('Toggle code view','Editor','loco-translate'),
-        ) ) );
+        ] ) );
 
         // Download form params
-        $hidden = new Loco_mvc_HiddenFields( array(
+        $hidden = new Loco_mvc_HiddenFields( [
             'path'   => '',
             'source' => '',
             'route'  => 'download',
             'action' => 'loco_download',
-        ) );
+        ] );
         $this->set( 'dlFields', $hidden->setNonce('download') );
         $this->set( 'dlAction', admin_url('admin-ajax.php','relative') );
 
@@ -224,7 +229,7 @@ class Loco_admin_file_EditController extends Loco_admin_file_BaseController {
         
         // ok to render editor as either po or pot
         $tpl = $locale ? 'po' : 'pot';
-        return $this->view( 'admin/file/edit-'.$tpl, array() );
+        return $this->view( 'admin/file/edit-'.$tpl, [] );
     }
     
     
