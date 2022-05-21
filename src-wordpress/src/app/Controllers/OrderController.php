@@ -329,7 +329,7 @@ class OrderController extends \WP_REST_Controller
                 ->update($data);
 
             // add order log
-            (new OrderLogService)->add($id, 'update', 'update order', $data);
+            (new OrderLogService($id, $data))->addUpdateLog();
 
             $updatedOrder = $this->db->table('orders')->where('id', $id)->first();
 
