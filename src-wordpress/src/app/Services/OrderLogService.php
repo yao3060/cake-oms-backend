@@ -12,6 +12,11 @@ class OrderLogService
 
     protected function getMessage()
     {
+        // verified
+        if (isset($this->data['order_status']) && $this->data['order_status'] == 'verified') {
+            return 'verified';
+        }
+
         if (isset($this->data['order_status']) && $this->data['order_status'] == 'processing') {
             return 'processing';
         }
