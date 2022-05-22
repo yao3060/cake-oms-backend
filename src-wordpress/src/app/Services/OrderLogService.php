@@ -29,10 +29,24 @@ class OrderLogService
             return 'trash';
         }
 
+        // pickup_time
+        if (isset($this->data['pickup_time'])) {
+            return 'update pickup_time';
+        }
+
+        // pickup_method
+        if (isset($this->data['pickup_method'])) {
+            return 'update pickup_method';
+        }
 
         // assign framer
         if (isset($this->data['framer'])) {
             return 'assign framer';
+        }
+
+        // note
+        if (isset($this->data['note'])) {
+            return 'update note';
         }
 
         return 'update order';
