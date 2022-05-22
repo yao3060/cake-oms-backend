@@ -513,6 +513,11 @@ class OrderController extends \WP_REST_Controller
         }
         if ($request['status']) {
             $prepared['order_status'] = $request['status'];
+            // TODO: check update status permission
+            $error = $this->orderService->validateUpdateStatus($request);
+            if (is_wp_error($error)) {
+                return $error;
+            }
         }
 
         // created_at

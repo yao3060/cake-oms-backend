@@ -35,6 +35,13 @@ class OrderService
         }
     }
 
+    public function validateUpdateStatus(WP_REST_Request $request)
+    {
+        if ($request['status'] == 'processing' && !is_framer()) {
+            return new WP_Error('Only Framers can start processing order.');
+        }
+    }
+
     public function create(array $data): int
     {
         global $wpdb;
