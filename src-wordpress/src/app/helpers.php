@@ -114,3 +114,13 @@ if (!function_exists('mask_mobile_phone')) :
         return substr($number, 0, 3) . '****' . substr($number, -4);
     }
 endif;
+
+if (!function_exists('hours_difference')) :
+    function hours_difference($dateFrom, $dateTo): int
+    {
+        // calculates the difference between DateTime objects
+        $interval = date_diff(date_create($dateFrom),  date_create($dateTo));
+        $days = (int)$interval->format('%a');
+        return $days * 24 +  (int)$interval->format('%h');
+    }
+endif;

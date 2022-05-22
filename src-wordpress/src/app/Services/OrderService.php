@@ -4,6 +4,7 @@ namespace App\Services;
 
 use WP_User;
 use WP_Error;
+use WP_REST_Request;
 
 class OrderService
 {
@@ -14,6 +15,24 @@ class OrderService
     {
         $this->db       = \WeDevs\ORM\Eloquent\Database::instance();
         $this->dbPrefix = $this->db->db->prefix;
+    }
+
+    public function importValidates(WP_REST_Request $request)
+    {
+        // check `do_not_save_order_without_pickup_time`
+        $options = get_option(\App\Admin\Settings\Order::OPTION_NAME);
+
+        if ($options['do_not_save_order_without_pickup_time'] && !$request['pickup_time']) {
+            return new WP_Error('`pickup_time` is required.');
+        }
+
+        // check `pickup_time_limit`
+        if (
+            $options['pickup_time_limit'] &&
+            hours_difference($request['created_at'], $request['pickup_time']) < (int)$options['pickup_time_limit']
+        ) {
+            return new WP_Error('`pickup_time` is too early.');
+        }
     }
 
     public function create(array $data): int

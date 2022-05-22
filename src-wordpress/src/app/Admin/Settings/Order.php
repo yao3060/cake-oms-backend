@@ -45,7 +45,7 @@ class Order
 
         add_settings_field(
             'pickupTimeLimitRender',
-            __('取货时间限制', 'cake'),
+            __('取货时间限制(小时)', 'cake'),
             [$this, 'pickupTimeLimitRender'],
             self::PAGE_NAME,
             $sectionName

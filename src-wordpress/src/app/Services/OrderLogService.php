@@ -25,7 +25,7 @@ class OrderLogService
             return 'completed';
         }
 
-        if (isset($this->data['order_status']) && $this->data['order_status'] == 'trash') {
+        if (isset($this->data['order_status']) && $this->data['order_status'] == ' ') {
             return 'trash';
         }
 
