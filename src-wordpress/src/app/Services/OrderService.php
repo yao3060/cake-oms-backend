@@ -206,9 +206,9 @@ class OrderService
         $item->media_id  = $item->media_id ? (int) $item->media_id : 0;
         $item->media_url = $item->media_url ?? "";
         $item->images         = [];
-        $item->price     = number_format($item->price, 2);
+        $item->price     = number_format($item->price, 2, '.', '');
         $item->quantity  = (int) $item->quantity;
-        $item->total     = number_format($item->total, 2);
+        $item->total     = number_format($item->total, 2, '.', '');
         $item->note     = is_null($item->note) ? '' : $item->note;
         return $item;
     }
