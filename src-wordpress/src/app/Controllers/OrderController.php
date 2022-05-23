@@ -157,6 +157,7 @@ class OrderController extends \WP_REST_Controller
         foreach ($orders as $key => $order) {
             // format order value
             $order = OrderService::formatOrder($order);
+            $order = OrderService::mask($order);
 
             // append order items
             foreach ($items as $key2 => $item) {
@@ -196,8 +197,6 @@ class OrderController extends \WP_REST_Controller
                 }
             }
             $order->items = $items->toArray();
-
-            // mask phone number
 
             $order->creator = OrderService::getCreator((int) $order->creator);
 

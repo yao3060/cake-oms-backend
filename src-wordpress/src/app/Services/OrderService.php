@@ -190,8 +190,8 @@ class OrderService
     {
         if ($order->creator) {
             $currentUserId = wp_get_current_user()->ID;
-            // 只有下单人，管理员, 门店管理员也可以看
-            if (!is_administrator() && !is_store_manager() && $currentUserId !== $order->creator) {
+            // 电话: 管理员、下单人本部门所有人及管理员，客服、客服管理员，可看到电话全部
+            if (!is_administrator() && !is_store_manager() && !is_customer_service() && $currentUserId !== $order->creator) {
                 $order->billing_phone = mask_mobile_phone($order->billing_phone);
                 $order->shipping_phone = mask_mobile_phone($order->shipping_phone);
             }
