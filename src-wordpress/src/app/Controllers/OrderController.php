@@ -408,7 +408,6 @@ class OrderController extends \WP_REST_Controller
      */
     public function update_item_permissions_check($request)
     {
-        // $currentUser = wp_get_current_user();
         if ($request->get_param('status')) {
             return (new OrderUpdatePermission($request, wp_get_current_user()))->check();
         }
@@ -512,11 +511,6 @@ class OrderController extends \WP_REST_Controller
         }
         if ($request['status']) {
             $prepared['order_status'] = $request['status'];
-            // TODO: check update status permission
-            $error = $this->orderService->validateUpdateStatus($request);
-            if (is_wp_error($error)) {
-                return $error;
-            }
         }
 
         // created_at

@@ -35,13 +35,6 @@ class OrderService
         }
     }
 
-    public function validateUpdateStatus(WP_REST_Request $request)
-    {
-        if ($request['status'] == 'processing' && !is_framer()) {
-            return new WP_Error('Only Framers can start processing order.');
-        }
-    }
-
     public function create(array $data): int
     {
         global $wpdb;
@@ -221,5 +214,16 @@ class OrderService
         }
 
         return wp_insert_term($storeName, $taxonomy);
+    }
+
+    public function isCreator(int $orderId)
+    {
+        $userId = get_current_user_id();
+        if (!$userId) {
+            return false;
+        }
+
+        $order = $this->getOrderById($orderId);
+        return $order->creator == get_current_user_id();
     }
 }
