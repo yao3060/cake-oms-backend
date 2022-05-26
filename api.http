@@ -79,7 +79,7 @@ Accept: application/json
 Content-Type: application/json
 
 ### get orders
-GET {{BASE_URL}}/oms/v1/orders?status=verified
+GET {{BASE_URL}}/oms/v1/orders?status=unverified
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{FRAMER_TOKEN}}

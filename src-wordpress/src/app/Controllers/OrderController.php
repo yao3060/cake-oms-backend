@@ -9,7 +9,7 @@ use App\Filters\OrderNumberFilter;
 use App\Filters\PickupNumberFilter;
 use App\Filters\StatusFilter;
 use App\Filters\StoreUserFilter;
-use App\Permissions\OrderUpdatePermission;
+use App\Permissions\OrderStatusPermission;
 use App\Services\OrderLogService;
 use App\Services\OrderService;
 use RuntimeException;
@@ -368,8 +368,9 @@ class OrderController extends \WP_REST_Controller
      */
     public function get_items_permissions_check($request)
     {
-        if (getenv('ENVIRONMENT') === 'local') return true;
-
+        if ($request->get_param('status')) {
+            return (new OrderStatusPermission($request, wp_get_current_user()))->check();
+        }
         return current_user_can('read');
     }
 
@@ -382,8 +383,6 @@ class OrderController extends \WP_REST_Controller
      */
     public function get_item_permissions_check($request)
     {
-        if (getenv('ENVIRONMENT') === 'local') return true;
-
         return $this->get_items_permissions_check($request);
     }
 
@@ -409,7 +408,7 @@ class OrderController extends \WP_REST_Controller
     public function update_item_permissions_check($request)
     {
         if ($request->get_param('status')) {
-            return (new OrderUpdatePermission($request, wp_get_current_user()))->check();
+            return (new OrderStatusPermission($request, wp_get_current_user()))->check();
         }
         return true;
     }
