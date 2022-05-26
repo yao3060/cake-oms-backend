@@ -58,7 +58,7 @@ class OrderStatusPermission
             return new WP_Error(
                 'no_permission',
                 "Only framer users can't view unverified orders.",
-                ['status' => 401]
+                ['status' => 404]
             );
         }
 
