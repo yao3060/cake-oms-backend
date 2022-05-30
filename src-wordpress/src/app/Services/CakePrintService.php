@@ -161,7 +161,7 @@ class CakePrintService
             . "收货人：<B>" .  $this->order->shipping_name . "</B><BR>"
             . "联系电话：<B>" . $this->order->shipping_phone . "</B><BR>"
             . "地址：<B>" .  $this->order->shipping_address . "</B><BR></L>"
-            . "<C><QR180>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QR180></C>";
+            . "<C><QRCODE>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QRCODE></C>";
     }
 
     protected function renderItemList()
@@ -177,7 +177,7 @@ class CakePrintService
         $totalQuantity = 0;
         foreach ($this->order->items as $item) {
             $printContent .= sprintf(
-                '<L><N>%s%-6s%-6d%s<BR>',
+                '<L><N>%s%-6s<R>%-6d</R>%s<BR>',
                 append_spaces_to_chinese($item->product_name),
                 $item->price,
                 $item->quantity,
@@ -190,7 +190,7 @@ class CakePrintService
 
         $printContent .= str_repeat('-', 46) . "<BR>";
         $printContent .= sprintf(
-            '<L><N>%s%-6s%-6d%s<BR>',
+            '<L><N>%s%-6s<R>%-6d</R>%s<BR>',
             append_spaces_to_chinese("合计"),
             ' ',
             $totalQuantity,
