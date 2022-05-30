@@ -101,7 +101,7 @@ if (!function_exists('append_spaces_to_chinese')) :
     function append_spaces_to_chinese($string, $length = 30): string
     {
         $strLen = mb_strlen($string) * 2;
-        return  $string . str_repeat(' ', $length - $strLen);
+        return  $string . str_repeat(' ', max(0, $length - $strLen));
     }
 endif;
 

@@ -64,6 +64,7 @@ class PrintController extends WP_REST_Controller
                 ->printComplexReceiptWithoutBroadcast();
             return new WP_REST_Response($response, 200);
         } catch (\Throwable $th) {
+            var_dump($th->getTraceAsString());
             return new WP_Error(
                 'failed_to_print',
                 $th->getMessage(),
