@@ -131,14 +131,13 @@ class CakePrintService
         if ($this->order->order_status === 'trash') {
             $title .= ' (作废)';
         }
-        $printContent = sprintf("<C>" . "<B>%s</B>" . "<BR></C>", $title);
+        $printContent = sprintf("<C>" . "<B2>%s</B2>" . "<BR></C>", $title);
         $printContent .= "<BR>";
-        $printContent .= sprintf('<L><N>来源：%s <BR>', $this->order->order_type);
-        $printContent .= sprintf('点送：%s <BR>', $this->order->pickup_method);
-        $printContent .= sprintf('收银：%s <BR>', UserService::getCashier((int) $this->order->creator));
-        $printContent .= sprintf('下单时间：%s <BR>', $this->order->created_at);
-        $printContent .= sprintf('订单编号：%s <BR>', $this->order->order_number);
-        $printContent .= sprintf('订单备注：%s <BR>', $this->order->note);
+        $printContent .= sprintf('<B>单据：%s </B><BR>', $this->order->pickup_method);
+        $printContent .= sprintf('<L><N>来源：%s </L></N><BR>', $this->order->order_type);
+        $printContent .= sprintf('<L><N>收银：%s </L></N><BR>', UserService::getCashier((int) $this->order->creator));
+        $printContent .= sprintf('<L><N>下单时间：%s </L></N><BR>', $this->order->created_at);
+        $printContent .= sprintf('<L><N>订单编号：%s </L></N><BR>', $this->order->order_number);
 
         $printContent .= $this->billingInfo();
 
@@ -158,10 +157,10 @@ class CakePrintService
     protected function shippingInfo()
     {
         return "<L>"
-            . "收货人：" .  $this->order->shipping_name . "<BR>"
-            . "地址：" .  $this->order->shipping_address . "<BR>"
-            . "客户电话：" . $this->order->shipping_phone . "<BR>"
-            . "下单时间：" . $this->order->created_at . "<BR>";
+            . "<B>订单备注：" . $this->order->note . "</B><BR>"  //配送时间
+            . "<B>配送时间：" . $this->order->pickup_time . "</B><BR>"  //配送时间
+            . "<B>收货人：" .  $this->order->shipping_name . " ，" . $this->order->shipping_phone . "</B><BR>"  //收货人和电话一起
+            . "<B>地址：" .  $this->order->shipping_address . "</B><BR></L>";
     }
 
     protected function renderItemList()
