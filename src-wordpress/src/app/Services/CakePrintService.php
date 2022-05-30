@@ -127,13 +127,11 @@ class CakePrintService
      */
     protected function getPrintContent(): string
     {
-        $title = $this->companyName;
-        if ($this->order->order_status === 'trash') {
-            $title .= ' (作废)';
-        }
-        $printContent = sprintf("<C>" . "<B2>%s</B2>" . "<BR></C>", $title);
+        $status = $this->order->order_status === 'trash' ? '作废单' : '配送单';
+        $printContent = sprintf("<C><B2>%s (%s)</B2><BR></C>", $this->companyName, $status);
         $printContent .= "<BR>";
         $printContent .= sprintf('<B>单据：%s </B><BR>', $this->order->pickup_method);
+        $printContent .= str_repeat('-', 46) . "<BR>";
         $printContent .= sprintf('<L><N>来源：%s </L></N><BR>', $this->order->order_type);
         $printContent .= sprintf('<L><N>收银：%s </L></N><BR>', UserService::getCashier((int) $this->order->creator));
         $printContent .= sprintf('<L><N>下单时间：%s </L></N><BR>', $this->order->created_at);
@@ -157,10 +155,13 @@ class CakePrintService
     protected function shippingInfo()
     {
         return "<L>"
-            . "<B>订单备注：" . $this->order->note . "</B><BR>"  //配送时间
-            . "<B>配送时间：" . $this->order->pickup_time . "</B><BR>"  //配送时间
-            . "<B>收货人：" .  $this->order->shipping_name . " ，" . $this->order->shipping_phone . "</B><BR>"  //收货人和电话一起
-            . "<B>地址：" .  $this->order->shipping_address . "</B><BR></L>";
+            . str_repeat('-', 46) . "<BR>"
+            . "配送时间：<HB>" . $this->order->pickup_time . "</HB><BR>"  //配送时间
+            . "订单备注：<HB>" . $this->order->note . "</HB><BR>"
+            . "收货人：<B>" .  $this->order->shipping_name . "</B><BR>"
+            . "联系电话：<B>" . $this->order->shipping_phone . "</B><BR>"
+            . "地址：<B>" .  $this->order->shipping_address . "</B><BR></L>"
+            . "<C><QR180>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QR180></C>";
     }
 
     protected function renderItemList()
@@ -195,8 +196,6 @@ class CakePrintService
             $totalQuantity,
             $item->total
         );
-
-        $printContent .= $this->order->note;
 
         return $printContent;
     }
