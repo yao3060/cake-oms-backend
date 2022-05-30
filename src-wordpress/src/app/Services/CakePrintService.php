@@ -39,7 +39,7 @@ class CakePrintService
     {
         $userGroups = wp_get_terms_for_user(wp_get_current_user(), 'user-group');
         if (empty($userGroups)) {
-            throw new Exception('User need bind store.');
+            throw new Exception('用户需要绑定部门。', 403);
         }
 
         $printerSn = get_term_meta($userGroups[0]->term_id, 'printer_sn', true);
