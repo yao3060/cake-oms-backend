@@ -8,7 +8,7 @@ use Xpyun\service\PrintService;
 
 class CakePrintService
 {
-
+    const DASH_COUNT = 48;
     const USER = 'yao3060@163.com';
     const USER_KEY = 'e77d900065724915b355683868aad040';
 
@@ -128,10 +128,10 @@ class CakePrintService
     protected function getPrintContent(): string
     {
         $status = $this->order->order_status === 'trash' ? '作废单' : '配送单';
-        $printContent = sprintf("<C><B2>%s (%s)</B2><BR></C>", $this->companyName, $status);
+        $printContent = sprintf("<C><B>%s (%s)</B><BR></C>", $this->companyName, $status);
         $printContent .= "<BR>";
         $printContent .= sprintf('<B>单据：%s </B><BR>', $this->order->pickup_method);
-        $printContent .= str_repeat('-', 46) . "<BR>";
+        $printContent .= str_repeat('-', self::DASH_COUNT) . "<BR>";
         $printContent .= sprintf('<L><N>来源：%s </L></N><BR>', $this->order->order_type);
         $printContent .= sprintf('<L><N>收银：%s </L></N><BR>', UserService::getCashier((int) $this->order->creator));
         $printContent .= sprintf('<L><N>下单时间：%s </L></N><BR>', $this->order->created_at);
@@ -155,43 +155,43 @@ class CakePrintService
     protected function shippingInfo()
     {
         return "<L>"
-            . str_repeat('-', 46) . "<BR>"
+            . str_repeat('-', self::DASH_COUNT) . "<BR>"
             . "配送时间：<HB>" . $this->order->pickup_time . "</HB><BR>"  //配送时间
             . "订单备注：<HB>" . $this->order->note . "</HB><BR>"
             . "收货人：<B>" .  $this->order->shipping_name . "</B><BR>"
             . "联系电话：<B>" . $this->order->shipping_phone . "</B><BR>"
             . "地址：<B>" .  $this->order->shipping_address . "</B><BR></L>"
-            . "<C><QRCODE>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QRCODE></C>";
+            . "<C><QRCODE s=10 e=L l=center>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QRCODE></C>";
     }
 
     protected function renderItemList()
     {
-        $printContent = str_repeat('-', 46) . "<BR>";
+        $printContent = str_repeat('-', self::DASH_COUNT) . "<BR>";
         $printContent .= sprintf(
             '<L><N>%s%s%s%s<BR>',
-            append_spaces_to_chinese("商品名称"),
-            append_spaces_to_chinese('单价', 6),
+            append_spaces_to_chinese('商品名称', 26),
+            append_spaces_to_chinese('单价', 8),
             append_spaces_to_chinese('数量', 6),
             '小计'
         );
         $totalQuantity = 0;
         foreach ($this->order->items as $item) {
             $printContent .= sprintf(
-                '<L><N>%s%-6s<R>%-6d</R>%s<BR>',
-                append_spaces_to_chinese($item->product_name),
+                '<L><N>%s<BR><L><N>备注：%s<BR><L><N>%-26s%-8s%-6d%s<BR>',
+                $item->product_name,
+                $item->note,
+                append_spaces_to_chinese(' ', 26),
                 $item->price,
                 $item->quantity,
                 $item->total
             );
-            // append product note
-            $printContent .= '<L><N>备注：' . $item->note . '<BR><BR>';
             $totalQuantity += $item->quantity;
         }
 
-        $printContent .= str_repeat('-', 46) . "<BR>";
+        $printContent .= str_repeat('-', self::DASH_COUNT) . "<BR>";
         $printContent .= sprintf(
-            '<L><N>%s%-6s<R>%-6d</R>%s<BR>',
-            append_spaces_to_chinese("合计"),
+            '<L><N>%s%-8s%-6d%s<BR>',
+            append_spaces_to_chinese("合计", 26),
             ' ',
             $totalQuantity,
             $item->total
