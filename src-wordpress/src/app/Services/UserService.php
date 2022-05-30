@@ -10,7 +10,11 @@ class UserService
     {
         $user = get_user_by('id', $id);
         if ($user) {
-            return sprintf('%s (%d)', $user->display_name, $user->user_login);
+            return sprintf(
+                '%s,  电话: %s',
+                $user->display_name ?: $user->user_login,
+                get_user_meta($id, 'mobile_phone', true)
+            );
         }
         return '';
     }
