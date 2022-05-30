@@ -44,6 +44,22 @@ class Order
         );
 
         add_settings_field(
+            'xpyunUserRender',
+            __('XPYUN USER ID', 'cake'),
+            [$this, 'xpyunUserRender'],
+            self::PAGE_NAME,
+            $sectionName
+        );
+
+        add_settings_field(
+            'xpyunUserKeyRender',
+            __('XPYUN USER SECRET', 'cake'),
+            [$this, 'xpyunUserKeyRender'],
+            self::PAGE_NAME,
+            $sectionName
+        );
+
+        add_settings_field(
             'pickupTimeLimitRender',
             __('取货时间限制(小时)', 'cake'),
             [$this, 'pickupTimeLimitRender'],
@@ -60,10 +76,28 @@ class Order
         );
     }
 
-    function pickupTimeLimitRender()
+    function xpyunUserRender()
     {
         $options = get_option(self::OPTION_NAME);
 ?>
+        <input type='text' name='cake_orders_settings[XPYUN_USER]' value='<?php echo $options['XPYUN_USER'] ?? ''; ?>'>
+    <?php
+
+    }
+
+    function xpyunUserKeyRender()
+    {
+        $options = get_option(self::OPTION_NAME);
+    ?>
+        <input type='text' name='cake_orders_settings[XPYUN_USER_SECRET]' value='<?php echo $options['XPYUN_USER_SECRET'] ?? ''; ?>'>
+    <?php
+
+    }
+
+    function pickupTimeLimitRender()
+    {
+        $options = get_option(self::OPTION_NAME);
+    ?>
         <input type='text' name='cake_orders_settings[pickup_time_limit]' value='<?php echo $options['pickup_time_limit'] ?? ''; ?>'>
     <?php
 

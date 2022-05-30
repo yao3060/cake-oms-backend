@@ -9,8 +9,6 @@ use Xpyun\service\PrintService;
 class CakePrintService
 {
     const DASH_COUNT = 48;
-    const USER = 'yao3060@163.com';
-    const USER_KEY = 'e77d900065724915b355683868aad040';
 
     /**
      * 打印服务对象实例化
@@ -24,9 +22,9 @@ class CakePrintService
 
     public function __construct($order)
     {
-
-        $this->user = self::USER;
-        $this->userKey = self::USER_KEY;
+        $options = get_option(\App\Admin\Settings\Order::OPTION_NAME);
+        $this->user = $options['XPYUN_USER'];
+        $this->userKey = $options['XPYUN_USER_SECRET'];
 
         $this->service = new PrintService();
         $this->companyName = get_option('blogname');
