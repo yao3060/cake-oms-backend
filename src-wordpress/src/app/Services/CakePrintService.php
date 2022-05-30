@@ -138,6 +138,7 @@ class CakePrintService
         $printContent .= sprintf('收银：%s <BR>', UserService::getCashier((int) $this->order->creator));
         $printContent .= sprintf('下单时间：%s <BR>', $this->order->created_at);
         $printContent .= sprintf('订单编号：%s <BR>', $this->order->order_number);
+        $printContent .= sprintf('订单备注：%s <BR>', $this->order->note);
 
         $printContent .= $this->billingInfo();
 
@@ -182,6 +183,8 @@ class CakePrintService
                 $item->quantity,
                 $item->total
             );
+            // append product note
+            $printContent .= '<L><N>备注：' . $item->note . '<BR><BR>';
             $totalQuantity += $item->quantity;
         }
 
