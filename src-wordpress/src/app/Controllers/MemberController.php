@@ -61,6 +61,15 @@ class MemberController extends \WP_REST_Controller
             );
         }
 
+        $users = null;
+        $userType = $request->get_param('user-type');
+        if ($userType) {
+            $users = wp_get_users_of_group([
+                'taxonomy' => 'user-type',
+                'term'     => $userType,
+                'term_by'  => is_numeric($userType) ? 'id' : 'slug'
+            ]);
+        }
         $userGroup = $request->get_param('user-group');
         if ($userGroup) {
             $users = wp_get_users_of_group([
@@ -68,14 +77,12 @@ class MemberController extends \WP_REST_Controller
                 'term'     => $userGroup,
                 'term_by'  => is_numeric($userGroup) ? 'id' : 'slug'
             ]);
-        } else {
+        }
 
+        if (!$users) {
             $currentUser = wp_get_current_user();
-
             $userStores = wp_get_terms_for_user($currentUser, 'user-group');
-
             $storeIds = collect($userStores)->pluck('term_id');
-
             $users = wp_get_users_of_group([
                 'taxonomy' => 'user-group',
                 'term'     => $storeIds[0],
@@ -94,8 +101,6 @@ class MemberController extends \WP_REST_Controller
                 'roles' => $user->roles
             ];
         }, $users);
-
-        // $sorted =  collect($collection)->sortBy('user_email');
 
         return new WP_REST_Response($collection, 200);
     }
