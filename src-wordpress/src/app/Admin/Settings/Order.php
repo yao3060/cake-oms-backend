@@ -22,7 +22,7 @@ class Order
     public function add_admin_menu()
     {
         add_options_page(
-            'Orders',
+            '订单设置',
             'Orders',
             'manage_options',
             'orders',
@@ -80,7 +80,7 @@ class Order
     {
         $options = get_option(self::OPTION_NAME);
 ?>
-        <input type='text' name='cake_orders_settings[XPYUN_USER]' value='<?php echo $options['XPYUN_USER'] ?? ''; ?>'>
+        <input style="width: 400px;" type='text' name='cake_orders_settings[XPYUN_USER]' value='<?php echo $options['XPYUN_USER'] ?? ''; ?>'>
     <?php
 
     }
@@ -89,7 +89,7 @@ class Order
     {
         $options = get_option(self::OPTION_NAME);
     ?>
-        <input type='text' name='cake_orders_settings[XPYUN_USER_SECRET]' value='<?php echo $options['XPYUN_USER_SECRET'] ?? ''; ?>'>
+        <input style="width: 400px;" type='text' name='cake_orders_settings[XPYUN_USER_SECRET]' value='<?php echo $options['XPYUN_USER_SECRET'] ?? ''; ?>'>
     <?php
 
     }
