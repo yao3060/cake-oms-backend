@@ -37,14 +37,15 @@ class CakePrintService
     {
         $userGroups = wp_get_terms_for_user(wp_get_current_user(), 'user-group');
         if (empty($userGroups)) {
-            throw new Exception('用户需要绑定部门。', 403);
+            throw new Exception('用户需要绑定店铺。', 403);
         }
 
         $printerSn = get_term_meta($userGroups[0]->term_id, 'printer_sn', true);
         if ($printerSn) {
             return $printerSn;
+        } else {
+            throw new Exception('店铺需要绑定打印机。', 403);
         }
-        return  '14BMAXXC7963149';
     }
 
     /**
