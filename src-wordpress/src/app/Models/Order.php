@@ -13,6 +13,11 @@ class Order extends ArrayObject
         parent::__construct($data, ArrayObject::ARRAY_AS_PROPS);
     }
 
+    public function getUpdatedAt()
+    {
+        return get_date_from_gmt($this->updated_at);
+    }
+
     public function getProduceTime()
     {
         $orderStatus = $this->order_status;

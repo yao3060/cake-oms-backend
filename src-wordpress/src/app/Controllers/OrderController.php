@@ -201,6 +201,7 @@ class OrderController extends \WP_REST_Controller
             $order->framer = $order->getFramer();
             $order->deadline = $order->getDeadline();
             $order->produce_time = $order->getProduceTime();
+            $order->updated_at = $order->getUpdatedAt();
 
             $order = OrderService::mask($order);
 
