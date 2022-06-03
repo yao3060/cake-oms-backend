@@ -1,5 +1,5 @@
 @BASE_URL=http://localhost:8000/wp-json
-@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MzMxNjc3MiwibmJmIjoxNjUzMzE2NzcyLCJleHAiOjE2NTM5MjE1NzIsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.-ZIbwm5CBkbpmmdN8rn2sjFNe0PCaLJol8dh7rxZ4-Q
+@TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1NDI2NjI0MSwibmJmIjoxNjU0MjY2MjQxLCJleHAiOjE2NTQ4NzEwNDEsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.XOClXy1NIM6MKW_BobOb5A32Ux-3dcApJ9TjfeqxKcA
 @FRAMER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY1MzMxNjkxNSwibmJmIjoxNjUzMzE2OTE1LCJleHAiOjE2NTM5MjE3MTUsImRhdGEiOnsidXNlciI6eyJpZCI6IjUifX19.yg3drUjXLvOSx_qcvf_W_BwJqKkhjY0GZQgnYGo1oog
 
 @EMPLOYEE_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTY0NTkyODMyMywibmJmIjoxNjQ1OTI4MzIzLCJleHAiOjE2NDY1MzMxMjMsImRhdGEiOnsidXNlciI6eyJpZCI6IjEwIn19fQ.ayh5MRDr0fBGI2kLfLExltidLjZy5RtTCovav9-I8BQ
@@ -77,6 +77,13 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvX
 GET {{BASE_URL}}/oms/v1/menus
 Accept: application/json
 Content-Type: application/json
+
+### get orders
+GET {{BASE_URL}}/oms/v1/orders/105
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
 
 ### get orders
 GET {{BASE_URL}}/oms/v1/orders?status=unverified

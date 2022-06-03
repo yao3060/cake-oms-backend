@@ -11,6 +11,7 @@ require_once __DIR__ . '/hooks/remove.php';
 
 if (is_admin()) {
     new \App\Admin\OrdersPage;
+    require_once __DIR__ . '/hooks/user-group.php';
 }
 
 add_action('admin_menu', [App\Admin\Settings\Order::getInstance(), 'add_admin_menu']);

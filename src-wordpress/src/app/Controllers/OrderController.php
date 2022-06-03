@@ -183,11 +183,11 @@ class OrderController extends \WP_REST_Controller
     public function get_item($request): WP_Error|WP_REST_Response
     {
         $id    = $request->get_param('id');
-        $order = $this->orderService->getOrderById((int)$id); // $this->db->table('orders')->where('ID', $id)->first();
+        $order = $this->orderService->getOrderById((int)$id);
 
         if ($order) {
 
-            $order = OrderService::mask($order);
+            $order = new \App\Models\Order($order);
 
             $items = $this->db->table('order_items')->where('order_id', $id)->get();
             if ($items->count()) {
@@ -197,10 +197,12 @@ class OrderController extends \WP_REST_Controller
                 }
             }
             $order->items = $items->toArray();
+            $order->creator = $order->getCreator();
+            $order->framer = $order->getFramer();
+            $order->deadline = $order->getDeadline();
+            $order->produce_time = $order->getProduceTime();
 
-            $order->creator = OrderService::getCreator((int) $order->creator);
-
-            $order->framer = OrderService::getCreator((int) $order->framer);
+            $order = OrderService::mask($order);
 
             return new WP_REST_Response($order, 200);
         } else {
