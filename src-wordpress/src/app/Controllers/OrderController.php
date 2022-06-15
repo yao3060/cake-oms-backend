@@ -97,13 +97,7 @@ class OrderController extends \WP_REST_Controller
      */
     public function get_items($request)
     {
-
-        if(is_null($request->get_param('pickup_method'))){
-            $query = $this->db->table('orders'); //没有传pickup_method参数
-        }else{
-            $pickup_method = $request->get_param('pickup_method');
-            $query = $this->db->table('orders')->where('pickup_method', $pickup_method);
-        }
+        $query = $this->db->table('orders');
         $pre = $this->orderService->preGetOrders($request->get_params());
         if (is_wp_error($pre)) {
             return $pre;
@@ -133,6 +127,12 @@ class OrderController extends \WP_REST_Controller
         write_log([$query->toSql(), $query->getBindings()]);
 
         /**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
+
+//        $pickup_method = $request->get_param('pickup_method');//pickup_method
+        if($request->get_param('pickup_number')){//pickup_method
+            $query = $query->where('pickup_method', $request->get_param('pickup_number') ?? '自提' );
+        }
+
         $orders = $query->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
             ->paginate(
                 $request->get_param('per_page') ? (int) $request->get_param('per_page') : 10,
