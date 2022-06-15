@@ -97,8 +97,13 @@ class OrderController extends \WP_REST_Controller
      */
     public function get_items($request)
     {
-        $query = $this->db->table('orders');
 
+        if(is_null($request->get_param('pickup_method'))){
+            $query = $this->db->table('orders'); //没有传pickup_method参数
+        }else{
+            $pickup_method = $request->get_param('pickup_method');
+            $query = $this->db->table('orders')->where('pickup_method', $pickup_method);
+        }
         $pre = $this->orderService->preGetOrders($request->get_params());
         if (is_wp_error($pre)) {
             return $pre;
