@@ -124,14 +124,14 @@ class OrderController extends \WP_REST_Controller
             $query = PickupNumberFilter::handle($query, $request);
         }
 
+        if($request->get_param('pickup_method')){//pickup_method
+            $query = $query->where('pickup_method', $request->get_param('pickup_method'));
+        }
+
         write_log([$query->toSql(), $query->getBindings()]);
 
-        /**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
 
-//        $pickup_method = $request->get_param('pickup_method');//pickup_method
-        if($request->get_param('pickup_number')){//pickup_method
-            $query = $query->where('pickup_method', $request->get_param('pickup_number') ?? '自提' );
-        }
+        /**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
 
         $orders = $query->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
             ->paginate(
