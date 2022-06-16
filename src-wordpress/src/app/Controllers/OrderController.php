@@ -125,7 +125,9 @@ class OrderController extends \WP_REST_Controller
         }
 
         if($request->get_param('pickup_method')){//pickup_method
-            $query = $query->where('pickup_method', $request->get_param('pickup_method'));
+            $query = $query->where('pickup_method', $request->get_param('pickup_method'));//查询指定pickup_method的记录
+        }else{
+            $query = $query->whereNotNull('pickup_method')->where('pickup_method', '!=', '');//没有传pickup_method默认从表中读取pickup_method不为空的记录
         }
 
         write_log([$query->toSql(), $query->getBindings()]);
