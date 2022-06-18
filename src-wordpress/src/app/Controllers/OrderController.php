@@ -135,7 +135,7 @@ class OrderController extends \WP_REST_Controller
 
         /**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
 
-        $orders = $query->orderBy('pickup_time','desc')->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
+        $orders = $query->orderBy('pickup_time','asc')->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
             ->paginate(
                 $request->get_param('per_page') ? (int) $request->get_param('per_page') : 10,
                 ['*'],
