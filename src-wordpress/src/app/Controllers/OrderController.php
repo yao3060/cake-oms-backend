@@ -11,10 +11,10 @@ use App\Filters\StatusFilter;
 use App\Filters\StoreUserFilter;
 use App\Permissions\OrderStatusPermission;
 use App\Services\OrderLogService;
-use App\Services\OrderService;
+use App\Services\OrderServicea;
 use RuntimeException;
 use WP_REST_Request;
-use WP_REST_Server;
+use WP_REST_Server;a
 use WP_REST_Response;
 use WP_Error;
 
@@ -98,7 +98,6 @@ class OrderController extends \WP_REST_Controller
     public function get_items($request)
     {
         $query = $this->db->table('orders');
-
         $pre = $this->orderService->preGetOrders($request->get_params());
         if (is_wp_error($pre)) {
             return $pre;
@@ -125,10 +124,18 @@ class OrderController extends \WP_REST_Controller
             $query = PickupNumberFilter::handle($query, $request);
         }
 
+        if($request->get_param('pickup_method')){//pickup_method
+            $query = $query->where('pickup_method', $request->get_param('pickup_method'));//查询指定pickup_method的记录
+        }else{
+            $query = $query->whereNotNull('pickup_method')->where('pickup_method', '!=', '');//没有传pickup_method默认从表中读取pickup_method不为空的记录
+        }
+
         write_log([$query->toSql(), $query->getBindings()]);
 
+
         /**@var \Illuminate\Pagination\LengthAwarePaginator $orders */
-        $orders = $query->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
+
+        $orders = $query->orderBy('pickup_time','asc')->orderBy($request->get_param('orderby') ?? 'id', $request->get_param('order') ?? 'desc')
             ->paginate(
                 $request->get_param('per_page') ? (int) $request->get_param('per_page') : 10,
                 ['*'],
