@@ -40,17 +40,19 @@ class Order extends ArrayObject
         return $interval;
     }
 
-    public function getDeadline()
-    {
-        $diffHours = get_term_meta($this->store_id, 'user_group_deadline', true);
-        if (!$diffHours) {
-            $this->pickup_time;
-        }
-
-        $date = new DateTime($this->pickup_time);
-        $date->modify('-' . $diffHours . ' hours');
-        return $date->format('Y-m-d H:i:s');
+public function getDeadline()
+{
+    $diffHours = get_term_meta($this->store_id, 'user_group_deadline', true);
+    if (!$diffHours) {
+        $tmpTime = strtotime($this->pickup_time);
+        $tmpDate = date("Y-m-d",$tmpTime);
+        return $tmpDate;
     }
+
+    $date = new DateTime($this->pickup_time);
+    $date->modify('-' . $diffHours . ' hours');
+    return $date->format('Y-m-d H:i:s');
+}
 
     public function getFramer(): array
     {
