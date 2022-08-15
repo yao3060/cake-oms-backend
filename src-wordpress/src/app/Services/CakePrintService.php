@@ -158,11 +158,13 @@ class CakePrintService
             . "配送时间：<HB>" . $this->order->pickup_time . "</HB><BR>"  //配送时间
             . "订单备注：<HB>" . $this->order->note . "</HB><BR>"
             . "收货人：<B>" .  $this->order->shipping_name . "</B><BR>"
-            . "联系电话：<B>" . mask_mobile_phone($this->order->shipping_phone) . "</B><BR>"
+            . "联系电话：<B>" . $this->order->shipping_phone . "</B><BR>"
             . "地址：<B>" .  $this->order->shipping_address . "</B><BR></L>"
             . "<C><QRCODE s=10 e=L l=center>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QRCODE></C>";
     }
-
+    /**
+     * 小票加密联系电话，. "联系电话：<B>" . mask_mobile_phone($this->order->shipping_phone) . "</B><BR>"
+     */
     protected function renderItemList()
     {
         $printContent = str_repeat('-', self::DASH_COUNT) . "<BR>";
