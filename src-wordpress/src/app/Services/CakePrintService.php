@@ -159,7 +159,7 @@ class CakePrintService
             . "订单备注：<HB>" . $this->order->note . "</HB><BR>"
             . "收货人：<B>" .  $this->order->shipping_name . "</B><BR>"
             . "联系电话：<B>" . $this->order->shipping_phone . "</B><BR>"
-            . "地址：<B>" .  $this->order->shipping_address . "</B><BR></L>"
+            . "地址：<B>" .  $this->order->shipping_address . "</B><BR><BR></L>"
             . "<C><QRCODE s=10 e=L l=center>http://weixin.qq.com/r/ZyqLkyDE9H2LrWTw9391</QRCODE></C>";
     }
     /**
